@@ -6,6 +6,15 @@ download: genome proteins
 
 all: download blastdb petMar_mrna.fp x.genome.csv x.zebrafish.csv x.amph.csv x.mouse.csv x.myx.csv x.est.csv x.lamp0.csv
 
+pbs-blast:
+	qsub genome_blast.pbs
+	qsub amph_blast.pbs
+	qsub mouse_blast.pbs
+	qsub zebrafish_blast.pbs
+	qsub myx_blast.pbs
+	qsub est_blast.pbs
+	qsub lamp0_blast.pbs
+
 genome:
 	curl http://hgdownload.soe.ucsc.edu/goldenPath/petMar2/bigZips/petMar2.fa.gz -o db/petMar2.fa.gz
 	curl http://hgdownload.soe.ucsc.edu/goldenPath/petMar2/bigZips/petMar2.fa.out.gz -o db/petMar2.fa.out.gz
