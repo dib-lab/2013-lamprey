@@ -16,6 +16,13 @@ dirs:
 	mkdir -p db
 	mkdir -p data
 
+# touch prereq files in order to skip dep building steps
+nodep:
+	touch lamp3.fasta
+	touch lamp3.fasta.dedupe.fa
+	touch petMar_mrna.fa
+	touch petMar_mrna.fp
+
 pbs-blast: x.lamp0-pbs x.genome-pbs x.amph-pbs x.mouse-pbs x.zebrafish-pbs x.myx-pbs x.est-pbs
 
 x.lamp0-pbs:
@@ -113,7 +120,7 @@ x.mouse.csv: petMar_mrna.fp
 	blastx -query petMar_mrna.fp -db db/zebrafish.protein.fa -out x.zebrafish.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
 
 x.est.csv: petMar_mrna.fp
-	blastn -query petMar_mrna.fp -db db/est.fa -out x.EST.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastn -query petMar_mrna.fp -db db/est.fa -out x.est.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
 
 x.lamp0.csv: petMar_mrna.fp
 	blastn -query petMar_mrna.fp -db data/lamp0.fasta -out x.lamp0.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
