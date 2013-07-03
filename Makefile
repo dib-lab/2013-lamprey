@@ -1,6 +1,7 @@
 KHMER=~/tools/khmer
 PEASOUP=/w/peasoup/scripts
 CSV=qseqid sseqid length nident qstart qend sstart send bitscore evalue
+BLASTRES='nodes=1:ppn=1,walltime=00:48:00'
 
 download: genome proteins
 
@@ -18,6 +19,15 @@ pbs-blast:
 	qsub myx_blast.pbs
 	qsub est_blast.pbs
 	qsub lamp0_blast.pbs
+
+pbs:
+    cat <<EOS | qsub -
+#!/bin/sh
+#PBS -N x.est
+module load BLAST+
+cd $PBS_O_WORKDIR
+make x.est.csv
+EOS
 
 genome:
 	mkdir -p db
