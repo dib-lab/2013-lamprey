@@ -1,7 +1,8 @@
 KHMER=~/tools/khmer
 PEASOUP=/w/peasoup/scripts
 CSV=qseqid sseqid length nident qstart qend sstart send bitscore evalue
-BLASTRES=nodes=1:ppn=1,walltime=48:00:00,mem=8gb
+BLAST_CPUS=12
+BLASTRES=nodes=1:ppn=13,walltime=48:00:00,mem=8gb
 
 define newline
 
@@ -15,17 +16,22 @@ dirs:
 	mkdir -p db
 	mkdir -p data
 
-pbs-blast:
-	qsub genome_blast.pbs
-	qsub amph_blast.pbs
-	qsub mouse_blast.pbs
-	qsub zebrafish_blast.pbs
-	qsub myx_blast.pbs
-	qsub est_blast.pbs
-	qsub lamp0_blast.pbs
+pbs-blast: x.lamp0-pbs x.genome-pbs x.amph-pbs x.mouse-pbs x.zebrafish-pbs x.myx-pbs x.est-pbs
 
-pbs:
-	qsub -l $(BLASTRES) lamp0_blast.pbs	
+x.lamp0-pbs:
+	qsub -l $(BLASTRES) lamp0_blast.pbs
+x.genome-pbs:
+	qsub -l $(BLASTRES) genome_blast.pbs	
+x.amph-pbs:
+	qsub -l $(BLASTRES) amph_blast.pbs	
+x.mouse-pbs:
+	qsub -l $(BLASTRES) mouse_blast.pbs	
+x.zebrafish-pbs:
+	qsub -l $(BLASTRES) zebrafish_blast.pbs	
+x.myx-pbs:
+	qsub -l $(BLASTRES) myx_blast.pbs	
+x.est-pbs:
+	qsub -l $(BLASTRES) est_blast.pbs	
 
 genome:
 	mkdir -p db
@@ -92,24 +98,24 @@ petMar_mrna.fp: petMar_mrna.fa
 	cat petMar_mrna_nonlump.fp petMar_mrna_delumped.fp > petMar_mrna.fp
 
 x.genome.csv: petMar_mrna.fp
-	blastn -query petMar_mrna.fp -db db/petMar2.fa.masked -out x.genome_hard.csv -num_threads 8 -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastn -query petMar_mrna.fp -db db/petMar2.fa.masked -out x.genome_hard.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
 
 x.zebrafish.csv: petMar_mrna.fp
-	blastx -query petMar_mrna.fp -db db/zebrafish.protein.fa -out x.zebrafish.csv -num_threads 8 -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastx -query petMar_mrna.fp -db db/zebrafish.protein.fa -out x.zebrafish.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
 
 x.myx.csv: petMar_mrna.fp
-	blastx -query petMar_mrna.fp -db db/myxinidae.protein.fa -out x.myx.csv -num_threads 8 -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastx -query petMar_mrna.fp -db db/myxinidae.protein.fa -out x.myx.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
 
 x.amph.csv: petMar_mrna.fp
-	blastx -query petMar_mrna.fp -db db/amphioxus.protein.fa -out x.amph.csv -num_threads 8 -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastx -query petMar_mrna.fp -db db/amphioxus.protein.fa -out x.amph.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
 	
 x.mouse.csv: petMar_mrna.fp
-	blastx -query petMar_mrna.fp -db db/zebrafish.protein.fa -out x.zebrafish.csv -num_threads 8 -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastx -query petMar_mrna.fp -db db/zebrafish.protein.fa -out x.zebrafish.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
 
 x.est.csv: petMar_mrna.fp
-	blastn -query petMar_mrna.fp -db db/est.fa -out x.EST.csv -num_threads 8 -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastn -query petMar_mrna.fp -db db/est.fa -out x.EST.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
 
 x.lamp0.csv: petMar_mrna.fp
-	blastn -query petMar_mrna.fp -db data/lamp0.fasta -out x.lamp0.csv -num_threads 8 -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastn -query petMar_mrna.fp -db data/lamp0.fasta -out x.lamp0.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
 
 
