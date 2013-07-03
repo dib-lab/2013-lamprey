@@ -70,7 +70,7 @@ blastdb: proteins genome
 	makeblastdb -in db/est.fa -dbtype nucl
 	makeblastdb -in db/mrna.fa -dbtype nucl
 
-lamp3.fasta.dedupe.fa: data/lamp3.fasta
+lamp3.fasta.dedupe.fa:
 	cd-hit-est -i data/lamp3.fasta -o lamp3.dedupe.fa -c .98 -n 9 -g 1 -T 4
 
 petMar_mrna.fa: lamp3.fasta.dedupe.fa
