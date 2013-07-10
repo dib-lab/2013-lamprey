@@ -2,22 +2,14 @@ include Makefile.inc
 
 # make all for non-cluster runs
 # make pbs-blast && make petMar_mrna.fp for cluster rns
-all:  petMar_mrna.fp x.genome.csv x.zebrafish.csv x.amph.csv \
+all:  db data x.genome.csv x.zebrafish.csv x.amph.csv \
 	x.mouse.csv x.myx.csv x.est.csv x.lamp0.csv x.cdna.csv
 
 db: force
 	cd db; $(MAKE) all
 
 data: force
-	
-
-# touch prereq files in order to skip dep building steps
-nodep:
-	touch lamp3.fasta
-	touch lamp3.fasta.dedupe.fa
-	touch petMar_mrna.fa
-	touch petMar_mrna.fp
-
+	cd data; $(MAKE) all
 
 # these could be changed to if statements checking the HPCC_MODULES_PATH
 # and the PBS_O_WORKDIR to see if we're on the cluster, and then if
@@ -43,7 +35,7 @@ x.cdna-pbs:
 	
 petMar_mrna.fp: force
 	cd db; $(MAKE) univec_core.fa.nhr
-	cd data; $(MAKE) petMar_mrna.fp
+	cd data; $(MAKE) all
 
 x.genome.csv: petMar_mrna.fp
 	cd db; $(MAKE) petMar2.fa.masked.phr

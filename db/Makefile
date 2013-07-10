@@ -10,6 +10,18 @@ clean:
 	echo Running clean on db directory
 	rm -f *.phr *.nhr *.fa .fa.masked
 
+nodeps:
+	touch petMar2.fa.nhr
+	touch petMar2.fa.masked.nhr 
+	touch est.fa.nhr 
+	touch cdna.all.fa.nhr
+	touch mrna.all.fa.nhr
+	touch mouse.protein.fa.phr
+	touch zebrafish.protein.fa.phr
+	touch myxinidae.protein.fa.phr
+	touch amphioxus.protein.fa.phr
+	touch univec_core.fa.phr
+
 petMar2.fa:
 	curl http://hgdownload.soe.ucsc.edu/goldenPath/petMar2/bigZips/petMar2.fa.gz -o petMar2.fa.gz
 	gunzip petMar2.fa.gz

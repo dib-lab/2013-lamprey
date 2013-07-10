@@ -6,6 +6,9 @@ include ../Makefile.inc
 all: petMar_mrna.fp
 	cp petMar_mrna.fp ../
 
+clean:
+	rm *.stoptags *.part *.ht *.fp *.stopfilt *.merged *.info petMar_mrna.fa
+
 nodeps:
 	touch petMar_mrna.fa
 	touch petMar_part.ht
@@ -25,7 +28,6 @@ nodeps:
 	
 lamp3.fasta: 
 #	get <url to raw assembly, or include it>
-
 
 lamp3.fasta.dedupe.fa: lamp3.fasta
 	$(CDHITEST) -i lamp3.fasta -o lamp3.dedupe.fa -c .98 -n 9 -g 1 -T 4
