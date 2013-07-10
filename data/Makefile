@@ -6,6 +6,23 @@ include ../Makefile.inc
 all: petMar_mrna.fp
 	cp petMar_mrna.fp ../
 
+nodeps:
+	touch petMar_mrna.fa
+	touch petMar_part.ht
+	touch petMar_part.info
+	touch petMar_part.pmap.merged
+	touch petMar_mrna.fa.part
+	touch petMar_mrna_lump.fp
+	touch petMar_lump.ht
+	touch petMar_lump.stoptags
+	touch petMar_lump.info
+	touch petMar_mrna_lump.fp.stopfilt
+	touch lumpfilt.ht
+	touch lumpfilt.info
+	touch lumpfilt.pmap.merged
+	touch lumpfilt.fp.stopfilt.part
+	touch petMar_mrna.fp
+	
 lamp3.fasta: 
 #	get <url to raw assembly, or include it>
 
@@ -15,8 +32,6 @@ lamp3.fasta.dedupe.fa: lamp3.fasta
 
 petMar_mrna.fa: lamp3.fasta.dedupe.fa
 	$(SEQCLEAN) lamp3.fasta.dedupe.fa -c 6 -v ../db/univec_core.fa -o petMar_mrna.fa
-
-petMar_mrna.fp: petMar_mrna.fa
 
 petMar_part.ht: petMar_mrna.fa
 	$(KHMER)/scripts/load-graph.py -k 25 -N 4 -x 16e9 petMar_part petMar_mrna.fa
@@ -30,7 +45,7 @@ petMar_part.pmap.merged: petMar_part.info
 petMar_mrna.fa.part: petMar_part.pmap.merged
 	$(KHMER)/scripts/annotate-partitions.py -k 25 petMar_part petMar_mrna.fa
 	
-petMar_mrna_lump.fp: petMar_part.fa.part
+petMar_mrna_lump.fp: petMar_mrna.fa.part
 	python ../scripts/dump-lump.py petMar_mrna.fa.part petMar_mrna
 	
 petMar_lump.ht: petMar_mrna_lump.fp
@@ -42,9 +57,9 @@ petMar_lump.stoptags: petMar_lump.ht
 petMar_lump.info: petMar_lump.stoptags
 	$(KHMER)/scripts/partition-graph.py -T 8 --stoptags petMar_lump.stoptags petMar_lump
 
+# Unfortunately, needs two commands in one rule because of filename conventions
+petMar_mrna_lump.fp.stopfilt: petMar_lump.info
 	$(KHMER)/scripts/find-knots.py -x 2e8 -N 4 petMar_lump
-#TODO: check these deps once internet comes back up...
-petMar_mrna_lump.fp.stopfilt:
 	$(KHMER)/scripts/filter-stoptags.py -k 25 petMar_lump.stoptags petMar_mrna_lump.fp
 
 lumpfilt.ht: petMar_mrna_lump.fp.stopfilt

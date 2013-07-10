@@ -45,7 +45,7 @@ mrna.fa.nhr: mrna.fa
 cdna.all.fa:
 	curl -O ftp://ftp.ensembl.org/pub/release-72/fasta/petromyzon_marinus/cdna/Petromyzon_marinus.Pmarinus_7.0.72.cdna.all.fa.gz
 	gunzip Petromyzon_marinus.Pmarinus_7.0.72.cdna.all.fa.gz
-	mv Petromyzon_marinus.Pmarinus_7.0.72.cdna.all.fa.gz cdna.all.fa
+	mv Petromyzon_marinus.Pmarinus_7.0.72.cdna.all.fa cdna.all.fa
 
 cdna.all.fa.nhr: cdna.all.fa
 	makeblastdb -in cdna.all.fa -dbtype nucl
@@ -81,8 +81,8 @@ amphioxus.protein.fa.phr: amphioxus.protein.fa
 univec_core.fa:
 	curl ftp://ftp.ncbi.nih.gov/pub/UniVec/UniVec_Core -o univec_core.fa
 
-univec_core.fa.nhr:
-	makeblastdb -in univec.fa -dbtype nucl
+univec_core.fa.nhr: univec_core.fa
+	makeblastdb -in univec_core.fa -dbtype nucl
 
 force:
 	true

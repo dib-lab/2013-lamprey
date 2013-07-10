@@ -42,7 +42,7 @@ x.cdna-pbs:
 	qsub -l $(BLASTRES) cdna_blast.pbs
 	
 petMar_mrna.fp: force
-	cd db; $(MAKE) univew_core.fa.nhr
+	cd db; $(MAKE) univec_core.fa.nhr
 	cd data; $(MAKE) petMar_mrna.fp
 
 x.genome.csv: petMar_mrna.fp
