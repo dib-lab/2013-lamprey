@@ -7,7 +7,7 @@ all: petMar_mrna.fp
 	cp petMar_mrna.fp ../
 
 clean:
-	rm *.stoptags *.part *.ht *.fp *.stopfilt *.merged *.info petMar_mrna.fa
+	rm -f *.stoptags *.part *.ht *.fp *.stopfilt *.merged *.info petMar_mrna.fa
 
 nodeps:
 	touch petMar_mrna.fa
@@ -25,7 +25,10 @@ nodeps:
 	touch lumpfilt.pmap.merged
 	touch lumpfilt.fp.stopfilt.part
 	touch petMar_mrna.fp
-	
+
+lamp0.fasta.nhr:
+	makeblastdb -in lamp0.fasta -dbtype nucl
+
 lamp3.fasta: 
 #	get <url to raw assembly, or include it>
 
@@ -79,3 +82,6 @@ lumpfilt.fp.stopfilt.part: lumpfilt.pmap.merged
 petMar_mrna.fp: lumpfilt.fp.stopfilt.part
 	mv petMar_mrna_lump.fp.stopfilt.part petMar_mrna_delumped.fp
 	cat petMar_mrna_nonlump.fp petMar_mrna_delumped.fp > petMar_mrna.fp
+
+petMar_mrna.fp.nhr: petMar_mrna.fp
+	makeblastdb -in petMar_mrna.fp -dbtype nucl
