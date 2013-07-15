@@ -194,53 +194,53 @@ Monocytes.trim.fq: Monocytes.fq.gz
 	ln -s Monocytes.fq.gz /mnt/home/welcherc/lamprey/reads/all/Monocytes.fq.gz
 	time -o Monocytes.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog Monocytes.trimlog -threads 4 Monocytes.fq.gz Monocytes.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_1_pair.trim.fq: mssm_s_1_pair.pe.gz
-	ln -s mssm_s_1_pair.pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_1_pair.pe.gz
-	time -o mssm_s_1_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_1_pair.trimlog -threads 4 mssm_s_1_pair.pe.gz mssm_s_1_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_1_pair_pe.trim.fq: mssm_s_1_pair_pe.gz
+	ln -s mssm_s_1_pair_pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_1_pair_pe.gz
+	time -o mssm_s_1_pair_pe.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_1_pair_pe.trimlog -threads 4 mssm_s_1_pair_pe.gz mssm_s_1_pair_pe.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_1_pair.trim.fq: mssm_s_1_pair.se.gz
-	ln -s mssm_s_1_pair.se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_1_pair.se.gz
-	time -o mssm_s_1_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_1_pair.trimlog -threads 4 mssm_s_1_pair.se.gz mssm_s_1_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_1_pair_se.trim.fq: mssm_s_1_pair_se.gz
+	ln -s mssm_s_1_pair_se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_1_pair_se.gz
+	time -o mssm_s_1_pair_se.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_1_pair_se.trimlog -threads 4 mssm_s_1_pair_se.gz mssm_s_1_pair_se.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_2_pair.trim.fq: mssm_s_2_pair.pe.gz
-	ln -s mssm_s_2_pair.pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_2_pair.pe.gz
-	time -o mssm_s_2_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_2_pair.trimlog -threads 4 mssm_s_2_pair.pe.gz mssm_s_2_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_2_pair_pe.trim.fq: mssm_s_2_pair_pe.gz
+	ln -s mssm_s_2_pair_pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_2_pair_pe.gz
+	time -o mssm_s_2_pair_pe.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_2_pair_pe.trimlog -threads 4 mssm_s_2_pair_pe.gz mssm_s_2_pair_pe.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_2_pair.trim.fq: mssm_s_2_pair.se.gz
-	ln -s mssm_s_2_pair.se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_2_pair.se.gz
-	time -o mssm_s_2_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_2_pair.trimlog -threads 4 mssm_s_2_pair.se.gz mssm_s_2_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_2_pair_se.trim.fq: mssm_s_2_pair_se.gz
+	ln -s mssm_s_2_pair_se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_2_pair_se.gz
+	time -o mssm_s_2_pair_se.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_2_pair_se.trimlog -threads 4 mssm_s_2_pair_se.gz mssm_s_2_pair_se.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_3_pair.trim.fq: mssm_s_3_pair.pe.gz
-	ln -s mssm_s_3_pair.pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_3_pair.pe.gz
-	time -o mssm_s_3_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_3_pair.trimlog -threads 4 mssm_s_3_pair.pe.gz mssm_s_3_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_3_pair_pe.trim.fq: mssm_s_3_pair_pe.gz
+	ln -s mssm_s_3_pair_pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_3_pair_pe.gz
+	time -o mssm_s_3_pair_pe.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_3_pair_pe.trimlog -threads 4 mssm_s_3_pair_pe.gz mssm_s_3_pair_pe.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_3_pair.trim.fq: mssm_s_3_pair.se.gz
-	ln -s mssm_s_3_pair.se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_3_pair.se.gz
-	time -o mssm_s_3_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_3_pair.trimlog -threads 4 mssm_s_3_pair.se.gz mssm_s_3_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_3_pair_se.trim.fq: mssm_s_3_pair_se.gz
+	ln -s mssm_s_3_pair_se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_3_pair_se.gz
+	time -o mssm_s_3_pair_se.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_3_pair_se.trimlog -threads 4 mssm_s_3_pair_se.gz mssm_s_3_pair_se.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_5_pair.trim.fq: mssm_s_5_pair.pe.gz
-	ln -s mssm_s_5_pair.pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_5_pair.pe.gz
-	time -o mssm_s_5_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_5_pair.trimlog -threads 4 mssm_s_5_pair.pe.gz mssm_s_5_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_5_pair_pe.trim.fq: mssm_s_5_pair_pe.gz
+	ln -s mssm_s_5_pair_pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_5_pair_pe.gz
+	time -o mssm_s_5_pair_pe.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_5_pair_pe.trimlog -threads 4 mssm_s_5_pair_pe.gz mssm_s_5_pair_pe.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_5_pair.trim.fq: mssm_s_5_pair.se.gz
-	ln -s mssm_s_5_pair.se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_5_pair.se.gz
-	time -o mssm_s_5_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_5_pair.trimlog -threads 4 mssm_s_5_pair.se.gz mssm_s_5_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_5_pair_se.trim.fq: mssm_s_5_pair_se.gz
+	ln -s mssm_s_5_pair_se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_5_pair_se.gz
+	time -o mssm_s_5_pair_se.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_5_pair_se.trimlog -threads 4 mssm_s_5_pair_se.gz mssm_s_5_pair_se.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_6_pair.trim.fq: mssm_s_6_pair.pe.gz
-	ln -s mssm_s_6_pair.pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_6_pair.pe.gz
-	time -o mssm_s_6_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_6_pair.trimlog -threads 4 mssm_s_6_pair.pe.gz mssm_s_6_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_6_pair_pe.trim.fq: mssm_s_6_pair_pe.gz
+	ln -s mssm_s_6_pair_pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_6_pair_pe.gz
+	time -o mssm_s_6_pair_pe.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_6_pair_pe.trimlog -threads 4 mssm_s_6_pair_pe.gz mssm_s_6_pair_pe.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_6_pair.trim.fq: mssm_s_6_pair.se.gz
-	ln -s mssm_s_6_pair.se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_6_pair.se.gz
-	time -o mssm_s_6_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_6_pair.trimlog -threads 4 mssm_s_6_pair.se.gz mssm_s_6_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_6_pair_se.trim.fq: mssm_s_6_pair_se.gz
+	ln -s mssm_s_6_pair_se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_6_pair_se.gz
+	time -o mssm_s_6_pair_se.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_6_pair_se.trimlog -threads 4 mssm_s_6_pair_se.gz mssm_s_6_pair_se.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_7_pair.trim.fq: mssm_s_7_pair.pe.gz
-	ln -s mssm_s_7_pair.pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_7_pair.pe.gz
-	time -o mssm_s_7_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_7_pair.trimlog -threads 4 mssm_s_7_pair.pe.gz mssm_s_7_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_7_pair_pe.trim.fq: mssm_s_7_pair_pe.gz
+	ln -s mssm_s_7_pair_pe.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_7_pair_pe.gz
+	time -o mssm_s_7_pair_pe.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_7_pair_pe.trimlog -threads 4 mssm_s_7_pair_pe.gz mssm_s_7_pair_pe.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-mssm_s_7_pair.trim.fq: mssm_s_7_pair.se.gz
-	ln -s mssm_s_7_pair.se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_7_pair.se.gz
-	time -o mssm_s_7_pair.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_7_pair.trimlog -threads 4 mssm_s_7_pair.se.gz mssm_s_7_pair.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
+mssm_s_7_pair_se.trim.fq: mssm_s_7_pair_se.gz
+	ln -s mssm_s_7_pair_se.gz /mnt/home/welcherc/lamprey/reads/all/mssm_s_7_pair_se.gz
+	time -o mssm_s_7_pair_se.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog mssm_s_7_pair_se.trimlog -threads 4 mssm_s_7_pair_se.gz mssm_s_7_pair_se.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
 mssm_single_s1.trim.fq: mssm_single_s1.trim.fq.gz
 	ln -s mssm_single_s1.trim.fq.gz /mnt/home/welcherc/lamprey/reads/all/mssm_single_s1.trim.fq.gz
@@ -394,201 +394,201 @@ SW2-Kidney.trim.fq: SW2-Kidney.fq.gz
 	ln -s SW2-Kidney.fq.gz /mnt/home/welcherc/lamprey/reads/all/SW2-Kidney.fq.gz
 	time -o SW2-Kidney.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog SW2-Kidney.trimlog -threads 4 SW2-Kidney.fq.gz SW2-Kidney.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 HEADCROP:9 SLIDINGWINDOW:4:15 MINLEN:31
 
-614GMAAXX_1_1_pf.trim.fq-pbs: 614GMAAXX_1_1_pf.trim.fq.trim.sub
-	qsub -l $(TRIMRES) 614GMAAXX_1_1_pf.trim.fq.trim.sub
-614GMAAXX_2_1_pf.trim.fq-pbs: 614GMAAXX_2_1_pf.trim.fq.trim.sub
-	qsub -l $(TRIMRES) 614GMAAXX_2_1_pf.trim.fq.trim.sub
-614GMAAXX_3_1_pf.trim.fq-pbs: 614GMAAXX_3_1_pf.trim.fq.trim.sub
-	qsub -l $(TRIMRES) 614GMAAXX_3_1_pf.trim.fq.trim.sub
-614GMAAXX_4_1_pf.trim.fq-pbs: 614GMAAXX_4_1_pf.trim.fq.trim.sub
-	qsub -l $(TRIMRES) 614GMAAXX_4_1_pf.trim.fq.trim.sub
-614GMAAXX_6_1_pf.trim.fq-pbs: 614GMAAXX_6_1_pf.trim.fq.trim.sub
-	qsub -l $(TRIMRES) 614GMAAXX_6_1_pf.trim.fq.trim.sub
-614GMAAXX_7_1_pf.trim.fq-pbs: 614GMAAXX_7_1_pf.trim.fq.trim.sub
-	qsub -l $(TRIMRES) 614GMAAXX_7_1_pf.trim.fq.trim.sub
-614GMAAXX_8_1_pf.trim.fq-pbs: 614GMAAXX_8_1_pf.trim.fq.trim.sub
-	qsub -l $(TRIMRES) 614GMAAXX_8_1_pf.trim.fq.trim.sub
-AB057JABXX_s_7_pe.trim.fq-pbs: AB057JABXX_s_7_pe.trim.fq.trim.sub
-	qsub -l $(TRIMRES) AB057JABXX_s_7_pe.trim.fq.trim.sub
-AI.trim.fq-pbs: AI.trim.fq.trim.sub
-	qsub -l $(TRIMRES) AI.trim.fq.trim.sub
-AK.trim.fq-pbs: AK.trim.fq.trim.sub
-	qsub -l $(TRIMRES) AK.trim.fq.trim.sub
-BB0582ABXX_s_3_pe.trim.fq-pbs: BB0582ABXX_s_3_pe.trim.fq.trim.sub
-	qsub -l $(TRIMRES) BB0582ABXX_s_3_pe.trim.fq.trim.sub
-BB0582ABXX_s_4_pe.trim.fq-pbs: BB0582ABXX_s_4_pe.trim.fq.trim.sub
-	qsub -l $(TRIMRES) BB0582ABXX_s_4_pe.trim.fq.trim.sub
-BB0582ABXX_s_5_pe.trim.fq-pbs: BB0582ABXX_s_5_pe.trim.fq.trim.sub
-	qsub -l $(TRIMRES) BB0582ABXX_s_5_pe.trim.fq.trim.sub
-BB0582ABXX_s_6_pe.trim.fq-pbs: BB0582ABXX_s_6_pe.trim.fq.trim.sub
-	qsub -l $(TRIMRES) BB0582ABXX_s_6_pe.trim.fq.trim.sub
-BB0582ABXX_s_7_pe.trim.fq-pbs: BB0582ABXX_s_7_pe.trim.fq.trim.sub
-	qsub -l $(TRIMRES) BB0582ABXX_s_7_pe.trim.fq.trim.sub
-BB0582ABXX_s_8_pe.trim.fq-pbs: BB0582ABXX_s_8_pe.trim.fq.trim.sub
-	qsub -l $(TRIMRES) BB0582ABXX_s_8_pe.trim.fq.trim.sub
-brain_paired.trim.fq-pbs: brain_paired.trim.fq.trim.sub
-	qsub -l $(TRIMRES) brain_paired.trim.fq.trim.sub
-FW1-Gill.trim.fq-pbs: FW1-Gill.trim.fq.trim.sub
-	qsub -l $(TRIMRES) FW1-Gill.trim.fq.trim.sub
-FW1-Intestine.trim.fq-pbs: FW1-Intestine.trim.fq.trim.sub
-	qsub -l $(TRIMRES) FW1-Intestine.trim.fq.trim.sub
-FW1-Kidney.trim.fq-pbs: FW1-Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) FW1-Kidney.trim.fq.trim.sub
-G81-a.trim.fq-pbs: G81-a.trim.fq.trim.sub
-	qsub -l $(TRIMRES) G81-a.trim.fq.trim.sub
-G81-b.trim.fq-pbs: G81-b.trim.fq.trim.sub
-	qsub -l $(TRIMRES) G81-b.trim.fq.trim.sub
-G82-a.trim.fq-pbs: G82-a.trim.fq.trim.sub
-	qsub -l $(TRIMRES) G82-a.trim.fq.trim.sub
-G82-b.trim.fq-pbs: G82-b.trim.fq.trim.sub
-	qsub -l $(TRIMRES) G82-b.trim.fq.trim.sub
-G83-a.trim.fq-pbs: G83-a.trim.fq.trim.sub
-	qsub -l $(TRIMRES) G83-a.trim.fq.trim.sub
-G83-b.trim.fq-pbs: G83-b.trim.fq.trim.sub
-	qsub -l $(TRIMRES) G83-b.trim.fq.trim.sub
-Gill.trim.fq-pbs: Gill.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Gill.trim.fq.trim.sub
-JV1_liver.trim.fq-pbs: JV1_liver.trim.fq.trim.sub
-	qsub -l $(TRIMRES) JV1_liver.trim.fq.trim.sub
-JVa_liver.trim.fq-pbs: JVa_liver.trim.fq.trim.sub
-	qsub -l $(TRIMRES) JVa_liver.trim.fq.trim.sub
-JVb_liver.trim.fq-pbs: JVb_liver.trim.fq.trim.sub
-	qsub -l $(TRIMRES) JVb_liver.trim.fq.trim.sub
-JV_intest.trim.fq-pbs: JV_intest.trim.fq.trim.sub
-	qsub -l $(TRIMRES) JV_intest.trim.fq.trim.sub
-Kidney.trim.fq-pbs: Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Kidney.trim.fq.trim.sub
-L81-a.trim.fq-pbs: L81-a.trim.fq.trim.sub
-	qsub -l $(TRIMRES) L81-a.trim.fq.trim.sub
-L81-b.trim.fq-pbs: L81-b.trim.fq.trim.sub
-	qsub -l $(TRIMRES) L81-b.trim.fq.trim.sub
-L82-a.trim.fq-pbs: L82-a.trim.fq.trim.sub
-	qsub -l $(TRIMRES) L82-a.trim.fq.trim.sub
-L82-b.trim.fq-pbs: L82-b.trim.fq.trim.sub
-	qsub -l $(TRIMRES) L82-b.trim.fq.trim.sub
-L83-1-a.trim.fq-pbs: L83-1-a.trim.fq.trim.sub
-	qsub -l $(TRIMRES) L83-1-a.trim.fq.trim.sub
-L83-1-b.trim.fq-pbs: L83-1-b.trim.fq.trim.sub
-	qsub -l $(TRIMRES) L83-1-b.trim.fq.trim.sub
-L83-a.trim.fq-pbs: L83-a.trim.fq.trim.sub
-	qsub -l $(TRIMRES) L83-a.trim.fq.trim.sub
-L83-b.trim.fq-pbs: L83-b.trim.fq.trim.sub
-	qsub -l $(TRIMRES) L83-b.trim.fq.trim.sub
-LI.trim.fq-pbs: LI.trim.fq.trim.sub
-	qsub -l $(TRIMRES) LI.trim.fq.trim.sub
-Lips.trim.fq-pbs: Lips.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Lips.trim.fq.trim.sub
-LK.trim.fq-pbs: LK.trim.fq.trim.sub
-	qsub -l $(TRIMRES) LK.trim.fq.trim.sub
-M0_liver.trim.fq-pbs: M0_liver.trim.fq.trim.sub
-	qsub -l $(TRIMRES) M0_liver.trim.fq.trim.sub
-M2_liver.trim.fq-pbs: M2_liver.trim.fq.trim.sub
-	qsub -l $(TRIMRES) M2_liver.trim.fq.trim.sub
-M5_liver.trim.fq-pbs: M5_liver.trim.fq.trim.sub
-	qsub -l $(TRIMRES) M5_liver.trim.fq.trim.sub
-Monocytes.trim.fq-pbs: Monocytes.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Monocytes.trim.fq.trim.sub
-mssm_s_1_pair.trim.fq-pbs: mssm_s_1_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_1_pair.trim.fq.trim.sub
-mssm_s_1_pair.trim.fq-pbs: mssm_s_1_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_1_pair.trim.fq.trim.sub
-mssm_s_2_pair.trim.fq-pbs: mssm_s_2_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_2_pair.trim.fq.trim.sub
-mssm_s_2_pair.trim.fq-pbs: mssm_s_2_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_2_pair.trim.fq.trim.sub
-mssm_s_3_pair.trim.fq-pbs: mssm_s_3_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_3_pair.trim.fq.trim.sub
-mssm_s_3_pair.trim.fq-pbs: mssm_s_3_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_3_pair.trim.fq.trim.sub
-mssm_s_5_pair.trim.fq-pbs: mssm_s_5_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_5_pair.trim.fq.trim.sub
-mssm_s_5_pair.trim.fq-pbs: mssm_s_5_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_5_pair.trim.fq.trim.sub
-mssm_s_6_pair.trim.fq-pbs: mssm_s_6_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_6_pair.trim.fq.trim.sub
-mssm_s_6_pair.trim.fq-pbs: mssm_s_6_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_6_pair.trim.fq.trim.sub
-mssm_s_7_pair.trim.fq-pbs: mssm_s_7_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_7_pair.trim.fq.trim.sub
-mssm_s_7_pair.trim.fq-pbs: mssm_s_7_pair.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_s_7_pair.trim.fq.trim.sub
-mssm_single_s1.trim.fq-pbs: mssm_single_s1.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_single_s1.trim.fq.trim.sub
-mssm_single_s2.trim.fq-pbs: mssm_single_s2.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_single_s2.trim.fq.trim.sub
-mssm_single_s3.trim.fq-pbs: mssm_single_s3.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_single_s3.trim.fq.trim.sub
-mssm_single_s5.trim.fq-pbs: mssm_single_s5.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_single_s5.trim.fq.trim.sub
-mssm_single_s6.trim.fq-pbs: mssm_single_s6.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_single_s6.trim.fq.trim.sub
-mssm_single_s7.trim.fq-pbs: mssm_single_s7.trim.fq.trim.sub
-	qsub -l $(TRIMRES) mssm_single_s7.trim.fq.trim.sub
-Muscle.trim.fq-pbs: Muscle.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Muscle.trim.fq.trim.sub
-Neutrophils.trim.fq-pbs: Neutrophils.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Neutrophils.trim.fq.trim.sub
-OFHS.trim.fq-pbs: OFHS.trim.fq.trim.sub
-	qsub -l $(TRIMRES) OFHS.trim.fq.trim.sub
-POF-eye.trim.fq-pbs: POF-eye.trim.fq.trim.sub
-	qsub -l $(TRIMRES) POF-eye.trim.fq.trim.sub
-POF-ts.trim.fq-pbs: POF-ts.trim.fq.trim.sub
-	qsub -l $(TRIMRES) POF-ts.trim.fq.trim.sub
-PSMGill.trim.fq-pbs: PSMGill.trim.fq.trim.sub
-	qsub -l $(TRIMRES) PSMGill.trim.fq.trim.sub
-Rope.trim.fq-pbs: Rope.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Rope.trim.fq.trim.sub
-SMGill.trim.fq-pbs: SMGill.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SMGill.trim.fq.trim.sub
-SMHS.trim.fq-pbs: SMHS.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SMHS.trim.fq.trim.sub
-SN.trim.fq-pbs: SN.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SN.trim.fq.trim.sub
-SPDI.trim.fq-pbs: SPDI.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SPDI.trim.fq.trim.sub
-spinal_cord_paired.trim.fq-pbs: spinal_cord_paired.trim.fq.trim.sub
-	qsub -l $(TRIMRES) spinal_cord_paired.trim.fq.trim.sub
-SPK.trim.fq-pbs: SPK.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SPK.trim.fq.trim.sub
-SPPI.trim.fq-pbs: SPPI.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SPPI.trim.fq.trim.sub
-Stg-1-Intestine.trim.fq-pbs: Stg-1-Intestine.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-1-Intestine.trim.fq.trim.sub
-Stg-1-Kidney.trim.fq-pbs: Stg-1-Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-1-Kidney.trim.fq.trim.sub
-Stg-2-Intestine.trim.fq-pbs: Stg-2-Intestine.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-2-Intestine.trim.fq.trim.sub
-Stg-2-Kidney.trim.fq-pbs: Stg-2-Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-2-Kidney.trim.fq.trim.sub
-Stg-3-Intestine.trim.fq-pbs: Stg-3-Intestine.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-3-Intestine.trim.fq.trim.sub
-Stg-3-Kidney.trim.fq-pbs: Stg-3-Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-3-Kidney.trim.fq.trim.sub
-Stg-4-Intestine.trim.fq-pbs: Stg-4-Intestine.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-4-Intestine.trim.fq.trim.sub
-Stg-4-Kidney.trim.fq-pbs: Stg-4-Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-4-Kidney.trim.fq.trim.sub
-Stg-5-Intestine.trim.fq-pbs: Stg-5-Intestine.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-5-Intestine.trim.fq.trim.sub
-Stg-5-Kidney.trim.fq-pbs: Stg-5-Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-5-Kidney.trim.fq.trim.sub
-Stg-6-Intestine.trim.fq-pbs: Stg-6-Intestine.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-6-Intestine.trim.fq.trim.sub
-Stg-6-Kidney.trim.fq-pbs: Stg-6-Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-6-Kidney.trim.fq.trim.sub
-Stg-7-Intestine.trim.fq-pbs: Stg-7-Intestine.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-7-Intestine.trim.fq.trim.sub
-Stg-7-Kidney.trim.fq-pbs: Stg-7-Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) Stg-7-Kidney.trim.fq.trim.sub
-SW2-Gill.trim.fq-pbs: SW2-Gill.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SW2-Gill.trim.fq.trim.sub
-SW2-Intestine-a.trim.fq-pbs: SW2-Intestine-a.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SW2-Intestine-a.trim.fq.trim.sub
-SW2-Intestine-b.trim.fq-pbs: SW2-Intestine-b.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SW2-Intestine-b.trim.fq.trim.sub
-SW2-Kidney.trim.fq-pbs: SW2-Kidney.trim.fq.trim.sub
-	qsub -l $(TRIMRES) SW2-Kidney.trim.fq.trim.sub
-trim-cluster: 614GMAAXX_1_1_pf.trim.fq-pbs 614GMAAXX_2_1_pf.trim.fq-pbs 614GMAAXX_3_1_pf.trim.fq-pbs 614GMAAXX_4_1_pf.trim.fq-pbs 614GMAAXX_6_1_pf.trim.fq-pbs 614GMAAXX_7_1_pf.trim.fq-pbs 614GMAAXX_8_1_pf.trim.fq-pbs AB057JABXX_s_7_pe.trim.fq-pbs AI.trim.fq-pbs AK.trim.fq-pbs BB0582ABXX_s_3_pe.trim.fq-pbs BB0582ABXX_s_4_pe.trim.fq-pbs BB0582ABXX_s_5_pe.trim.fq-pbs BB0582ABXX_s_6_pe.trim.fq-pbs BB0582ABXX_s_7_pe.trim.fq-pbs BB0582ABXX_s_8_pe.trim.fq-pbs brain_paired.trim.fq-pbs FW1-Gill.trim.fq-pbs FW1-Intestine.trim.fq-pbs FW1-Kidney.trim.fq-pbs G81-a.trim.fq-pbs G81-b.trim.fq-pbs G82-a.trim.fq-pbs G82-b.trim.fq-pbs G83-a.trim.fq-pbs G83-b.trim.fq-pbs Gill.trim.fq-pbs JV1_liver.trim.fq-pbs JVa_liver.trim.fq-pbs JVb_liver.trim.fq-pbs JV_intest.trim.fq-pbs Kidney.trim.fq-pbs L81-a.trim.fq-pbs L81-b.trim.fq-pbs L82-a.trim.fq-pbs L82-b.trim.fq-pbs L83-1-a.trim.fq-pbs L83-1-b.trim.fq-pbs L83-a.trim.fq-pbs L83-b.trim.fq-pbs LI.trim.fq-pbs Lips.trim.fq-pbs LK.trim.fq-pbs M0_liver.trim.fq-pbs M2_liver.trim.fq-pbs M5_liver.trim.fq-pbs Monocytes.trim.fq-pbs mssm_s_1_pair.trim.fq-pbs mssm_s_1_pair.trim.fq-pbs mssm_s_2_pair.trim.fq-pbs mssm_s_2_pair.trim.fq-pbs mssm_s_3_pair.trim.fq-pbs mssm_s_3_pair.trim.fq-pbs mssm_s_5_pair.trim.fq-pbs mssm_s_5_pair.trim.fq-pbs mssm_s_6_pair.trim.fq-pbs mssm_s_6_pair.trim.fq-pbs mssm_s_7_pair.trim.fq-pbs mssm_s_7_pair.trim.fq-pbs mssm_single_s1.trim.fq-pbs mssm_single_s2.trim.fq-pbs mssm_single_s3.trim.fq-pbs mssm_single_s5.trim.fq-pbs mssm_single_s6.trim.fq-pbs mssm_single_s7.trim.fq-pbs Muscle.trim.fq-pbs Neutrophils.trim.fq-pbs OFHS.trim.fq-pbs POF-eye.trim.fq-pbs POF-ts.trim.fq-pbs PSMGill.trim.fq-pbs Rope.trim.fq-pbs SMGill.trim.fq-pbs SMHS.trim.fq-pbs SN.trim.fq-pbs SPDI.trim.fq-pbs spinal_cord_paired.trim.fq-pbs SPK.trim.fq-pbs SPPI.trim.fq-pbs Stg-1-Intestine.trim.fq-pbs Stg-1-Kidney.trim.fq-pbs Stg-2-Intestine.trim.fq-pbs Stg-2-Kidney.trim.fq-pbs Stg-3-Intestine.trim.fq-pbs Stg-3-Kidney.trim.fq-pbs Stg-4-Intestine.trim.fq-pbs Stg-4-Kidney.trim.fq-pbs Stg-5-Intestine.trim.fq-pbs Stg-5-Kidney.trim.fq-pbs Stg-6-Intestine.trim.fq-pbs Stg-6-Kidney.trim.fq-pbs Stg-7-Intestine.trim.fq-pbs Stg-7-Kidney.trim.fq-pbs SW2-Gill.trim.fq-pbs SW2-Intestine-a.trim.fq-pbs SW2-Intestine-b.trim.fq-pbs SW2-Kidney.trim.fq-pbs
+614GMAAXX_1_1_pf.trim.fq-pbs: 614GMAAXX_1_1_pf.trim.fq.sub
+	qsub -l $(TRIMRES) 614GMAAXX_1_1_pf.trim.fq.sub
+614GMAAXX_2_1_pf.trim.fq-pbs: 614GMAAXX_2_1_pf.trim.fq.sub
+	qsub -l $(TRIMRES) 614GMAAXX_2_1_pf.trim.fq.sub
+614GMAAXX_3_1_pf.trim.fq-pbs: 614GMAAXX_3_1_pf.trim.fq.sub
+	qsub -l $(TRIMRES) 614GMAAXX_3_1_pf.trim.fq.sub
+614GMAAXX_4_1_pf.trim.fq-pbs: 614GMAAXX_4_1_pf.trim.fq.sub
+	qsub -l $(TRIMRES) 614GMAAXX_4_1_pf.trim.fq.sub
+614GMAAXX_6_1_pf.trim.fq-pbs: 614GMAAXX_6_1_pf.trim.fq.sub
+	qsub -l $(TRIMRES) 614GMAAXX_6_1_pf.trim.fq.sub
+614GMAAXX_7_1_pf.trim.fq-pbs: 614GMAAXX_7_1_pf.trim.fq.sub
+	qsub -l $(TRIMRES) 614GMAAXX_7_1_pf.trim.fq.sub
+614GMAAXX_8_1_pf.trim.fq-pbs: 614GMAAXX_8_1_pf.trim.fq.sub
+	qsub -l $(TRIMRES) 614GMAAXX_8_1_pf.trim.fq.sub
+AB057JABXX_s_7_pe.trim.fq-pbs: AB057JABXX_s_7_pe.trim.fq.sub
+	qsub -l $(TRIMRES) AB057JABXX_s_7_pe.trim.fq.sub
+AI.trim.fq-pbs: AI.trim.fq.sub
+	qsub -l $(TRIMRES) AI.trim.fq.sub
+AK.trim.fq-pbs: AK.trim.fq.sub
+	qsub -l $(TRIMRES) AK.trim.fq.sub
+BB0582ABXX_s_3_pe.trim.fq-pbs: BB0582ABXX_s_3_pe.trim.fq.sub
+	qsub -l $(TRIMRES) BB0582ABXX_s_3_pe.trim.fq.sub
+BB0582ABXX_s_4_pe.trim.fq-pbs: BB0582ABXX_s_4_pe.trim.fq.sub
+	qsub -l $(TRIMRES) BB0582ABXX_s_4_pe.trim.fq.sub
+BB0582ABXX_s_5_pe.trim.fq-pbs: BB0582ABXX_s_5_pe.trim.fq.sub
+	qsub -l $(TRIMRES) BB0582ABXX_s_5_pe.trim.fq.sub
+BB0582ABXX_s_6_pe.trim.fq-pbs: BB0582ABXX_s_6_pe.trim.fq.sub
+	qsub -l $(TRIMRES) BB0582ABXX_s_6_pe.trim.fq.sub
+BB0582ABXX_s_7_pe.trim.fq-pbs: BB0582ABXX_s_7_pe.trim.fq.sub
+	qsub -l $(TRIMRES) BB0582ABXX_s_7_pe.trim.fq.sub
+BB0582ABXX_s_8_pe.trim.fq-pbs: BB0582ABXX_s_8_pe.trim.fq.sub
+	qsub -l $(TRIMRES) BB0582ABXX_s_8_pe.trim.fq.sub
+brain_paired.trim.fq-pbs: brain_paired.trim.fq.sub
+	qsub -l $(TRIMRES) brain_paired.trim.fq.sub
+FW1-Gill.trim.fq-pbs: FW1-Gill.trim.fq.sub
+	qsub -l $(TRIMRES) FW1-Gill.trim.fq.sub
+FW1-Intestine.trim.fq-pbs: FW1-Intestine.trim.fq.sub
+	qsub -l $(TRIMRES) FW1-Intestine.trim.fq.sub
+FW1-Kidney.trim.fq-pbs: FW1-Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) FW1-Kidney.trim.fq.sub
+G81-a.trim.fq-pbs: G81-a.trim.fq.sub
+	qsub -l $(TRIMRES) G81-a.trim.fq.sub
+G81-b.trim.fq-pbs: G81-b.trim.fq.sub
+	qsub -l $(TRIMRES) G81-b.trim.fq.sub
+G82-a.trim.fq-pbs: G82-a.trim.fq.sub
+	qsub -l $(TRIMRES) G82-a.trim.fq.sub
+G82-b.trim.fq-pbs: G82-b.trim.fq.sub
+	qsub -l $(TRIMRES) G82-b.trim.fq.sub
+G83-a.trim.fq-pbs: G83-a.trim.fq.sub
+	qsub -l $(TRIMRES) G83-a.trim.fq.sub
+G83-b.trim.fq-pbs: G83-b.trim.fq.sub
+	qsub -l $(TRIMRES) G83-b.trim.fq.sub
+Gill.trim.fq-pbs: Gill.trim.fq.sub
+	qsub -l $(TRIMRES) Gill.trim.fq.sub
+JV1_liver.trim.fq-pbs: JV1_liver.trim.fq.sub
+	qsub -l $(TRIMRES) JV1_liver.trim.fq.sub
+JVa_liver.trim.fq-pbs: JVa_liver.trim.fq.sub
+	qsub -l $(TRIMRES) JVa_liver.trim.fq.sub
+JVb_liver.trim.fq-pbs: JVb_liver.trim.fq.sub
+	qsub -l $(TRIMRES) JVb_liver.trim.fq.sub
+JV_intest.trim.fq-pbs: JV_intest.trim.fq.sub
+	qsub -l $(TRIMRES) JV_intest.trim.fq.sub
+Kidney.trim.fq-pbs: Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) Kidney.trim.fq.sub
+L81-a.trim.fq-pbs: L81-a.trim.fq.sub
+	qsub -l $(TRIMRES) L81-a.trim.fq.sub
+L81-b.trim.fq-pbs: L81-b.trim.fq.sub
+	qsub -l $(TRIMRES) L81-b.trim.fq.sub
+L82-a.trim.fq-pbs: L82-a.trim.fq.sub
+	qsub -l $(TRIMRES) L82-a.trim.fq.sub
+L82-b.trim.fq-pbs: L82-b.trim.fq.sub
+	qsub -l $(TRIMRES) L82-b.trim.fq.sub
+L83-1-a.trim.fq-pbs: L83-1-a.trim.fq.sub
+	qsub -l $(TRIMRES) L83-1-a.trim.fq.sub
+L83-1-b.trim.fq-pbs: L83-1-b.trim.fq.sub
+	qsub -l $(TRIMRES) L83-1-b.trim.fq.sub
+L83-a.trim.fq-pbs: L83-a.trim.fq.sub
+	qsub -l $(TRIMRES) L83-a.trim.fq.sub
+L83-b.trim.fq-pbs: L83-b.trim.fq.sub
+	qsub -l $(TRIMRES) L83-b.trim.fq.sub
+LI.trim.fq-pbs: LI.trim.fq.sub
+	qsub -l $(TRIMRES) LI.trim.fq.sub
+Lips.trim.fq-pbs: Lips.trim.fq.sub
+	qsub -l $(TRIMRES) Lips.trim.fq.sub
+LK.trim.fq-pbs: LK.trim.fq.sub
+	qsub -l $(TRIMRES) LK.trim.fq.sub
+M0_liver.trim.fq-pbs: M0_liver.trim.fq.sub
+	qsub -l $(TRIMRES) M0_liver.trim.fq.sub
+M2_liver.trim.fq-pbs: M2_liver.trim.fq.sub
+	qsub -l $(TRIMRES) M2_liver.trim.fq.sub
+M5_liver.trim.fq-pbs: M5_liver.trim.fq.sub
+	qsub -l $(TRIMRES) M5_liver.trim.fq.sub
+Monocytes.trim.fq-pbs: Monocytes.trim.fq.sub
+	qsub -l $(TRIMRES) Monocytes.trim.fq.sub
+mssm_s_1_pair_pe.trim.fq-pbs: mssm_s_1_pair_pe.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_1_pair_pe.trim.fq.sub
+mssm_s_1_pair_se.trim.fq-pbs: mssm_s_1_pair_se.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_1_pair_se.trim.fq.sub
+mssm_s_2_pair_pe.trim.fq-pbs: mssm_s_2_pair_pe.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_2_pair_pe.trim.fq.sub
+mssm_s_2_pair_se.trim.fq-pbs: mssm_s_2_pair_se.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_2_pair_se.trim.fq.sub
+mssm_s_3_pair_pe.trim.fq-pbs: mssm_s_3_pair_pe.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_3_pair_pe.trim.fq.sub
+mssm_s_3_pair_se.trim.fq-pbs: mssm_s_3_pair_se.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_3_pair_se.trim.fq.sub
+mssm_s_5_pair_pe.trim.fq-pbs: mssm_s_5_pair_pe.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_5_pair_pe.trim.fq.sub
+mssm_s_5_pair_se.trim.fq-pbs: mssm_s_5_pair_se.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_5_pair_se.trim.fq.sub
+mssm_s_6_pair_pe.trim.fq-pbs: mssm_s_6_pair_pe.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_6_pair_pe.trim.fq.sub
+mssm_s_6_pair_se.trim.fq-pbs: mssm_s_6_pair_se.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_6_pair_se.trim.fq.sub
+mssm_s_7_pair_pe.trim.fq-pbs: mssm_s_7_pair_pe.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_7_pair_pe.trim.fq.sub
+mssm_s_7_pair_se.trim.fq-pbs: mssm_s_7_pair_se.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_s_7_pair_se.trim.fq.sub
+mssm_single_s1.trim.fq-pbs: mssm_single_s1.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_single_s1.trim.fq.sub
+mssm_single_s2.trim.fq-pbs: mssm_single_s2.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_single_s2.trim.fq.sub
+mssm_single_s3.trim.fq-pbs: mssm_single_s3.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_single_s3.trim.fq.sub
+mssm_single_s5.trim.fq-pbs: mssm_single_s5.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_single_s5.trim.fq.sub
+mssm_single_s6.trim.fq-pbs: mssm_single_s6.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_single_s6.trim.fq.sub
+mssm_single_s7.trim.fq-pbs: mssm_single_s7.trim.fq.sub
+	qsub -l $(TRIMRES) mssm_single_s7.trim.fq.sub
+Muscle.trim.fq-pbs: Muscle.trim.fq.sub
+	qsub -l $(TRIMRES) Muscle.trim.fq.sub
+Neutrophils.trim.fq-pbs: Neutrophils.trim.fq.sub
+	qsub -l $(TRIMRES) Neutrophils.trim.fq.sub
+OFHS.trim.fq-pbs: OFHS.trim.fq.sub
+	qsub -l $(TRIMRES) OFHS.trim.fq.sub
+POF-eye.trim.fq-pbs: POF-eye.trim.fq.sub
+	qsub -l $(TRIMRES) POF-eye.trim.fq.sub
+POF-ts.trim.fq-pbs: POF-ts.trim.fq.sub
+	qsub -l $(TRIMRES) POF-ts.trim.fq.sub
+PSMGill.trim.fq-pbs: PSMGill.trim.fq.sub
+	qsub -l $(TRIMRES) PSMGill.trim.fq.sub
+Rope.trim.fq-pbs: Rope.trim.fq.sub
+	qsub -l $(TRIMRES) Rope.trim.fq.sub
+SMGill.trim.fq-pbs: SMGill.trim.fq.sub
+	qsub -l $(TRIMRES) SMGill.trim.fq.sub
+SMHS.trim.fq-pbs: SMHS.trim.fq.sub
+	qsub -l $(TRIMRES) SMHS.trim.fq.sub
+SN.trim.fq-pbs: SN.trim.fq.sub
+	qsub -l $(TRIMRES) SN.trim.fq.sub
+SPDI.trim.fq-pbs: SPDI.trim.fq.sub
+	qsub -l $(TRIMRES) SPDI.trim.fq.sub
+spinal_cord_paired.trim.fq-pbs: spinal_cord_paired.trim.fq.sub
+	qsub -l $(TRIMRES) spinal_cord_paired.trim.fq.sub
+SPK.trim.fq-pbs: SPK.trim.fq.sub
+	qsub -l $(TRIMRES) SPK.trim.fq.sub
+SPPI.trim.fq-pbs: SPPI.trim.fq.sub
+	qsub -l $(TRIMRES) SPPI.trim.fq.sub
+Stg-1-Intestine.trim.fq-pbs: Stg-1-Intestine.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-1-Intestine.trim.fq.sub
+Stg-1-Kidney.trim.fq-pbs: Stg-1-Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-1-Kidney.trim.fq.sub
+Stg-2-Intestine.trim.fq-pbs: Stg-2-Intestine.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-2-Intestine.trim.fq.sub
+Stg-2-Kidney.trim.fq-pbs: Stg-2-Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-2-Kidney.trim.fq.sub
+Stg-3-Intestine.trim.fq-pbs: Stg-3-Intestine.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-3-Intestine.trim.fq.sub
+Stg-3-Kidney.trim.fq-pbs: Stg-3-Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-3-Kidney.trim.fq.sub
+Stg-4-Intestine.trim.fq-pbs: Stg-4-Intestine.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-4-Intestine.trim.fq.sub
+Stg-4-Kidney.trim.fq-pbs: Stg-4-Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-4-Kidney.trim.fq.sub
+Stg-5-Intestine.trim.fq-pbs: Stg-5-Intestine.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-5-Intestine.trim.fq.sub
+Stg-5-Kidney.trim.fq-pbs: Stg-5-Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-5-Kidney.trim.fq.sub
+Stg-6-Intestine.trim.fq-pbs: Stg-6-Intestine.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-6-Intestine.trim.fq.sub
+Stg-6-Kidney.trim.fq-pbs: Stg-6-Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-6-Kidney.trim.fq.sub
+Stg-7-Intestine.trim.fq-pbs: Stg-7-Intestine.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-7-Intestine.trim.fq.sub
+Stg-7-Kidney.trim.fq-pbs: Stg-7-Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) Stg-7-Kidney.trim.fq.sub
+SW2-Gill.trim.fq-pbs: SW2-Gill.trim.fq.sub
+	qsub -l $(TRIMRES) SW2-Gill.trim.fq.sub
+SW2-Intestine-a.trim.fq-pbs: SW2-Intestine-a.trim.fq.sub
+	qsub -l $(TRIMRES) SW2-Intestine-a.trim.fq.sub
+SW2-Intestine-b.trim.fq-pbs: SW2-Intestine-b.trim.fq.sub
+	qsub -l $(TRIMRES) SW2-Intestine-b.trim.fq.sub
+SW2-Kidney.trim.fq-pbs: SW2-Kidney.trim.fq.sub
+	qsub -l $(TRIMRES) SW2-Kidney.trim.fq.sub
+trim-cluster: 614GMAAXX_1_1_pf.trim.fq-pbs 614GMAAXX_2_1_pf.trim.fq-pbs 614GMAAXX_3_1_pf.trim.fq-pbs 614GMAAXX_4_1_pf.trim.fq-pbs 614GMAAXX_6_1_pf.trim.fq-pbs 614GMAAXX_7_1_pf.trim.fq-pbs 614GMAAXX_8_1_pf.trim.fq-pbs AB057JABXX_s_7_pe.trim.fq-pbs AI.trim.fq-pbs AK.trim.fq-pbs BB0582ABXX_s_3_pe.trim.fq-pbs BB0582ABXX_s_4_pe.trim.fq-pbs BB0582ABXX_s_5_pe.trim.fq-pbs BB0582ABXX_s_6_pe.trim.fq-pbs BB0582ABXX_s_7_pe.trim.fq-pbs BB0582ABXX_s_8_pe.trim.fq-pbs brain_paired.trim.fq-pbs FW1-Gill.trim.fq-pbs FW1-Intestine.trim.fq-pbs FW1-Kidney.trim.fq-pbs G81-a.trim.fq-pbs G81-b.trim.fq-pbs G82-a.trim.fq-pbs G82-b.trim.fq-pbs G83-a.trim.fq-pbs G83-b.trim.fq-pbs Gill.trim.fq-pbs JV1_liver.trim.fq-pbs JVa_liver.trim.fq-pbs JVb_liver.trim.fq-pbs JV_intest.trim.fq-pbs Kidney.trim.fq-pbs L81-a.trim.fq-pbs L81-b.trim.fq-pbs L82-a.trim.fq-pbs L82-b.trim.fq-pbs L83-1-a.trim.fq-pbs L83-1-b.trim.fq-pbs L83-a.trim.fq-pbs L83-b.trim.fq-pbs LI.trim.fq-pbs Lips.trim.fq-pbs LK.trim.fq-pbs M0_liver.trim.fq-pbs M2_liver.trim.fq-pbs M5_liver.trim.fq-pbs Monocytes.trim.fq-pbs mssm_s_1_pair_pe.trim.fq-pbs mssm_s_1_pair_se.trim.fq-pbs mssm_s_2_pair_pe.trim.fq-pbs mssm_s_2_pair_se.trim.fq-pbs mssm_s_3_pair_pe.trim.fq-pbs mssm_s_3_pair_se.trim.fq-pbs mssm_s_5_pair_pe.trim.fq-pbs mssm_s_5_pair_se.trim.fq-pbs mssm_s_6_pair_pe.trim.fq-pbs mssm_s_6_pair_se.trim.fq-pbs mssm_s_7_pair_pe.trim.fq-pbs mssm_s_7_pair_se.trim.fq-pbs mssm_single_s1.trim.fq-pbs mssm_single_s2.trim.fq-pbs mssm_single_s3.trim.fq-pbs mssm_single_s5.trim.fq-pbs mssm_single_s6.trim.fq-pbs mssm_single_s7.trim.fq-pbs Muscle.trim.fq-pbs Neutrophils.trim.fq-pbs OFHS.trim.fq-pbs POF-eye.trim.fq-pbs POF-ts.trim.fq-pbs PSMGill.trim.fq-pbs Rope.trim.fq-pbs SMGill.trim.fq-pbs SMHS.trim.fq-pbs SN.trim.fq-pbs SPDI.trim.fq-pbs spinal_cord_paired.trim.fq-pbs SPK.trim.fq-pbs SPPI.trim.fq-pbs Stg-1-Intestine.trim.fq-pbs Stg-1-Kidney.trim.fq-pbs Stg-2-Intestine.trim.fq-pbs Stg-2-Kidney.trim.fq-pbs Stg-3-Intestine.trim.fq-pbs Stg-3-Kidney.trim.fq-pbs Stg-4-Intestine.trim.fq-pbs Stg-4-Kidney.trim.fq-pbs Stg-5-Intestine.trim.fq-pbs Stg-5-Kidney.trim.fq-pbs Stg-6-Intestine.trim.fq-pbs Stg-6-Kidney.trim.fq-pbs Stg-7-Intestine.trim.fq-pbs Stg-7-Kidney.trim.fq-pbs SW2-Gill.trim.fq-pbs SW2-Intestine-a.trim.fq-pbs SW2-Intestine-b.trim.fq-pbs SW2-Kidney.trim.fq-pbs
 614GMAAXX_1_1_pf.trim.fq.keep: 614GMAAXX_1_1_pf.trim.fq
 	time -o 614GMAAXX_1_1_pf.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s 614GMAAXX_1_1_pf.trim.fq.ht -R 614GMAAXX_1_1_pf.trim.fq.report 614GMAAXX_1_1_pf.trim.fq
 
@@ -730,41 +730,41 @@ M5_liver.trim.fq.keep: M5_liver.trim.fq
 Monocytes.trim.fq.keep: Monocytes.trim.fq
 	time -o Monocytes.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s Monocytes.trim.fq.ht -R Monocytes.trim.fq.report Monocytes.trim.fq
 
-mssm_s_1_pair.trim.fq.keep: mssm_s_1_pair.trim.fq
-	time -o mssm_s_1_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_1_pair.trim.fq.ht -R mssm_s_1_pair.trim.fq.report mssm_s_1_pair.trim.fq
+mssm_s_1_pair_pe.trim.fq.keep: mssm_s_1_pair_pe.trim.fq
+	time -o mssm_s_1_pair_pe.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_1_pair_pe.trim.fq.ht -R mssm_s_1_pair_pe.trim.fq.report mssm_s_1_pair_pe.trim.fq
 
-mssm_s_1_pair.trim.fq.keep: mssm_s_1_pair.trim.fq
-	time -o mssm_s_1_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_1_pair.trim.fq.ht -R mssm_s_1_pair.trim.fq.report mssm_s_1_pair.trim.fq
+mssm_s_1_pair_se.trim.fq.keep: mssm_s_1_pair_se.trim.fq
+	time -o mssm_s_1_pair_se.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_1_pair_se.trim.fq.ht -R mssm_s_1_pair_se.trim.fq.report mssm_s_1_pair_se.trim.fq
 
-mssm_s_2_pair.trim.fq.keep: mssm_s_2_pair.trim.fq
-	time -o mssm_s_2_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_2_pair.trim.fq.ht -R mssm_s_2_pair.trim.fq.report mssm_s_2_pair.trim.fq
+mssm_s_2_pair_pe.trim.fq.keep: mssm_s_2_pair_pe.trim.fq
+	time -o mssm_s_2_pair_pe.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_2_pair_pe.trim.fq.ht -R mssm_s_2_pair_pe.trim.fq.report mssm_s_2_pair_pe.trim.fq
 
-mssm_s_2_pair.trim.fq.keep: mssm_s_2_pair.trim.fq
-	time -o mssm_s_2_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_2_pair.trim.fq.ht -R mssm_s_2_pair.trim.fq.report mssm_s_2_pair.trim.fq
+mssm_s_2_pair_se.trim.fq.keep: mssm_s_2_pair_se.trim.fq
+	time -o mssm_s_2_pair_se.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_2_pair_se.trim.fq.ht -R mssm_s_2_pair_se.trim.fq.report mssm_s_2_pair_se.trim.fq
 
-mssm_s_3_pair.trim.fq.keep: mssm_s_3_pair.trim.fq
-	time -o mssm_s_3_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_3_pair.trim.fq.ht -R mssm_s_3_pair.trim.fq.report mssm_s_3_pair.trim.fq
+mssm_s_3_pair_pe.trim.fq.keep: mssm_s_3_pair_pe.trim.fq
+	time -o mssm_s_3_pair_pe.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_3_pair_pe.trim.fq.ht -R mssm_s_3_pair_pe.trim.fq.report mssm_s_3_pair_pe.trim.fq
 
-mssm_s_3_pair.trim.fq.keep: mssm_s_3_pair.trim.fq
-	time -o mssm_s_3_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_3_pair.trim.fq.ht -R mssm_s_3_pair.trim.fq.report mssm_s_3_pair.trim.fq
+mssm_s_3_pair_se.trim.fq.keep: mssm_s_3_pair_se.trim.fq
+	time -o mssm_s_3_pair_se.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_3_pair_se.trim.fq.ht -R mssm_s_3_pair_se.trim.fq.report mssm_s_3_pair_se.trim.fq
 
-mssm_s_5_pair.trim.fq.keep: mssm_s_5_pair.trim.fq
-	time -o mssm_s_5_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_5_pair.trim.fq.ht -R mssm_s_5_pair.trim.fq.report mssm_s_5_pair.trim.fq
+mssm_s_5_pair_pe.trim.fq.keep: mssm_s_5_pair_pe.trim.fq
+	time -o mssm_s_5_pair_pe.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_5_pair_pe.trim.fq.ht -R mssm_s_5_pair_pe.trim.fq.report mssm_s_5_pair_pe.trim.fq
 
-mssm_s_5_pair.trim.fq.keep: mssm_s_5_pair.trim.fq
-	time -o mssm_s_5_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_5_pair.trim.fq.ht -R mssm_s_5_pair.trim.fq.report mssm_s_5_pair.trim.fq
+mssm_s_5_pair_se.trim.fq.keep: mssm_s_5_pair_se.trim.fq
+	time -o mssm_s_5_pair_se.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_5_pair_se.trim.fq.ht -R mssm_s_5_pair_se.trim.fq.report mssm_s_5_pair_se.trim.fq
 
-mssm_s_6_pair.trim.fq.keep: mssm_s_6_pair.trim.fq
-	time -o mssm_s_6_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_6_pair.trim.fq.ht -R mssm_s_6_pair.trim.fq.report mssm_s_6_pair.trim.fq
+mssm_s_6_pair_pe.trim.fq.keep: mssm_s_6_pair_pe.trim.fq
+	time -o mssm_s_6_pair_pe.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_6_pair_pe.trim.fq.ht -R mssm_s_6_pair_pe.trim.fq.report mssm_s_6_pair_pe.trim.fq
 
-mssm_s_6_pair.trim.fq.keep: mssm_s_6_pair.trim.fq
-	time -o mssm_s_6_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_6_pair.trim.fq.ht -R mssm_s_6_pair.trim.fq.report mssm_s_6_pair.trim.fq
+mssm_s_6_pair_se.trim.fq.keep: mssm_s_6_pair_se.trim.fq
+	time -o mssm_s_6_pair_se.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_6_pair_se.trim.fq.ht -R mssm_s_6_pair_se.trim.fq.report mssm_s_6_pair_se.trim.fq
 
-mssm_s_7_pair.trim.fq.keep: mssm_s_7_pair.trim.fq
-	time -o mssm_s_7_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_7_pair.trim.fq.ht -R mssm_s_7_pair.trim.fq.report mssm_s_7_pair.trim.fq
+mssm_s_7_pair_pe.trim.fq.keep: mssm_s_7_pair_pe.trim.fq
+	time -o mssm_s_7_pair_pe.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_7_pair_pe.trim.fq.ht -R mssm_s_7_pair_pe.trim.fq.report mssm_s_7_pair_pe.trim.fq
 
-mssm_s_7_pair.trim.fq.keep: mssm_s_7_pair.trim.fq
-	time -o mssm_s_7_pair.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_7_pair.trim.fq.ht -R mssm_s_7_pair.trim.fq.report mssm_s_7_pair.trim.fq
+mssm_s_7_pair_se.trim.fq.keep: mssm_s_7_pair_se.trim.fq
+	time -o mssm_s_7_pair_se.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_s_7_pair_se.trim.fq.ht -R mssm_s_7_pair_se.trim.fq.report mssm_s_7_pair_se.trim.fq
 
 mssm_single_s1.trim.fq.keep: mssm_single_s1.trim.fq
 	time -o mssm_single_s1.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s mssm_single_s1.trim.fq.ht -R mssm_single_s1.trim.fq.report mssm_single_s1.trim.fq
@@ -880,9 +880,9 @@ SW2-Intestine-b.trim.fq.keep: SW2-Intestine-b.trim.fq
 SW2-Kidney.trim.fq.keep: SW2-Kidney.trim.fq
 	time -o SW2-Kidney.trim.fq.keep.time $(KHMER)/scripts/normalize-by-median.py -x 1000000.0 -N 4 -k 23 -C 30 -s SW2-Kidney.trim.fq.ht -R SW2-Kidney.trim.fq.report SW2-Kidney.trim.fq
 
-all.c20.fa: 614GMAAXX_1_1_pf.trim.fq.keep 614GMAAXX_2_1_pf.trim.fq.keep 614GMAAXX_3_1_pf.trim.fq.keep 614GMAAXX_4_1_pf.trim.fq.keep 614GMAAXX_6_1_pf.trim.fq.keep 614GMAAXX_7_1_pf.trim.fq.keep 614GMAAXX_8_1_pf.trim.fq.keep AB057JABXX_s_7_pe.trim.fq.keep AI.trim.fq.keep AK.trim.fq.keep BB0582ABXX_s_3_pe.trim.fq.keep BB0582ABXX_s_4_pe.trim.fq.keep BB0582ABXX_s_5_pe.trim.fq.keep BB0582ABXX_s_6_pe.trim.fq.keep BB0582ABXX_s_7_pe.trim.fq.keep BB0582ABXX_s_8_pe.trim.fq.keep brain_paired.trim.fq.keep FW1-Gill.trim.fq.keep FW1-Intestine.trim.fq.keep FW1-Kidney.trim.fq.keep G81-a.trim.fq.keep G81-b.trim.fq.keep G82-a.trim.fq.keep G82-b.trim.fq.keep G83-a.trim.fq.keep G83-b.trim.fq.keep Gill.trim.fq.keep JV1_liver.trim.fq.keep JVa_liver.trim.fq.keep JVb_liver.trim.fq.keep JV_intest.trim.fq.keep Kidney.trim.fq.keep L81-a.trim.fq.keep L81-b.trim.fq.keep L82-a.trim.fq.keep L82-b.trim.fq.keep L83-1-a.trim.fq.keep L83-1-b.trim.fq.keep L83-a.trim.fq.keep L83-b.trim.fq.keep LI.trim.fq.keep Lips.trim.fq.keep LK.trim.fq.keep M0_liver.trim.fq.keep M2_liver.trim.fq.keep M5_liver.trim.fq.keep Monocytes.trim.fq.keep mssm_s_1_pair.trim.fq.keep mssm_s_1_pair.trim.fq.keep mssm_s_2_pair.trim.fq.keep mssm_s_2_pair.trim.fq.keep mssm_s_3_pair.trim.fq.keep mssm_s_3_pair.trim.fq.keep mssm_s_5_pair.trim.fq.keep mssm_s_5_pair.trim.fq.keep mssm_s_6_pair.trim.fq.keep mssm_s_6_pair.trim.fq.keep mssm_s_7_pair.trim.fq.keep mssm_s_7_pair.trim.fq.keep mssm_single_s1.trim.fq.keep mssm_single_s2.trim.fq.keep mssm_single_s3.trim.fq.keep mssm_single_s5.trim.fq.keep mssm_single_s6.trim.fq.keep mssm_single_s7.trim.fq.keep Muscle.trim.fq.keep Neutrophils.trim.fq.keep OFHS.trim.fq.keep POF-eye.trim.fq.keep POF-ts.trim.fq.keep PSMGill.trim.fq.keep Rope.trim.fq.keep SMGill.trim.fq.keep SMHS.trim.fq.keep SN.trim.fq.keep SPDI.trim.fq.keep spinal_cord_paired.trim.fq.keep SPK.trim.fq.keep SPPI.trim.fq.keep Stg-1-Intestine.trim.fq.keep Stg-1-Kidney.trim.fq.keep Stg-2-Intestine.trim.fq.keep Stg-2-Kidney.trim.fq.keep Stg-3-Intestine.trim.fq.keep Stg-3-Kidney.trim.fq.keep Stg-4-Intestine.trim.fq.keep Stg-4-Kidney.trim.fq.keep Stg-5-Intestine.trim.fq.keep Stg-5-Kidney.trim.fq.keep Stg-6-Intestine.trim.fq.keep Stg-6-Kidney.trim.fq.keep Stg-7-Intestine.trim.fq.keep Stg-7-Kidney.trim.fq.keep SW2-Gill.trim.fq.keep SW2-Intestine-a.trim.fq.keep SW2-Intestine-b.trim.fq.keep SW2-Kidney.trim.fq.keep
-	time -o all.c20.fq.time $(KHMER)/scripts/normalize-by-median.py -x 10000000.0 -N 4 -k 23 -C 20 -s all.c20.ht -R all.c20.report 614GMAAXX_1_1_pf.trim.fq.keep 614GMAAXX_2_1_pf.trim.fq.keep 614GMAAXX_3_1_pf.trim.fq.keep 614GMAAXX_4_1_pf.trim.fq.keep 614GMAAXX_6_1_pf.trim.fq.keep 614GMAAXX_7_1_pf.trim.fq.keep 614GMAAXX_8_1_pf.trim.fq.keep AB057JABXX_s_7_pe.trim.fq.keep AI.trim.fq.keep AK.trim.fq.keep BB0582ABXX_s_3_pe.trim.fq.keep BB0582ABXX_s_4_pe.trim.fq.keep BB0582ABXX_s_5_pe.trim.fq.keep BB0582ABXX_s_6_pe.trim.fq.keep BB0582ABXX_s_7_pe.trim.fq.keep BB0582ABXX_s_8_pe.trim.fq.keep brain_paired.trim.fq.keep FW1-Gill.trim.fq.keep FW1-Intestine.trim.fq.keep FW1-Kidney.trim.fq.keep G81-a.trim.fq.keep G81-b.trim.fq.keep G82-a.trim.fq.keep G82-b.trim.fq.keep G83-a.trim.fq.keep G83-b.trim.fq.keep Gill.trim.fq.keep JV1_liver.trim.fq.keep JVa_liver.trim.fq.keep JVb_liver.trim.fq.keep JV_intest.trim.fq.keep Kidney.trim.fq.keep L81-a.trim.fq.keep L81-b.trim.fq.keep L82-a.trim.fq.keep L82-b.trim.fq.keep L83-1-a.trim.fq.keep L83-1-b.trim.fq.keep L83-a.trim.fq.keep L83-b.trim.fq.keep LI.trim.fq.keep Lips.trim.fq.keep LK.trim.fq.keep M0_liver.trim.fq.keep M2_liver.trim.fq.keep M5_liver.trim.fq.keep Monocytes.trim.fq.keep mssm_s_1_pair.trim.fq.keep mssm_s_1_pair.trim.fq.keep mssm_s_2_pair.trim.fq.keep mssm_s_2_pair.trim.fq.keep mssm_s_3_pair.trim.fq.keep mssm_s_3_pair.trim.fq.keep mssm_s_5_pair.trim.fq.keep mssm_s_5_pair.trim.fq.keep mssm_s_6_pair.trim.fq.keep mssm_s_6_pair.trim.fq.keep mssm_s_7_pair.trim.fq.keep mssm_s_7_pair.trim.fq.keep mssm_single_s1.trim.fq.keep mssm_single_s2.trim.fq.keep mssm_single_s3.trim.fq.keep mssm_single_s5.trim.fq.keep mssm_single_s6.trim.fq.keep mssm_single_s7.trim.fq.keep Muscle.trim.fq.keep Neutrophils.trim.fq.keep OFHS.trim.fq.keep POF-eye.trim.fq.keep POF-ts.trim.fq.keep PSMGill.trim.fq.keep Rope.trim.fq.keep SMGill.trim.fq.keep SMHS.trim.fq.keep SN.trim.fq.keep SPDI.trim.fq.keep spinal_cord_paired.trim.fq.keep SPK.trim.fq.keep SPPI.trim.fq.keep Stg-1-Intestine.trim.fq.keep Stg-1-Kidney.trim.fq.keep Stg-2-Intestine.trim.fq.keep Stg-2-Kidney.trim.fq.keep Stg-3-Intestine.trim.fq.keep Stg-3-Kidney.trim.fq.keep Stg-4-Intestine.trim.fq.keep Stg-4-Kidney.trim.fq.keep Stg-5-Intestine.trim.fq.keep Stg-5-Kidney.trim.fq.keep Stg-6-Intestine.trim.fq.keep Stg-6-Kidney.trim.fq.keep Stg-7-Intestine.trim.fq.keep Stg-7-Kidney.trim.fq.keep SW2-Gill.trim.fq.keep SW2-Intestine-a.trim.fq.keep SW2-Intestine-b.trim.fq.keep SW2-Kidney.trim.fq.keep
-	cat 614GMAAXX_1_1_pf.trim.fq.keep 614GMAAXX_2_1_pf.trim.fq.keep 614GMAAXX_3_1_pf.trim.fq.keep 614GMAAXX_4_1_pf.trim.fq.keep 614GMAAXX_6_1_pf.trim.fq.keep 614GMAAXX_7_1_pf.trim.fq.keep 614GMAAXX_8_1_pf.trim.fq.keep AB057JABXX_s_7_pe.trim.fq.keep AI.trim.fq.keep AK.trim.fq.keep BB0582ABXX_s_3_pe.trim.fq.keep BB0582ABXX_s_4_pe.trim.fq.keep BB0582ABXX_s_5_pe.trim.fq.keep BB0582ABXX_s_6_pe.trim.fq.keep BB0582ABXX_s_7_pe.trim.fq.keep BB0582ABXX_s_8_pe.trim.fq.keep brain_paired.trim.fq.keep FW1-Gill.trim.fq.keep FW1-Intestine.trim.fq.keep FW1-Kidney.trim.fq.keep G81-a.trim.fq.keep G81-b.trim.fq.keep G82-a.trim.fq.keep G82-b.trim.fq.keep G83-a.trim.fq.keep G83-b.trim.fq.keep Gill.trim.fq.keep JV1_liver.trim.fq.keep JVa_liver.trim.fq.keep JVb_liver.trim.fq.keep JV_intest.trim.fq.keep Kidney.trim.fq.keep L81-a.trim.fq.keep L81-b.trim.fq.keep L82-a.trim.fq.keep L82-b.trim.fq.keep L83-1-a.trim.fq.keep L83-1-b.trim.fq.keep L83-a.trim.fq.keep L83-b.trim.fq.keep LI.trim.fq.keep Lips.trim.fq.keep LK.trim.fq.keep M0_liver.trim.fq.keep M2_liver.trim.fq.keep M5_liver.trim.fq.keep Monocytes.trim.fq.keep mssm_s_1_pair.trim.fq.keep mssm_s_1_pair.trim.fq.keep mssm_s_2_pair.trim.fq.keep mssm_s_2_pair.trim.fq.keep mssm_s_3_pair.trim.fq.keep mssm_s_3_pair.trim.fq.keep mssm_s_5_pair.trim.fq.keep mssm_s_5_pair.trim.fq.keep mssm_s_6_pair.trim.fq.keep mssm_s_6_pair.trim.fq.keep mssm_s_7_pair.trim.fq.keep mssm_s_7_pair.trim.fq.keep mssm_single_s1.trim.fq.keep mssm_single_s2.trim.fq.keep mssm_single_s3.trim.fq.keep mssm_single_s5.trim.fq.keep mssm_single_s6.trim.fq.keep mssm_single_s7.trim.fq.keep Muscle.trim.fq.keep Neutrophils.trim.fq.keep OFHS.trim.fq.keep POF-eye.trim.fq.keep POF-ts.trim.fq.keep PSMGill.trim.fq.keep Rope.trim.fq.keep SMGill.trim.fq.keep SMHS.trim.fq.keep SN.trim.fq.keep SPDI.trim.fq.keep spinal_cord_paired.trim.fq.keep SPK.trim.fq.keep SPPI.trim.fq.keep Stg-1-Intestine.trim.fq.keep Stg-1-Kidney.trim.fq.keep Stg-2-Intestine.trim.fq.keep Stg-2-Kidney.trim.fq.keep Stg-3-Intestine.trim.fq.keep Stg-3-Kidney.trim.fq.keep Stg-4-Intestine.trim.fq.keep Stg-4-Kidney.trim.fq.keep Stg-5-Intestine.trim.fq.keep Stg-5-Kidney.trim.fq.keep Stg-6-Intestine.trim.fq.keep Stg-6-Kidney.trim.fq.keep Stg-7-Intestine.trim.fq.keep Stg-7-Kidney.trim.fq.keep SW2-Gill.trim.fq.keep SW2-Intestine-a.trim.fq.keep SW2-Intestine-b.trim.fq.keep SW2-Kidney.trim.fq.keep > all.c20.fq
+all.c20.fa: 614GMAAXX_1_1_pf.trim.fq.keep 614GMAAXX_2_1_pf.trim.fq.keep 614GMAAXX_3_1_pf.trim.fq.keep 614GMAAXX_4_1_pf.trim.fq.keep 614GMAAXX_6_1_pf.trim.fq.keep 614GMAAXX_7_1_pf.trim.fq.keep 614GMAAXX_8_1_pf.trim.fq.keep AB057JABXX_s_7_pe.trim.fq.keep AI.trim.fq.keep AK.trim.fq.keep BB0582ABXX_s_3_pe.trim.fq.keep BB0582ABXX_s_4_pe.trim.fq.keep BB0582ABXX_s_5_pe.trim.fq.keep BB0582ABXX_s_6_pe.trim.fq.keep BB0582ABXX_s_7_pe.trim.fq.keep BB0582ABXX_s_8_pe.trim.fq.keep brain_paired.trim.fq.keep FW1-Gill.trim.fq.keep FW1-Intestine.trim.fq.keep FW1-Kidney.trim.fq.keep G81-a.trim.fq.keep G81-b.trim.fq.keep G82-a.trim.fq.keep G82-b.trim.fq.keep G83-a.trim.fq.keep G83-b.trim.fq.keep Gill.trim.fq.keep JV1_liver.trim.fq.keep JVa_liver.trim.fq.keep JVb_liver.trim.fq.keep JV_intest.trim.fq.keep Kidney.trim.fq.keep L81-a.trim.fq.keep L81-b.trim.fq.keep L82-a.trim.fq.keep L82-b.trim.fq.keep L83-1-a.trim.fq.keep L83-1-b.trim.fq.keep L83-a.trim.fq.keep L83-b.trim.fq.keep LI.trim.fq.keep Lips.trim.fq.keep LK.trim.fq.keep M0_liver.trim.fq.keep M2_liver.trim.fq.keep M5_liver.trim.fq.keep Monocytes.trim.fq.keep mssm_s_1_pair_pe.trim.fq.keep mssm_s_1_pair_se.trim.fq.keep mssm_s_2_pair_pe.trim.fq.keep mssm_s_2_pair_se.trim.fq.keep mssm_s_3_pair_pe.trim.fq.keep mssm_s_3_pair_se.trim.fq.keep mssm_s_5_pair_pe.trim.fq.keep mssm_s_5_pair_se.trim.fq.keep mssm_s_6_pair_pe.trim.fq.keep mssm_s_6_pair_se.trim.fq.keep mssm_s_7_pair_pe.trim.fq.keep mssm_s_7_pair_se.trim.fq.keep mssm_single_s1.trim.fq.keep mssm_single_s2.trim.fq.keep mssm_single_s3.trim.fq.keep mssm_single_s5.trim.fq.keep mssm_single_s6.trim.fq.keep mssm_single_s7.trim.fq.keep Muscle.trim.fq.keep Neutrophils.trim.fq.keep OFHS.trim.fq.keep POF-eye.trim.fq.keep POF-ts.trim.fq.keep PSMGill.trim.fq.keep Rope.trim.fq.keep SMGill.trim.fq.keep SMHS.trim.fq.keep SN.trim.fq.keep SPDI.trim.fq.keep spinal_cord_paired.trim.fq.keep SPK.trim.fq.keep SPPI.trim.fq.keep Stg-1-Intestine.trim.fq.keep Stg-1-Kidney.trim.fq.keep Stg-2-Intestine.trim.fq.keep Stg-2-Kidney.trim.fq.keep Stg-3-Intestine.trim.fq.keep Stg-3-Kidney.trim.fq.keep Stg-4-Intestine.trim.fq.keep Stg-4-Kidney.trim.fq.keep Stg-5-Intestine.trim.fq.keep Stg-5-Kidney.trim.fq.keep Stg-6-Intestine.trim.fq.keep Stg-6-Kidney.trim.fq.keep Stg-7-Intestine.trim.fq.keep Stg-7-Kidney.trim.fq.keep SW2-Gill.trim.fq.keep SW2-Intestine-a.trim.fq.keep SW2-Intestine-b.trim.fq.keep SW2-Kidney.trim.fq.keep
+	time -o all.c20.fq.time $(KHMER)/scripts/normalize-by-median.py -x 10000000.0 -N 4 -k 23 -C 20 -s all.c20.ht -R all.c20.report 614GMAAXX_1_1_pf.trim.fq.keep 614GMAAXX_2_1_pf.trim.fq.keep 614GMAAXX_3_1_pf.trim.fq.keep 614GMAAXX_4_1_pf.trim.fq.keep 614GMAAXX_6_1_pf.trim.fq.keep 614GMAAXX_7_1_pf.trim.fq.keep 614GMAAXX_8_1_pf.trim.fq.keep AB057JABXX_s_7_pe.trim.fq.keep AI.trim.fq.keep AK.trim.fq.keep BB0582ABXX_s_3_pe.trim.fq.keep BB0582ABXX_s_4_pe.trim.fq.keep BB0582ABXX_s_5_pe.trim.fq.keep BB0582ABXX_s_6_pe.trim.fq.keep BB0582ABXX_s_7_pe.trim.fq.keep BB0582ABXX_s_8_pe.trim.fq.keep brain_paired.trim.fq.keep FW1-Gill.trim.fq.keep FW1-Intestine.trim.fq.keep FW1-Kidney.trim.fq.keep G81-a.trim.fq.keep G81-b.trim.fq.keep G82-a.trim.fq.keep G82-b.trim.fq.keep G83-a.trim.fq.keep G83-b.trim.fq.keep Gill.trim.fq.keep JV1_liver.trim.fq.keep JVa_liver.trim.fq.keep JVb_liver.trim.fq.keep JV_intest.trim.fq.keep Kidney.trim.fq.keep L81-a.trim.fq.keep L81-b.trim.fq.keep L82-a.trim.fq.keep L82-b.trim.fq.keep L83-1-a.trim.fq.keep L83-1-b.trim.fq.keep L83-a.trim.fq.keep L83-b.trim.fq.keep LI.trim.fq.keep Lips.trim.fq.keep LK.trim.fq.keep M0_liver.trim.fq.keep M2_liver.trim.fq.keep M5_liver.trim.fq.keep Monocytes.trim.fq.keep mssm_s_1_pair_pe.trim.fq.keep mssm_s_1_pair_se.trim.fq.keep mssm_s_2_pair_pe.trim.fq.keep mssm_s_2_pair_se.trim.fq.keep mssm_s_3_pair_pe.trim.fq.keep mssm_s_3_pair_se.trim.fq.keep mssm_s_5_pair_pe.trim.fq.keep mssm_s_5_pair_se.trim.fq.keep mssm_s_6_pair_pe.trim.fq.keep mssm_s_6_pair_se.trim.fq.keep mssm_s_7_pair_pe.trim.fq.keep mssm_s_7_pair_se.trim.fq.keep mssm_single_s1.trim.fq.keep mssm_single_s2.trim.fq.keep mssm_single_s3.trim.fq.keep mssm_single_s5.trim.fq.keep mssm_single_s6.trim.fq.keep mssm_single_s7.trim.fq.keep Muscle.trim.fq.keep Neutrophils.trim.fq.keep OFHS.trim.fq.keep POF-eye.trim.fq.keep POF-ts.trim.fq.keep PSMGill.trim.fq.keep Rope.trim.fq.keep SMGill.trim.fq.keep SMHS.trim.fq.keep SN.trim.fq.keep SPDI.trim.fq.keep spinal_cord_paired.trim.fq.keep SPK.trim.fq.keep SPPI.trim.fq.keep Stg-1-Intestine.trim.fq.keep Stg-1-Kidney.trim.fq.keep Stg-2-Intestine.trim.fq.keep Stg-2-Kidney.trim.fq.keep Stg-3-Intestine.trim.fq.keep Stg-3-Kidney.trim.fq.keep Stg-4-Intestine.trim.fq.keep Stg-4-Kidney.trim.fq.keep Stg-5-Intestine.trim.fq.keep Stg-5-Kidney.trim.fq.keep Stg-6-Intestine.trim.fq.keep Stg-6-Kidney.trim.fq.keep Stg-7-Intestine.trim.fq.keep Stg-7-Kidney.trim.fq.keep SW2-Gill.trim.fq.keep SW2-Intestine-a.trim.fq.keep SW2-Intestine-b.trim.fq.keep SW2-Kidney.trim.fq.keep
+	cat 614GMAAXX_1_1_pf.trim.fq.keep 614GMAAXX_2_1_pf.trim.fq.keep 614GMAAXX_3_1_pf.trim.fq.keep 614GMAAXX_4_1_pf.trim.fq.keep 614GMAAXX_6_1_pf.trim.fq.keep 614GMAAXX_7_1_pf.trim.fq.keep 614GMAAXX_8_1_pf.trim.fq.keep AB057JABXX_s_7_pe.trim.fq.keep AI.trim.fq.keep AK.trim.fq.keep BB0582ABXX_s_3_pe.trim.fq.keep BB0582ABXX_s_4_pe.trim.fq.keep BB0582ABXX_s_5_pe.trim.fq.keep BB0582ABXX_s_6_pe.trim.fq.keep BB0582ABXX_s_7_pe.trim.fq.keep BB0582ABXX_s_8_pe.trim.fq.keep brain_paired.trim.fq.keep FW1-Gill.trim.fq.keep FW1-Intestine.trim.fq.keep FW1-Kidney.trim.fq.keep G81-a.trim.fq.keep G81-b.trim.fq.keep G82-a.trim.fq.keep G82-b.trim.fq.keep G83-a.trim.fq.keep G83-b.trim.fq.keep Gill.trim.fq.keep JV1_liver.trim.fq.keep JVa_liver.trim.fq.keep JVb_liver.trim.fq.keep JV_intest.trim.fq.keep Kidney.trim.fq.keep L81-a.trim.fq.keep L81-b.trim.fq.keep L82-a.trim.fq.keep L82-b.trim.fq.keep L83-1-a.trim.fq.keep L83-1-b.trim.fq.keep L83-a.trim.fq.keep L83-b.trim.fq.keep LI.trim.fq.keep Lips.trim.fq.keep LK.trim.fq.keep M0_liver.trim.fq.keep M2_liver.trim.fq.keep M5_liver.trim.fq.keep Monocytes.trim.fq.keep mssm_s_1_pair_pe.trim.fq.keep mssm_s_1_pair_se.trim.fq.keep mssm_s_2_pair_pe.trim.fq.keep mssm_s_2_pair_se.trim.fq.keep mssm_s_3_pair_pe.trim.fq.keep mssm_s_3_pair_se.trim.fq.keep mssm_s_5_pair_pe.trim.fq.keep mssm_s_5_pair_se.trim.fq.keep mssm_s_6_pair_pe.trim.fq.keep mssm_s_6_pair_se.trim.fq.keep mssm_s_7_pair_pe.trim.fq.keep mssm_s_7_pair_se.trim.fq.keep mssm_single_s1.trim.fq.keep mssm_single_s2.trim.fq.keep mssm_single_s3.trim.fq.keep mssm_single_s5.trim.fq.keep mssm_single_s6.trim.fq.keep mssm_single_s7.trim.fq.keep Muscle.trim.fq.keep Neutrophils.trim.fq.keep OFHS.trim.fq.keep POF-eye.trim.fq.keep POF-ts.trim.fq.keep PSMGill.trim.fq.keep Rope.trim.fq.keep SMGill.trim.fq.keep SMHS.trim.fq.keep SN.trim.fq.keep SPDI.trim.fq.keep spinal_cord_paired.trim.fq.keep SPK.trim.fq.keep SPPI.trim.fq.keep Stg-1-Intestine.trim.fq.keep Stg-1-Kidney.trim.fq.keep Stg-2-Intestine.trim.fq.keep Stg-2-Kidney.trim.fq.keep Stg-3-Intestine.trim.fq.keep Stg-3-Kidney.trim.fq.keep Stg-4-Intestine.trim.fq.keep Stg-4-Kidney.trim.fq.keep Stg-5-Intestine.trim.fq.keep Stg-5-Kidney.trim.fq.keep Stg-6-Intestine.trim.fq.keep Stg-6-Kidney.trim.fq.keep Stg-7-Intestine.trim.fq.keep Stg-7-Kidney.trim.fq.keep SW2-Gill.trim.fq.keep SW2-Intestine-a.trim.fq.keep SW2-Intestine-b.trim.fq.keep SW2-Kidney.trim.fq.keep > all.c20.fq
 	fastq_to_fasta -i all.c20.fq -o all.c20.fa
 
 all.c20.fa.clean: all.c20.fa

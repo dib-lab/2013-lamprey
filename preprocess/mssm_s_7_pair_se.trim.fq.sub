@@ -1,0 +1,4 @@
+
+#!/bin/bash -login
+cd $PBS_O_WORKDIR
+make mssm_s_7_pair_se.trim.fq

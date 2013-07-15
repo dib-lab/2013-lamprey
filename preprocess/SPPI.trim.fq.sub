@@ -1,0 +1,4 @@
+
+#!/bin/bash -login
+cd $PBS_O_WORKDIR
+make SPPI.trim.fq

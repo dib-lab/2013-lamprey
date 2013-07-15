@@ -1,0 +1,4 @@
+
+#!/bin/bash -login
+cd $PBS_O_WORKDIR
+make Stg-7-Intestine.trim.fq
