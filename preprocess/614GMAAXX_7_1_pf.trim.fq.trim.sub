@@ -1,0 +1,4 @@
+
+#!/bin/bash -login
+cd $PBS_O_WORKDIR
+make 614GMAAXX_7_1_pf.trim.fq
