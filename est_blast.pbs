@@ -1,4 +1,4 @@
 #!/bin/bash -login
-modue load BLAST+
+module load BLAST+
 cd $PBS_O_WORKDIR
 make x.est.csv
