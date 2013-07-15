@@ -1,4 +1,0 @@
-
-#!/bin/bash -login
-cd $PBS_O_WORKDIR
-make mssm_s_1_pair.trim.fq
