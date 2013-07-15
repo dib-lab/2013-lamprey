@@ -1,4 +1,0 @@
-
-#!/bin/bash -login
-cd $PBS_O_WORKDIR
-make BB0582ABXX_s_7_pe.trim.fq
