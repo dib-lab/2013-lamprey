@@ -4,7 +4,7 @@ SEQCLEAN=seqclean
 TRIM=~/bin/Trimmomatic-0.25/trimmomatic-0.25.jar
 TIME=/usr/bin/time -f %E%U%K%W%w%I%O
 
-TRIMRES=nodes=1:ppn=4,walltime=4:00:00,mem=2gb
+TRIMRES=nodes=1:ppn=4,walltime=12:00:00,mem=2gb
 DG1RES=nodes=1:ppn=4,walltime=4:00:00,mem=8gb
 DG2RES=nodes=1:ppn=4,walltime=4:00:00,mem=8gb
 
