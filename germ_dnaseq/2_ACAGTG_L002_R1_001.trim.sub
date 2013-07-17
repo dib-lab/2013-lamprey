@@ -1,0 +1,4 @@
+
+#!/bin/bash -login
+cd $PBS_O_WORKDIR
+make 2_ACAGTG_L002_R1_001.trim.fq
