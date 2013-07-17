@@ -3,7 +3,9 @@ KHMER=~/bin/khmer
 SEQCLEAN=seqclean
 TRIM=~/bin/Trimmomatic-0.25/trimmomatic-0.25.jar
 TIME=/usr/bin/time -f %E%U%K%W%w%I%O
+KMERGENIE=~/bin/kmergenie-1.5397/kmergenie
 
+KMERRES=nodes=1:ppn=4,walltime=6:00:00,mem=32gb
 TRIMRES=nodes=1:ppn=4,walltime=12:00:00,mem=8gb
 QCRES=nodes=1:ppn=1,walltime=2:00:00,mem=4gb
 DGRES=nodes=1:ppn=1,walltime=12:00:00,mem=42gb
@@ -306,3 +308,20 @@ diginorm.c5: 2_ACAGTG_L001_R1_001.trim.fq 2_ACAGTG_L001_R2_001.trim.fq 2_ACAGTG_
 
 diginorm.c5-pbs:
 	qsub -l $(DGRES) diginorm.c5.sub
+
+clean:
+	rm -rf *.time *.clean *.keep *.trim.fq *.report *.log *.trimlog *.ht cleaning_*/ *.cidx *.cln all.c20.fa all.c20.fq *.sort
+
+
+kmergenie: 2_ACAGTG_L001_R1_001.trim.fq 2_ACAGTG_L001_R2_001.trim.fq 2_ACAGTG_L002_R1_001.trim.fq 2_ACAGTG_L002_R2_001.trim.fq 4_GCCAAT_L001_R1_001.trim.fq 4_GCCAAT_L001_R2_001.trim.fq 4_GCCAAT_L002_R1_001.trim.fq 4_GCCAAT_L002_R2_001.trim.fq 5_CTTGTA_L001_R1_001.trim.fq 5_CTTGTA_L001_R2_001.trim.fq 5_CTTGTA_L002_R1_001.trim.fq 5_CTTGTA_L002_R2_001.trim.fq 6_GTGAAA_L001_R1_001.trim.fq 6_GTGAAA_L001_R2_001.trim.fq 6_GTGAAA_L002_R1_001.trim.fq 6_GTGAAA_L002_R2_001.trim.fq
+	$(TIME) -o kmergenie.time $(KMERGENIE) reads.txt  --diploid -k 100 -l 20 
+
+kmergenie-pbs:
+	qsub -l $(KMERRES) kmergenie.sub
+
+
+dg.kmergenie: 2_ACAGTG_L001_R1_001.trim.fq.keep 2_ACAGTG_L001_R2_001.trim.fq.keep 2_ACAGTG_L002_R1_001.trim.fq.keep 2_ACAGTG_L002_R2_001.trim.fq.keep 4_GCCAAT_L001_R1_001.trim.fq.keep 4_GCCAAT_L001_R2_001.trim.fq.keep 4_GCCAAT_L002_R1_001.trim.fq.keep 4_GCCAAT_L002_R2_001.trim.fq.keep 5_CTTGTA_L001_R1_001.trim.fq.keep 5_CTTGTA_L001_R2_001.trim.fq.keep 5_CTTGTA_L002_R1_001.trim.fq.keep 5_CTTGTA_L002_R2_001.trim.fq.keep 6_GTGAAA_L001_R1_001.trim.fq.keep 6_GTGAAA_L001_R2_001.trim.fq.keep 6_GTGAAA_L002_R1_001.trim.fq.keep 6_GTGAAA_L002_R2_001.trim.fq.keep
+	$(TIME) -o kmergenie.time $(KMERGENIE) dg.reads.txt  --diploid -k 100 -l 20 
+
+dg.kmergenie-pbs:
+	qsub -l $(KMERRES) dg.kmergenie.sub
