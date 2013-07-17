@@ -6,10 +6,9 @@ TIME=/usr/bin/time -f %E%U%K%W%w%I%O
 KMERGENIE=~/bin/kmergenie-1.5397/kmergenie
 
 KMERRES=nodes=1:ppn=4,walltime=6:00:00,mem=32gb
-TRIMRES=nodes=1:ppn=4,walltime=12:00:00,mem=8gb
+TRIMRES=nodes=1:ppn=4,walltime=12:00:00,mem=4gb
 QCRES=nodes=1:ppn=1,walltime=2:00:00,mem=4gb
 DGRES=nodes=1:ppn=1,walltime=12:00:00,mem=42gb
-DG2RES=nodes=1:ppn=4,walltime=4:00:00,mem=8gb
 
 2_ACAGTG_L001_R1_001.fastqc1:
 	fastqc --noextract 2_ACAGTG_L001_R1_001.fastq.gz
