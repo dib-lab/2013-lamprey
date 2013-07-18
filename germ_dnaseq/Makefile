@@ -108,97 +108,97 @@ DGRES=nodes=1:ppn=1,walltime=12:00:00,mem=42gb
 
 fastqc1-pbs: 2_ACAGTG_L001_R1_001.fastqc1-pbs 2_ACAGTG_L001_R2_001.fastqc1-pbs 2_ACAGTG_L002_R1_001.fastqc1-pbs 2_ACAGTG_L002_R2_001.fastqc1-pbs 4_GCCAAT_L001_R1_001.fastqc1-pbs 4_GCCAAT_L001_R2_001.fastqc1-pbs 4_GCCAAT_L002_R1_001.fastqc1-pbs 4_GCCAAT_L002_R2_001.fastqc1-pbs 5_CTTGTA_L001_R1_001.fastqc1-pbs 5_CTTGTA_L001_R2_001.fastqc1-pbs 5_CTTGTA_L002_R1_001.fastqc1-pbs 5_CTTGTA_L002_R2_001.fastqc1-pbs 6_GTGAAA_L001_R1_001.fastqc1-pbs 6_GTGAAA_L001_R2_001.fastqc1-pbs 6_GTGAAA_L002_R1_001.fastqc1-pbs 6_GTGAAA_L002_R2_001.fastqc1-pbs
 2_ACAGTG_L001_R1_001.trim.fq: 2_ACAGTG_L001_R1_001.fastq.gz
-		$(TIME) -o 2_ACAGTG_L001_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 2_ACAGTG_L001_R1_001.trimlog -threads 4 2_ACAGTG_L001_R1_001.fastq.gz 2_ACAGTG_L001_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 2_ACAGTG_L001_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 2_ACAGTG_L001_R1_001.trimlog -threads 4 2_ACAGTG_L001_R1_001.fastq.gz 2_ACAGTG_L001_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 2_ACAGTG_L001_R1_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 2_ACAGTG_L001_R1_001.trim.sub
 
 2_ACAGTG_L001_R2_001.trim.fq: 2_ACAGTG_L001_R2_001.fastq.gz
-		$(TIME) -o 2_ACAGTG_L001_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 2_ACAGTG_L001_R2_001.trimlog -threads 4 2_ACAGTG_L001_R2_001.fastq.gz 2_ACAGTG_L001_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 2_ACAGTG_L001_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 2_ACAGTG_L001_R2_001.trimlog -threads 4 2_ACAGTG_L001_R2_001.fastq.gz 2_ACAGTG_L001_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 2_ACAGTG_L001_R2_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 2_ACAGTG_L001_R2_001.trim.sub
 
 2_ACAGTG_L002_R1_001.trim.fq: 2_ACAGTG_L002_R1_001.fastq.gz
-		$(TIME) -o 2_ACAGTG_L002_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 2_ACAGTG_L002_R1_001.trimlog -threads 4 2_ACAGTG_L002_R1_001.fastq.gz 2_ACAGTG_L002_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 2_ACAGTG_L002_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 2_ACAGTG_L002_R1_001.trimlog -threads 4 2_ACAGTG_L002_R1_001.fastq.gz 2_ACAGTG_L002_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 2_ACAGTG_L002_R1_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 2_ACAGTG_L002_R1_001.trim.sub
 
 2_ACAGTG_L002_R2_001.trim.fq: 2_ACAGTG_L002_R2_001.fastq.gz
-		$(TIME) -o 2_ACAGTG_L002_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 2_ACAGTG_L002_R2_001.trimlog -threads 4 2_ACAGTG_L002_R2_001.fastq.gz 2_ACAGTG_L002_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 2_ACAGTG_L002_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 2_ACAGTG_L002_R2_001.trimlog -threads 4 2_ACAGTG_L002_R2_001.fastq.gz 2_ACAGTG_L002_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 2_ACAGTG_L002_R2_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 2_ACAGTG_L002_R2_001.trim.sub
 
 4_GCCAAT_L001_R1_001.trim.fq: 4_GCCAAT_L001_R1_001.fastq.gz
-		$(TIME) -o 4_GCCAAT_L001_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 4_GCCAAT_L001_R1_001.trimlog -threads 4 4_GCCAAT_L001_R1_001.fastq.gz 4_GCCAAT_L001_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 4_GCCAAT_L001_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 4_GCCAAT_L001_R1_001.trimlog -threads 4 4_GCCAAT_L001_R1_001.fastq.gz 4_GCCAAT_L001_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 4_GCCAAT_L001_R1_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 4_GCCAAT_L001_R1_001.trim.sub
 
 4_GCCAAT_L001_R2_001.trim.fq: 4_GCCAAT_L001_R2_001.fastq.gz
-		$(TIME) -o 4_GCCAAT_L001_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 4_GCCAAT_L001_R2_001.trimlog -threads 4 4_GCCAAT_L001_R2_001.fastq.gz 4_GCCAAT_L001_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 4_GCCAAT_L001_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 4_GCCAAT_L001_R2_001.trimlog -threads 4 4_GCCAAT_L001_R2_001.fastq.gz 4_GCCAAT_L001_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 4_GCCAAT_L001_R2_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 4_GCCAAT_L001_R2_001.trim.sub
 
 4_GCCAAT_L002_R1_001.trim.fq: 4_GCCAAT_L002_R1_001.fastq.gz
-		$(TIME) -o 4_GCCAAT_L002_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 4_GCCAAT_L002_R1_001.trimlog -threads 4 4_GCCAAT_L002_R1_001.fastq.gz 4_GCCAAT_L002_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 4_GCCAAT_L002_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 4_GCCAAT_L002_R1_001.trimlog -threads 4 4_GCCAAT_L002_R1_001.fastq.gz 4_GCCAAT_L002_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 4_GCCAAT_L002_R1_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 4_GCCAAT_L002_R1_001.trim.sub
 
 4_GCCAAT_L002_R2_001.trim.fq: 4_GCCAAT_L002_R2_001.fastq.gz
-		$(TIME) -o 4_GCCAAT_L002_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 4_GCCAAT_L002_R2_001.trimlog -threads 4 4_GCCAAT_L002_R2_001.fastq.gz 4_GCCAAT_L002_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 4_GCCAAT_L002_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 4_GCCAAT_L002_R2_001.trimlog -threads 4 4_GCCAAT_L002_R2_001.fastq.gz 4_GCCAAT_L002_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 4_GCCAAT_L002_R2_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 4_GCCAAT_L002_R2_001.trim.sub
 
 5_CTTGTA_L001_R1_001.trim.fq: 5_CTTGTA_L001_R1_001.fastq.gz
-		$(TIME) -o 5_CTTGTA_L001_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 5_CTTGTA_L001_R1_001.trimlog -threads 4 5_CTTGTA_L001_R1_001.fastq.gz 5_CTTGTA_L001_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 5_CTTGTA_L001_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 5_CTTGTA_L001_R1_001.trimlog -threads 4 5_CTTGTA_L001_R1_001.fastq.gz 5_CTTGTA_L001_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 5_CTTGTA_L001_R1_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 5_CTTGTA_L001_R1_001.trim.sub
 
 5_CTTGTA_L001_R2_001.trim.fq: 5_CTTGTA_L001_R2_001.fastq.gz
-		$(TIME) -o 5_CTTGTA_L001_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 5_CTTGTA_L001_R2_001.trimlog -threads 4 5_CTTGTA_L001_R2_001.fastq.gz 5_CTTGTA_L001_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 5_CTTGTA_L001_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 5_CTTGTA_L001_R2_001.trimlog -threads 4 5_CTTGTA_L001_R2_001.fastq.gz 5_CTTGTA_L001_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 5_CTTGTA_L001_R2_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 5_CTTGTA_L001_R2_001.trim.sub
 
 5_CTTGTA_L002_R1_001.trim.fq: 5_CTTGTA_L002_R1_001.fastq.gz
-		$(TIME) -o 5_CTTGTA_L002_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 5_CTTGTA_L002_R1_001.trimlog -threads 4 5_CTTGTA_L002_R1_001.fastq.gz 5_CTTGTA_L002_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 5_CTTGTA_L002_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 5_CTTGTA_L002_R1_001.trimlog -threads 4 5_CTTGTA_L002_R1_001.fastq.gz 5_CTTGTA_L002_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 5_CTTGTA_L002_R1_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 5_CTTGTA_L002_R1_001.trim.sub
 
 5_CTTGTA_L002_R2_001.trim.fq: 5_CTTGTA_L002_R2_001.fastq.gz
-		$(TIME) -o 5_CTTGTA_L002_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 5_CTTGTA_L002_R2_001.trimlog -threads 4 5_CTTGTA_L002_R2_001.fastq.gz 5_CTTGTA_L002_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 5_CTTGTA_L002_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 5_CTTGTA_L002_R2_001.trimlog -threads 4 5_CTTGTA_L002_R2_001.fastq.gz 5_CTTGTA_L002_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 5_CTTGTA_L002_R2_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 5_CTTGTA_L002_R2_001.trim.sub
 
 6_GTGAAA_L001_R1_001.trim.fq: 6_GTGAAA_L001_R1_001.fastq.gz
-		$(TIME) -o 6_GTGAAA_L001_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 6_GTGAAA_L001_R1_001.trimlog -threads 4 6_GTGAAA_L001_R1_001.fastq.gz 6_GTGAAA_L001_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 6_GTGAAA_L001_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 6_GTGAAA_L001_R1_001.trimlog -threads 4 6_GTGAAA_L001_R1_001.fastq.gz 6_GTGAAA_L001_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 6_GTGAAA_L001_R1_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 6_GTGAAA_L001_R1_001.trim.sub
 
 6_GTGAAA_L001_R2_001.trim.fq: 6_GTGAAA_L001_R2_001.fastq.gz
-		$(TIME) -o 6_GTGAAA_L001_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 6_GTGAAA_L001_R2_001.trimlog -threads 4 6_GTGAAA_L001_R2_001.fastq.gz 6_GTGAAA_L001_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 6_GTGAAA_L001_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 6_GTGAAA_L001_R2_001.trimlog -threads 4 6_GTGAAA_L001_R2_001.fastq.gz 6_GTGAAA_L001_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 6_GTGAAA_L001_R2_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 6_GTGAAA_L001_R2_001.trim.sub
 
 6_GTGAAA_L002_R1_001.trim.fq: 6_GTGAAA_L002_R1_001.fastq.gz
-		$(TIME) -o 6_GTGAAA_L002_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 6_GTGAAA_L002_R1_001.trimlog -threads 4 6_GTGAAA_L002_R1_001.fastq.gz 6_GTGAAA_L002_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 6_GTGAAA_L002_R1_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 6_GTGAAA_L002_R1_001.trimlog -threads 4 6_GTGAAA_L002_R1_001.fastq.gz 6_GTGAAA_L002_R1_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 6_GTGAAA_L002_R1_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 6_GTGAAA_L002_R1_001.trim.sub
 
 6_GTGAAA_L002_R2_001.trim.fq: 6_GTGAAA_L002_R2_001.fastq.gz
-		$(TIME) -o 6_GTGAAA_L002_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -trimlog 6_GTGAAA_L002_R2_001.trimlog -threads 4 6_GTGAAA_L002_R2_001.fastq.gz 6_GTGAAA_L002_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
+		$(TIME) -o 6_GTGAAA_L002_R2_001.trim.time java -classpath $(TRIM) org.usadellab.trimmomatic.TrimmomaticSE -phred33 -trimlog 6_GTGAAA_L002_R2_001.trimlog -threads 4 6_GTGAAA_L002_R2_001.fastq.gz 6_GTGAAA_L002_R2_001.trim.fq ILLUMINACLIP:adapters.fa:2:40:15 SLIDINGWINDOW:4:15 MINLEN:31
 
 6_GTGAAA_L002_R2_001.trim.fq-pbs:
 	qsub -l $(TRIMRES) 6_GTGAAA_L002_R2_001.trim.sub
