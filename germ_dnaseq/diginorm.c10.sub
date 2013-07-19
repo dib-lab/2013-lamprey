@@ -1,0 +1,6 @@
+
+#!/bin/bash -login
+cd $PBS_O_WORKDIR
+module load screed
+export PYTHONPATH=$PYTHONPATH:~/bin/khmer/python
+make diginorm.c10
