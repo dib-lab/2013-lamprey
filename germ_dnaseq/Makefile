@@ -302,11 +302,11 @@ trim-pbs: 2_ACAGTG_L001_R1_001.trim.fq-pbs 2_ACAGTG_L001_R2_001.trim.fq-pbs 2_AC
 
 fastqc2-pbs: 2_ACAGTG_L001_R1_001.trim.fq.fastqc2-pbs 2_ACAGTG_L001_R2_001.trim.fq.fastqc2-pbs 2_ACAGTG_L002_R1_001.trim.fq.fastqc2-pbs 2_ACAGTG_L002_R2_001.trim.fq.fastqc2-pbs 4_GCCAAT_L001_R1_001.trim.fq.fastqc2-pbs 4_GCCAAT_L001_R2_001.trim.fq.fastqc2-pbs 4_GCCAAT_L002_R1_001.trim.fq.fastqc2-pbs 4_GCCAAT_L002_R2_001.trim.fq.fastqc2-pbs 5_CTTGTA_L001_R1_001.trim.fq.fastqc2-pbs 5_CTTGTA_L001_R2_001.trim.fq.fastqc2-pbs 5_CTTGTA_L002_R1_001.trim.fq.fastqc2-pbs 5_CTTGTA_L002_R2_001.trim.fq.fastqc2-pbs 6_GTGAAA_L001_R1_001.trim.fq.fastqc2-pbs 6_GTGAAA_L001_R2_001.trim.fq.fastqc2-pbs 6_GTGAAA_L002_R1_001.trim.fq.fastqc2-pbs 6_GTGAAA_L002_R2_001.trim.fq.fastqc2-pbs
 
-diginorm.c5: 2_ACAGTG_L001_R1_001.trim.fq 2_ACAGTG_L001_R2_001.trim.fq 2_ACAGTG_L002_R1_001.trim.fq 2_ACAGTG_L002_R2_001.trim.fq 4_GCCAAT_L001_R1_001.trim.fq 4_GCCAAT_L001_R2_001.trim.fq 4_GCCAAT_L002_R1_001.trim.fq 4_GCCAAT_L002_R2_001.trim.fq 5_CTTGTA_L001_R1_001.trim.fq 5_CTTGTA_L001_R2_001.trim.fq 5_CTTGTA_L002_R1_001.trim.fq 5_CTTGTA_L002_R2_001.trim.fq 6_GTGAAA_L001_R1_001.trim.fq 6_GTGAAA_L001_R2_001.trim.fq 6_GTGAAA_L002_R1_001.trim.fq 6_GTGAAA_L002_R2_001.trim.fq
-	$(TIME) -o diginorm.c5.time $(KHMER)/scripts/normalize-by-median.py -x 10000000000.0 -N 4 -k 20 -C 5 -s diginorm.c5.ht -R diginorm.c5.report 2_ACAGTG_L001_R1_001.trim.fq 2_ACAGTG_L001_R2_001.trim.fq 2_ACAGTG_L002_R1_001.trim.fq 2_ACAGTG_L002_R2_001.trim.fq 4_GCCAAT_L001_R1_001.trim.fq 4_GCCAAT_L001_R2_001.trim.fq 4_GCCAAT_L002_R1_001.trim.fq 4_GCCAAT_L002_R2_001.trim.fq 5_CTTGTA_L001_R1_001.trim.fq 5_CTTGTA_L001_R2_001.trim.fq 5_CTTGTA_L002_R1_001.trim.fq 5_CTTGTA_L002_R2_001.trim.fq 6_GTGAAA_L001_R1_001.trim.fq 6_GTGAAA_L001_R2_001.trim.fq 6_GTGAAA_L002_R1_001.trim.fq 6_GTGAAA_L002_R2_001.trim.fq
+diginorm.c10: 2_ACAGTG_L001_R1_001.trim.fq 2_ACAGTG_L001_R2_001.trim.fq 2_ACAGTG_L002_R1_001.trim.fq 2_ACAGTG_L002_R2_001.trim.fq 4_GCCAAT_L001_R1_001.trim.fq 4_GCCAAT_L001_R2_001.trim.fq 4_GCCAAT_L002_R1_001.trim.fq 4_GCCAAT_L002_R2_001.trim.fq 5_CTTGTA_L001_R1_001.trim.fq 5_CTTGTA_L001_R2_001.trim.fq 5_CTTGTA_L002_R1_001.trim.fq 5_CTTGTA_L002_R2_001.trim.fq 6_GTGAAA_L001_R1_001.trim.fq 6_GTGAAA_L001_R2_001.trim.fq 6_GTGAAA_L002_R1_001.trim.fq 6_GTGAAA_L002_R2_001.trim.fq
+	$(TIME) -o diginorm.c10.time $(KHMER)/scripts/normalize-by-median.py -x 10000000000.0 -N 4 -k 20 -C 10 -s diginorm.c10.ht -R diginorm.c10.report 2_ACAGTG_L001_R1_001.trim.fq 2_ACAGTG_L001_R2_001.trim.fq 2_ACAGTG_L002_R1_001.trim.fq 2_ACAGTG_L002_R2_001.trim.fq 4_GCCAAT_L001_R1_001.trim.fq 4_GCCAAT_L001_R2_001.trim.fq 4_GCCAAT_L002_R1_001.trim.fq 4_GCCAAT_L002_R2_001.trim.fq 5_CTTGTA_L001_R1_001.trim.fq 5_CTTGTA_L001_R2_001.trim.fq 5_CTTGTA_L002_R1_001.trim.fq 5_CTTGTA_L002_R2_001.trim.fq 6_GTGAAA_L001_R1_001.trim.fq 6_GTGAAA_L001_R2_001.trim.fq 6_GTGAAA_L002_R1_001.trim.fq 6_GTGAAA_L002_R2_001.trim.fq
 
-diginorm.c5-pbs:
-	qsub -l $(DGRES) diginorm.c5.sub
+diginorm.c10-pbs:
+	qsub -l $(DGRES) diginorm.c10.sub
 
 clean:
 	rm -rf *.time *.clean *.keep *.trim.fq *.report *.log *.trimlog *.ht cleaning_*/ *.cidx *.cln all.c20.fa all.c20.fq *.sort
