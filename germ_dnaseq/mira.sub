@@ -1,0 +1,17 @@
+#!/bin/bash -login
+#PBS -l nodes=1:ppn=12,walltime=7:00:00:00,mem=744gb
+#PBS -j oe
+
+cd $PBS_O_WORKDIR
+
+module load MIRA/3.9.18
+
+workdir=mira-trimmed
+
+mkdir -p ${workdir}
+
+for file in *.trim.fq; do ln -s $PWD/${file} ${workdir}/${file%%.fq}.fastq; done
+
+cd ${workdir}
+
+mira ../lamprey-trimmed-mira.manifest
