@@ -1,0 +1,4 @@
+
+#!/bin/bash -login
+cd $PBS_O_WORKDIR
+make spinal_cord_paired.trim.fq
