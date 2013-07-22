@@ -5,10 +5,10 @@ TRIM=~/bin/Trimmomatic-0.25/trimmomatic-0.25.jar
 TIME=/usr/bin/time -f %E%U%K%W%w%I%O
 KMERGENIE=~/bin/kmergenie-1.5397/kmergenie
 
-KMERRES=nodes=1:ppn=4,walltime=6:00:00,mem=32gb
+KMERRES=nodes=1:ppn=8,walltime=24:00:00,mem=23gb,feature=intel10
 TRIMRES=nodes=1:ppn=4,walltime=12:00:00,mem=4gb
 QCRES=nodes=1:ppn=1,walltime=2:00:00,mem=4gb
-DGRES=nodes=1:ppn=1,walltime=12:00:00,mem=42gb
+DGRES=nodes=1:ppn=1,walltime=36:00:00,mem=42gb
 
 2_ACAGTG_L001_R1_001.fastqc1:
 	fastqc --noextract 2_ACAGTG_L001_R1_001.fastq.gz
@@ -313,14 +313,13 @@ clean:
 
 
 kmergenie: 2_ACAGTG_L001_R1_001.trim.fq 2_ACAGTG_L001_R2_001.trim.fq 2_ACAGTG_L002_R1_001.trim.fq 2_ACAGTG_L002_R2_001.trim.fq 4_GCCAAT_L001_R1_001.trim.fq 4_GCCAAT_L001_R2_001.trim.fq 4_GCCAAT_L002_R1_001.trim.fq 4_GCCAAT_L002_R2_001.trim.fq 5_CTTGTA_L001_R1_001.trim.fq 5_CTTGTA_L001_R2_001.trim.fq 5_CTTGTA_L002_R1_001.trim.fq 5_CTTGTA_L002_R2_001.trim.fq 6_GTGAAA_L001_R1_001.trim.fq 6_GTGAAA_L001_R2_001.trim.fq 6_GTGAAA_L002_R1_001.trim.fq 6_GTGAAA_L002_R2_001.trim.fq
-	$(TIME) -o kmergenie.time $(KMERGENIE) reads.txt  --diploid -k 100 -l 20 
+	$(TIME) -o kmergenie.time $(KMERGENIE) reads.txt --diploid -k 100 -l 20 
 
 kmergenie-pbs:
 	qsub -l $(KMERRES) kmergenie.sub
 
-
 dg.kmergenie: 2_ACAGTG_L001_R1_001.trim.fq.keep 2_ACAGTG_L001_R2_001.trim.fq.keep 2_ACAGTG_L002_R1_001.trim.fq.keep 2_ACAGTG_L002_R2_001.trim.fq.keep 4_GCCAAT_L001_R1_001.trim.fq.keep 4_GCCAAT_L001_R2_001.trim.fq.keep 4_GCCAAT_L002_R1_001.trim.fq.keep 4_GCCAAT_L002_R2_001.trim.fq.keep 5_CTTGTA_L001_R1_001.trim.fq.keep 5_CTTGTA_L001_R2_001.trim.fq.keep 5_CTTGTA_L002_R1_001.trim.fq.keep 5_CTTGTA_L002_R2_001.trim.fq.keep 6_GTGAAA_L001_R1_001.trim.fq.keep 6_GTGAAA_L001_R2_001.trim.fq.keep 6_GTGAAA_L002_R1_001.trim.fq.keep 6_GTGAAA_L002_R2_001.trim.fq.keep
-	$(TIME) -o kmergenie.time $(KMERGENIE) dg.reads.txt  --diploid -k 100 -l 20 
+	$(TIME) -o kmergenie.time $(KMERGENIE) dg.reads.txt --diploid -k 100 -l 20 
 
 dg.kmergenie-pbs:
 	qsub -l $(KMERRES) dg.kmergenie.sub

@@ -1,0 +1,14 @@
+project =raw-lamprey-germline
+job = genome,denovo,accurate
+parameters = -GENERAL:number_of_threads=12
+
+readgroup = rawLampreyGermlineIllumina
+data = *.trim.fastq
+technology = solexa
+
+parameters = -NAG_AND_WARN:stop_on_maxreadnamelength=0 -SKIM:number_of_threads=12:memcap_hitreduction=4096 -HASHSTATISTICS:lossless_digital_normalisation=true -OUTPUT:output_result_ace=true
+
+#DIRECTORY:tmp_redirected_to=/mnt/local
+#SKIM:bases_per_hash=
+#CLIPPING:clip_phix174 long name fails :-(
+
