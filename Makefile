@@ -39,35 +39,35 @@ petMar_mrna.fp: force
 
 x.genome.csv: petMar_mrna.fp
 	cd db; $(MAKE) petMar2.fa.masked.phr
-	blastn -query petMar_mrna.fp -db db/petMar2.fa.masked -out x.genome_hard.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastn -query petMar_mrna.fp -db db/petMar2.fa.masked -out x.genome_hard.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.zebrafish.csv: petMar_mrna.fp
 	cd db; $(MAKE) zebrafish.protein.fa.phr
-	blastx -query petMar_mrna.fp -db db/zebrafish.protein.fa -out x.zebrafish.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastx -query petMar_mrna.fp -db db/zebrafish.protein.fa -out x.zebrafish.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.myx.csv: petMar_mrna.fp
 	cd db; $(MAKE) myxinidae.protein.fa.phr
-	blastx -query petMar_mrna.fp -db db/myxinidae.protein.fa -out x.myx.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastx -query petMar_mrna.fp -db db/myxinidae.protein.fa -out x.myx.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.amph.csv: petMar_mrna.fp
 	cd db; $(MAKE) amphioxus.protein.fa.phr
-	blastx -query petMar_mrna.fp -db db/amphioxus.protein.fa -out x.amph.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastx -query petMar_mrna.fp -db db/amphioxus.protein.fa -out x.amph.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 	
 x.mouse.csv: petMar_mrna.fp
 	cd db; $(MAKE) mouse.protein.fa.phr
-	blastx -query petMar_mrna.fp -db db/mouse.protein.fa -out x.mouse.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastx -query petMar_mrna.fp -db db/mouse.protein.fa -out x.mouse.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.est.csv: petMar_mrna.fp
 	cd db; $(MAKE) est.fa.nhr
-	blastn -query petMar_mrna.fp -db db/est.fa -out x.est.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastn -query petMar_mrna.fp -db db/est.fa -out x.est.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.cdna.csv: petMar_mrna.fp
 	cd db; $(MAKE) cdna.all.fa.nhr
-	blastn -query petMar_mrna.fp -db db/cdna.all.fa -out x.cdna.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastn -query petMar_mrna.fp -db db/cdna.all.fa -out x.cdna.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.lamp0.csv: petMar_mrna.fp
 	cd data; $(MAKE) lamp0.fasta.nhr
-	blastn -query petMar_mrna.fp -db data/lamp0.fasta -out x.lamp0.csv -num_threads $(BLAST_CPUS) -evalue 0.0000001 -outfmt "10 $(CSV)"
+	blastn -query petMar_mrna.fp -db data/lamp0.fasta -out x.lamp0.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 
 force:
