@@ -1,5 +1,0 @@
-
-#!/bin/bash -login
-cd $PBS_O_WORKDIR
-module load FastQC
-make SW2-Intestine-a.trim.fq.fastqc2

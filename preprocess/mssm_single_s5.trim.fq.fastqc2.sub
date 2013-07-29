@@ -1,5 +1,0 @@
-
-#!/bin/bash -login
-cd $PBS_O_WORKDIR
-module load FastQC
-make mssm_single_s5.trim.fq.fastqc2

@@ -1,5 +1,0 @@
-
-#!/bin/bash -login
-cd $PBS_O_WORKDIR
-module load FastQC
-make SPDI.trim.fq.fastqc2
