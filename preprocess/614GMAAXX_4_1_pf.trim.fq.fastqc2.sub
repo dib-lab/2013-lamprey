@@ -1,5 +1,0 @@
-
-#!/bin/bash -login
-cd $PBS_O_WORKDIR
-module load FastQC
-make 614GMAAXX_4_1_pf.trim.fq.fastqc2
