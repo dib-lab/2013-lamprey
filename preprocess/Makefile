@@ -528,12 +528,98 @@ fastqc2-pbs: 614GMAAXX_1_1_pf.trim.fq.fastqc2-pbs \
 	SW2-Intestine-a.trim.fq.fastqc2-pbs \
 	SW2-Intestine-b.trim.fq.fastqc2-pbs \
 	SW2-Kidney.trim.fq.fastqc2-pbs
+parallel-dg50-pbs: 614GMAAXX_1_1_pf.trim.fq-pbs \
+			614GMAAXX_2_1_pf.trim.fq-pbs \
+			614GMAAXX_3_1_pf.trim.fq-pbs \
+			614GMAAXX_4_1_pf.trim.fq-pbs \
+			614GMAAXX_6_1_pf.trim.fq-pbs \
+			614GMAAXX_7_1_pf.trim.fq-pbs \
+			614GMAAXX_8_1_pf.trim.fq-pbs \
+			AB057JABXX_s_7_pe.trim.fq-pbs \
+			AI.trim.fq-pbs \
+			AK.trim.fq-pbs \
+			BB0582ABXX_s_3_pe.trim.fq-pbs \
+			BB0582ABXX_s_4_pe.trim.fq-pbs \
+			BB0582ABXX_s_5_pe.trim.fq-pbs \
+			BB0582ABXX_s_6_pe.trim.fq-pbs \
+			BB0582ABXX_s_7_pe.trim.fq-pbs \
+			BB0582ABXX_s_8_pe.trim.fq-pbs \
+			brain_paired.trim.fq-pbs \
+			FW1-Gill.trim.fq-pbs \
+			FW1-Intestine.trim.fq-pbs \
+			FW1-Kidney.trim.fq-pbs \
+			G81-a.trim.fq-pbs \
+			G81-b.trim.fq-pbs \
+			G82-a.trim.fq-pbs \
+			G82-b.trim.fq-pbs \
+			G83-a.trim.fq-pbs \
+			G83-b.trim.fq-pbs \
+			Gill.trim.fq-pbs \
+			JV1_liver.trim.fq-pbs \
+			JVa_liver.trim.fq-pbs \
+			JVb_liver.trim.fq-pbs \
+			JV_intest.trim.fq-pbs \
+			Kidney.trim.fq-pbs \
+			L81-a.trim.fq-pbs \
+			L81-b.trim.fq-pbs \
+			L82-a.trim.fq-pbs \
+			L82-b.trim.fq-pbs \
+			L83-1-a.trim.fq-pbs \
+			L83-1-b.trim.fq-pbs \
+			L83-a.trim.fq-pbs \
+			L83-b.trim.fq-pbs \
+			LI.trim.fq-pbs \
+			Lips.trim.fq-pbs \
+			LK.trim.fq-pbs \
+			M0_liver.trim.fq-pbs \
+			M2_liver.trim.fq-pbs \
+			M5_liver.trim.fq-pbs \
+			Monocytes.trim.fq-pbs \
+			mssm_single_s1.trim.fq-pbs \
+			mssm_single_s2.trim.fq-pbs \
+			mssm_single_s3.trim.fq-pbs \
+			mssm_single_s5.trim.fq-pbs \
+			mssm_single_s6.trim.fq-pbs \
+			mssm_single_s7.trim.fq-pbs \
+			Muscle.trim.fq-pbs \
+			Neutrophils.trim.fq-pbs \
+			OFHS.trim.fq-pbs \
+			POF-eye.trim.fq-pbs \
+			POF-ts.trim.fq-pbs \
+			PSMGill.trim.fq-pbs \
+			Rope.trim.fq-pbs \
+			SMGill.trim.fq-pbs \
+			SMHS.trim.fq-pbs \
+			SN.trim.fq-pbs \
+			SPDI.trim.fq-pbs \
+			spinal_cord_paired.trim.fq-pbs \
+			SPK.trim.fq-pbs \
+			SPPI.trim.fq-pbs \
+			Stg-1-Intestine.trim.fq-pbs \
+			Stg-1-Kidney.trim.fq-pbs \
+			Stg-2-Intestine.trim.fq-pbs \
+			Stg-2-Kidney.trim.fq-pbs \
+			Stg-3-Intestine.trim.fq-pbs \
+			Stg-3-Kidney.trim.fq-pbs \
+			Stg-4-Intestine.trim.fq-pbs \
+			Stg-4-Kidney.trim.fq-pbs \
+			Stg-5-Intestine.trim.fq-pbs \
+			Stg-5-Kidney.trim.fq-pbs \
+			Stg-6-Intestine.trim.fq-pbs \
+			Stg-6-Kidney.trim.fq-pbs \
+			Stg-7-Intestine.trim.fq-pbs \
+			Stg-7-Kidney.trim.fq-pbs \
+			SW2-Gill.trim.fq-pbs \
+			SW2-Intestine-a.trim.fq-pbs \
+			SW2-Intestine-b.trim.fq-pbs \
+			SW2-Kidney.trim.fq-pbs
+
 diginorm.c50.ht-pbs:
 	echo make diginorm.c50.ht | cat diginorm.inc.sub - | qsub -l $(DGRES) -N lamp4-diginorm.c50
 
 
 diginorm.c50.ht: $(TRIMMED)
-	$(TIME) -o diginorm.c50.time $(KHMER)/scripts/normalize-by-median.py -x 10000000.0 -N 4 -k 20 -C 50 -s diginorm.c50.ht -R diginorm.c50.report \
+	$(TIME) -o diginorm.c50.time $(KHMER)/scripts/normalize-by-median.py -x 4000000000.0 -N 4 -k 20 -C 50 -s diginorm.c50.ht -R diginorm.c50.report \
 614GMAAXX_1_1_pf.trim.fq \
 			614GMAAXX_2_1_pf.trim.fq \
 			614GMAAXX_3_1_pf.trim.fq \

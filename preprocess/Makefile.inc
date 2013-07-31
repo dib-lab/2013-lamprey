@@ -9,6 +9,7 @@ KMERRES=nodes=1:ppn=4,walltime=72:00:00,mem=32gb
 TRIMRES=nodes=1:ppn=4,walltime=18:00:00,mem=4gb
 QCRES=nodes=1:ppn=1,walltime=2:00:00,mem=4gb
 DGRES=nodes=1:ppn=1,walltime=72:00:00,mem=42gb
+PAR_DGRES=nodes=1:ppn=1,walltime=6:00:00,mem=5gb
 CLEANRES=nodes=1:ppn=8,walltime=12:00:00,mem=8gb
 
 614GMAAXX_1_1_pf.fq_fastqc.zip: 614GMAAXX_1_1_pf.qc.fq.gz
@@ -1540,6 +1541,516 @@ SW2-Kidney.trim.fq.fq_fastqc.zip: SW2-Kidney.trim.fq
 
 SW2-Kidney.trim.fq.fq_fastqc-pbs:
 	echo make SW2-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SW2-Kidney
+
+614GMAAXX_1_1_pf.trim.fq.keep: 614GMAAXX_1_1_pf.trim.fq
+	$(TIME) -o 614GMAAXX_1_1_pf.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R 614GMAAXX_1_1_pf.trim.fq.keep.c50.report 614GMAAXX_1_1_pf.trim.fq
+
+614GMAAXX_1_1_pf.trim.fq.keep-pbs: 614GMAAXX_1_1_pf.trim.fq
+	echo make 614GMAAXX_1_1_pf.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-614GMAAXX_1_1_pf.trim.fq.keep
+
+614GMAAXX_2_1_pf.trim.fq.keep: 614GMAAXX_2_1_pf.trim.fq
+	$(TIME) -o 614GMAAXX_2_1_pf.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R 614GMAAXX_2_1_pf.trim.fq.keep.c50.report 614GMAAXX_2_1_pf.trim.fq
+
+614GMAAXX_2_1_pf.trim.fq.keep-pbs: 614GMAAXX_2_1_pf.trim.fq
+	echo make 614GMAAXX_2_1_pf.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-614GMAAXX_2_1_pf.trim.fq.keep
+
+614GMAAXX_3_1_pf.trim.fq.keep: 614GMAAXX_3_1_pf.trim.fq
+	$(TIME) -o 614GMAAXX_3_1_pf.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R 614GMAAXX_3_1_pf.trim.fq.keep.c50.report 614GMAAXX_3_1_pf.trim.fq
+
+614GMAAXX_3_1_pf.trim.fq.keep-pbs: 614GMAAXX_3_1_pf.trim.fq
+	echo make 614GMAAXX_3_1_pf.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-614GMAAXX_3_1_pf.trim.fq.keep
+
+614GMAAXX_4_1_pf.trim.fq.keep: 614GMAAXX_4_1_pf.trim.fq
+	$(TIME) -o 614GMAAXX_4_1_pf.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R 614GMAAXX_4_1_pf.trim.fq.keep.c50.report 614GMAAXX_4_1_pf.trim.fq
+
+614GMAAXX_4_1_pf.trim.fq.keep-pbs: 614GMAAXX_4_1_pf.trim.fq
+	echo make 614GMAAXX_4_1_pf.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-614GMAAXX_4_1_pf.trim.fq.keep
+
+614GMAAXX_6_1_pf.trim.fq.keep: 614GMAAXX_6_1_pf.trim.fq
+	$(TIME) -o 614GMAAXX_6_1_pf.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R 614GMAAXX_6_1_pf.trim.fq.keep.c50.report 614GMAAXX_6_1_pf.trim.fq
+
+614GMAAXX_6_1_pf.trim.fq.keep-pbs: 614GMAAXX_6_1_pf.trim.fq
+	echo make 614GMAAXX_6_1_pf.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-614GMAAXX_6_1_pf.trim.fq.keep
+
+614GMAAXX_7_1_pf.trim.fq.keep: 614GMAAXX_7_1_pf.trim.fq
+	$(TIME) -o 614GMAAXX_7_1_pf.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R 614GMAAXX_7_1_pf.trim.fq.keep.c50.report 614GMAAXX_7_1_pf.trim.fq
+
+614GMAAXX_7_1_pf.trim.fq.keep-pbs: 614GMAAXX_7_1_pf.trim.fq
+	echo make 614GMAAXX_7_1_pf.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-614GMAAXX_7_1_pf.trim.fq.keep
+
+614GMAAXX_8_1_pf.trim.fq.keep: 614GMAAXX_8_1_pf.trim.fq
+	$(TIME) -o 614GMAAXX_8_1_pf.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R 614GMAAXX_8_1_pf.trim.fq.keep.c50.report 614GMAAXX_8_1_pf.trim.fq
+
+614GMAAXX_8_1_pf.trim.fq.keep-pbs: 614GMAAXX_8_1_pf.trim.fq
+	echo make 614GMAAXX_8_1_pf.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-614GMAAXX_8_1_pf.trim.fq.keep
+
+AB057JABXX_s_7_pe.trim.fq.keep: AB057JABXX_s_7_pe.trim.fq
+	$(TIME) -o AB057JABXX_s_7_pe.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R AB057JABXX_s_7_pe.trim.fq.keep.c50.report AB057JABXX_s_7_pe.trim.fq
+
+AB057JABXX_s_7_pe.trim.fq.keep-pbs: AB057JABXX_s_7_pe.trim.fq
+	echo make AB057JABXX_s_7_pe.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-AB057JABXX_s_7_pe.trim.fq.keep
+
+AI.trim.fq.keep: AI.trim.fq
+	$(TIME) -o AI.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R AI.trim.fq.keep.c50.report AI.trim.fq
+
+AI.trim.fq.keep-pbs: AI.trim.fq
+	echo make AI.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-AI.trim.fq.keep
+
+AK.trim.fq.keep: AK.trim.fq
+	$(TIME) -o AK.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R AK.trim.fq.keep.c50.report AK.trim.fq
+
+AK.trim.fq.keep-pbs: AK.trim.fq
+	echo make AK.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-AK.trim.fq.keep
+
+BB0582ABXX_s_3_pe.trim.fq.keep: BB0582ABXX_s_3_pe.trim.fq
+	$(TIME) -o BB0582ABXX_s_3_pe.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R BB0582ABXX_s_3_pe.trim.fq.keep.c50.report BB0582ABXX_s_3_pe.trim.fq
+
+BB0582ABXX_s_3_pe.trim.fq.keep-pbs: BB0582ABXX_s_3_pe.trim.fq
+	echo make BB0582ABXX_s_3_pe.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-BB0582ABXX_s_3_pe.trim.fq.keep
+
+BB0582ABXX_s_4_pe.trim.fq.keep: BB0582ABXX_s_4_pe.trim.fq
+	$(TIME) -o BB0582ABXX_s_4_pe.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R BB0582ABXX_s_4_pe.trim.fq.keep.c50.report BB0582ABXX_s_4_pe.trim.fq
+
+BB0582ABXX_s_4_pe.trim.fq.keep-pbs: BB0582ABXX_s_4_pe.trim.fq
+	echo make BB0582ABXX_s_4_pe.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-BB0582ABXX_s_4_pe.trim.fq.keep
+
+BB0582ABXX_s_5_pe.trim.fq.keep: BB0582ABXX_s_5_pe.trim.fq
+	$(TIME) -o BB0582ABXX_s_5_pe.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R BB0582ABXX_s_5_pe.trim.fq.keep.c50.report BB0582ABXX_s_5_pe.trim.fq
+
+BB0582ABXX_s_5_pe.trim.fq.keep-pbs: BB0582ABXX_s_5_pe.trim.fq
+	echo make BB0582ABXX_s_5_pe.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-BB0582ABXX_s_5_pe.trim.fq.keep
+
+BB0582ABXX_s_6_pe.trim.fq.keep: BB0582ABXX_s_6_pe.trim.fq
+	$(TIME) -o BB0582ABXX_s_6_pe.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R BB0582ABXX_s_6_pe.trim.fq.keep.c50.report BB0582ABXX_s_6_pe.trim.fq
+
+BB0582ABXX_s_6_pe.trim.fq.keep-pbs: BB0582ABXX_s_6_pe.trim.fq
+	echo make BB0582ABXX_s_6_pe.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-BB0582ABXX_s_6_pe.trim.fq.keep
+
+BB0582ABXX_s_7_pe.trim.fq.keep: BB0582ABXX_s_7_pe.trim.fq
+	$(TIME) -o BB0582ABXX_s_7_pe.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R BB0582ABXX_s_7_pe.trim.fq.keep.c50.report BB0582ABXX_s_7_pe.trim.fq
+
+BB0582ABXX_s_7_pe.trim.fq.keep-pbs: BB0582ABXX_s_7_pe.trim.fq
+	echo make BB0582ABXX_s_7_pe.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-BB0582ABXX_s_7_pe.trim.fq.keep
+
+BB0582ABXX_s_8_pe.trim.fq.keep: BB0582ABXX_s_8_pe.trim.fq
+	$(TIME) -o BB0582ABXX_s_8_pe.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R BB0582ABXX_s_8_pe.trim.fq.keep.c50.report BB0582ABXX_s_8_pe.trim.fq
+
+BB0582ABXX_s_8_pe.trim.fq.keep-pbs: BB0582ABXX_s_8_pe.trim.fq
+	echo make BB0582ABXX_s_8_pe.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-BB0582ABXX_s_8_pe.trim.fq.keep
+
+brain_paired.trim.fq.keep: brain_paired.trim.fq
+	$(TIME) -o brain_paired.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R brain_paired.trim.fq.keep.c50.report brain_paired.trim.fq
+
+brain_paired.trim.fq.keep-pbs: brain_paired.trim.fq
+	echo make brain_paired.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-brain_paired.trim.fq.keep
+
+FW1-Gill.trim.fq.keep: FW1-Gill.trim.fq
+	$(TIME) -o FW1-Gill.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R FW1-Gill.trim.fq.keep.c50.report FW1-Gill.trim.fq
+
+FW1-Gill.trim.fq.keep-pbs: FW1-Gill.trim.fq
+	echo make FW1-Gill.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-FW1-Gill.trim.fq.keep
+
+FW1-Intestine.trim.fq.keep: FW1-Intestine.trim.fq
+	$(TIME) -o FW1-Intestine.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R FW1-Intestine.trim.fq.keep.c50.report FW1-Intestine.trim.fq
+
+FW1-Intestine.trim.fq.keep-pbs: FW1-Intestine.trim.fq
+	echo make FW1-Intestine.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-FW1-Intestine.trim.fq.keep
+
+FW1-Kidney.trim.fq.keep: FW1-Kidney.trim.fq
+	$(TIME) -o FW1-Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R FW1-Kidney.trim.fq.keep.c50.report FW1-Kidney.trim.fq
+
+FW1-Kidney.trim.fq.keep-pbs: FW1-Kidney.trim.fq
+	echo make FW1-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-FW1-Kidney.trim.fq.keep
+
+G81-a.trim.fq.keep: G81-a.trim.fq
+	$(TIME) -o G81-a.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R G81-a.trim.fq.keep.c50.report G81-a.trim.fq
+
+G81-a.trim.fq.keep-pbs: G81-a.trim.fq
+	echo make G81-a.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-G81-a.trim.fq.keep
+
+G81-b.trim.fq.keep: G81-b.trim.fq
+	$(TIME) -o G81-b.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R G81-b.trim.fq.keep.c50.report G81-b.trim.fq
+
+G81-b.trim.fq.keep-pbs: G81-b.trim.fq
+	echo make G81-b.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-G81-b.trim.fq.keep
+
+G82-a.trim.fq.keep: G82-a.trim.fq
+	$(TIME) -o G82-a.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R G82-a.trim.fq.keep.c50.report G82-a.trim.fq
+
+G82-a.trim.fq.keep-pbs: G82-a.trim.fq
+	echo make G82-a.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-G82-a.trim.fq.keep
+
+G82-b.trim.fq.keep: G82-b.trim.fq
+	$(TIME) -o G82-b.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R G82-b.trim.fq.keep.c50.report G82-b.trim.fq
+
+G82-b.trim.fq.keep-pbs: G82-b.trim.fq
+	echo make G82-b.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-G82-b.trim.fq.keep
+
+G83-a.trim.fq.keep: G83-a.trim.fq
+	$(TIME) -o G83-a.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R G83-a.trim.fq.keep.c50.report G83-a.trim.fq
+
+G83-a.trim.fq.keep-pbs: G83-a.trim.fq
+	echo make G83-a.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-G83-a.trim.fq.keep
+
+G83-b.trim.fq.keep: G83-b.trim.fq
+	$(TIME) -o G83-b.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R G83-b.trim.fq.keep.c50.report G83-b.trim.fq
+
+G83-b.trim.fq.keep-pbs: G83-b.trim.fq
+	echo make G83-b.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-G83-b.trim.fq.keep
+
+Gill.trim.fq.keep: Gill.trim.fq
+	$(TIME) -o Gill.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Gill.trim.fq.keep.c50.report Gill.trim.fq
+
+Gill.trim.fq.keep-pbs: Gill.trim.fq
+	echo make Gill.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Gill.trim.fq.keep
+
+JV1_liver.trim.fq.keep: JV1_liver.trim.fq
+	$(TIME) -o JV1_liver.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R JV1_liver.trim.fq.keep.c50.report JV1_liver.trim.fq
+
+JV1_liver.trim.fq.keep-pbs: JV1_liver.trim.fq
+	echo make JV1_liver.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-JV1_liver.trim.fq.keep
+
+JVa_liver.trim.fq.keep: JVa_liver.trim.fq
+	$(TIME) -o JVa_liver.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R JVa_liver.trim.fq.keep.c50.report JVa_liver.trim.fq
+
+JVa_liver.trim.fq.keep-pbs: JVa_liver.trim.fq
+	echo make JVa_liver.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-JVa_liver.trim.fq.keep
+
+JVb_liver.trim.fq.keep: JVb_liver.trim.fq
+	$(TIME) -o JVb_liver.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R JVb_liver.trim.fq.keep.c50.report JVb_liver.trim.fq
+
+JVb_liver.trim.fq.keep-pbs: JVb_liver.trim.fq
+	echo make JVb_liver.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-JVb_liver.trim.fq.keep
+
+JV_intest.trim.fq.keep: JV_intest.trim.fq
+	$(TIME) -o JV_intest.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R JV_intest.trim.fq.keep.c50.report JV_intest.trim.fq
+
+JV_intest.trim.fq.keep-pbs: JV_intest.trim.fq
+	echo make JV_intest.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-JV_intest.trim.fq.keep
+
+Kidney.trim.fq.keep: Kidney.trim.fq
+	$(TIME) -o Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Kidney.trim.fq.keep.c50.report Kidney.trim.fq
+
+Kidney.trim.fq.keep-pbs: Kidney.trim.fq
+	echo make Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Kidney.trim.fq.keep
+
+L81-a.trim.fq.keep: L81-a.trim.fq
+	$(TIME) -o L81-a.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R L81-a.trim.fq.keep.c50.report L81-a.trim.fq
+
+L81-a.trim.fq.keep-pbs: L81-a.trim.fq
+	echo make L81-a.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-L81-a.trim.fq.keep
+
+L81-b.trim.fq.keep: L81-b.trim.fq
+	$(TIME) -o L81-b.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R L81-b.trim.fq.keep.c50.report L81-b.trim.fq
+
+L81-b.trim.fq.keep-pbs: L81-b.trim.fq
+	echo make L81-b.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-L81-b.trim.fq.keep
+
+L82-a.trim.fq.keep: L82-a.trim.fq
+	$(TIME) -o L82-a.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R L82-a.trim.fq.keep.c50.report L82-a.trim.fq
+
+L82-a.trim.fq.keep-pbs: L82-a.trim.fq
+	echo make L82-a.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-L82-a.trim.fq.keep
+
+L82-b.trim.fq.keep: L82-b.trim.fq
+	$(TIME) -o L82-b.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R L82-b.trim.fq.keep.c50.report L82-b.trim.fq
+
+L82-b.trim.fq.keep-pbs: L82-b.trim.fq
+	echo make L82-b.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-L82-b.trim.fq.keep
+
+L83-1-a.trim.fq.keep: L83-1-a.trim.fq
+	$(TIME) -o L83-1-a.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R L83-1-a.trim.fq.keep.c50.report L83-1-a.trim.fq
+
+L83-1-a.trim.fq.keep-pbs: L83-1-a.trim.fq
+	echo make L83-1-a.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-L83-1-a.trim.fq.keep
+
+L83-1-b.trim.fq.keep: L83-1-b.trim.fq
+	$(TIME) -o L83-1-b.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R L83-1-b.trim.fq.keep.c50.report L83-1-b.trim.fq
+
+L83-1-b.trim.fq.keep-pbs: L83-1-b.trim.fq
+	echo make L83-1-b.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-L83-1-b.trim.fq.keep
+
+L83-a.trim.fq.keep: L83-a.trim.fq
+	$(TIME) -o L83-a.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R L83-a.trim.fq.keep.c50.report L83-a.trim.fq
+
+L83-a.trim.fq.keep-pbs: L83-a.trim.fq
+	echo make L83-a.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-L83-a.trim.fq.keep
+
+L83-b.trim.fq.keep: L83-b.trim.fq
+	$(TIME) -o L83-b.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R L83-b.trim.fq.keep.c50.report L83-b.trim.fq
+
+L83-b.trim.fq.keep-pbs: L83-b.trim.fq
+	echo make L83-b.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-L83-b.trim.fq.keep
+
+LI.trim.fq.keep: LI.trim.fq
+	$(TIME) -o LI.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R LI.trim.fq.keep.c50.report LI.trim.fq
+
+LI.trim.fq.keep-pbs: LI.trim.fq
+	echo make LI.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-LI.trim.fq.keep
+
+Lips.trim.fq.keep: Lips.trim.fq
+	$(TIME) -o Lips.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Lips.trim.fq.keep.c50.report Lips.trim.fq
+
+Lips.trim.fq.keep-pbs: Lips.trim.fq
+	echo make Lips.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Lips.trim.fq.keep
+
+LK.trim.fq.keep: LK.trim.fq
+	$(TIME) -o LK.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R LK.trim.fq.keep.c50.report LK.trim.fq
+
+LK.trim.fq.keep-pbs: LK.trim.fq
+	echo make LK.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-LK.trim.fq.keep
+
+M0_liver.trim.fq.keep: M0_liver.trim.fq
+	$(TIME) -o M0_liver.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R M0_liver.trim.fq.keep.c50.report M0_liver.trim.fq
+
+M0_liver.trim.fq.keep-pbs: M0_liver.trim.fq
+	echo make M0_liver.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-M0_liver.trim.fq.keep
+
+M2_liver.trim.fq.keep: M2_liver.trim.fq
+	$(TIME) -o M2_liver.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R M2_liver.trim.fq.keep.c50.report M2_liver.trim.fq
+
+M2_liver.trim.fq.keep-pbs: M2_liver.trim.fq
+	echo make M2_liver.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-M2_liver.trim.fq.keep
+
+M5_liver.trim.fq.keep: M5_liver.trim.fq
+	$(TIME) -o M5_liver.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R M5_liver.trim.fq.keep.c50.report M5_liver.trim.fq
+
+M5_liver.trim.fq.keep-pbs: M5_liver.trim.fq
+	echo make M5_liver.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-M5_liver.trim.fq.keep
+
+Monocytes.trim.fq.keep: Monocytes.trim.fq
+	$(TIME) -o Monocytes.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Monocytes.trim.fq.keep.c50.report Monocytes.trim.fq
+
+Monocytes.trim.fq.keep-pbs: Monocytes.trim.fq
+	echo make Monocytes.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Monocytes.trim.fq.keep
+
+mssm_single_s1.trim.fq.keep: mssm_single_s1.trim.fq
+	$(TIME) -o mssm_single_s1.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R mssm_single_s1.trim.fq.keep.c50.report mssm_single_s1.trim.fq
+
+mssm_single_s1.trim.fq.keep-pbs: mssm_single_s1.trim.fq
+	echo make mssm_single_s1.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-mssm_single_s1.trim.fq.keep
+
+mssm_single_s2.trim.fq.keep: mssm_single_s2.trim.fq
+	$(TIME) -o mssm_single_s2.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R mssm_single_s2.trim.fq.keep.c50.report mssm_single_s2.trim.fq
+
+mssm_single_s2.trim.fq.keep-pbs: mssm_single_s2.trim.fq
+	echo make mssm_single_s2.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-mssm_single_s2.trim.fq.keep
+
+mssm_single_s3.trim.fq.keep: mssm_single_s3.trim.fq
+	$(TIME) -o mssm_single_s3.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R mssm_single_s3.trim.fq.keep.c50.report mssm_single_s3.trim.fq
+
+mssm_single_s3.trim.fq.keep-pbs: mssm_single_s3.trim.fq
+	echo make mssm_single_s3.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-mssm_single_s3.trim.fq.keep
+
+mssm_single_s5.trim.fq.keep: mssm_single_s5.trim.fq
+	$(TIME) -o mssm_single_s5.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R mssm_single_s5.trim.fq.keep.c50.report mssm_single_s5.trim.fq
+
+mssm_single_s5.trim.fq.keep-pbs: mssm_single_s5.trim.fq
+	echo make mssm_single_s5.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-mssm_single_s5.trim.fq.keep
+
+mssm_single_s6.trim.fq.keep: mssm_single_s6.trim.fq
+	$(TIME) -o mssm_single_s6.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R mssm_single_s6.trim.fq.keep.c50.report mssm_single_s6.trim.fq
+
+mssm_single_s6.trim.fq.keep-pbs: mssm_single_s6.trim.fq
+	echo make mssm_single_s6.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-mssm_single_s6.trim.fq.keep
+
+mssm_single_s7.trim.fq.keep: mssm_single_s7.trim.fq
+	$(TIME) -o mssm_single_s7.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R mssm_single_s7.trim.fq.keep.c50.report mssm_single_s7.trim.fq
+
+mssm_single_s7.trim.fq.keep-pbs: mssm_single_s7.trim.fq
+	echo make mssm_single_s7.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-mssm_single_s7.trim.fq.keep
+
+Muscle.trim.fq.keep: Muscle.trim.fq
+	$(TIME) -o Muscle.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Muscle.trim.fq.keep.c50.report Muscle.trim.fq
+
+Muscle.trim.fq.keep-pbs: Muscle.trim.fq
+	echo make Muscle.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Muscle.trim.fq.keep
+
+Neutrophils.trim.fq.keep: Neutrophils.trim.fq
+	$(TIME) -o Neutrophils.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Neutrophils.trim.fq.keep.c50.report Neutrophils.trim.fq
+
+Neutrophils.trim.fq.keep-pbs: Neutrophils.trim.fq
+	echo make Neutrophils.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Neutrophils.trim.fq.keep
+
+OFHS.trim.fq.keep: OFHS.trim.fq
+	$(TIME) -o OFHS.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R OFHS.trim.fq.keep.c50.report OFHS.trim.fq
+
+OFHS.trim.fq.keep-pbs: OFHS.trim.fq
+	echo make OFHS.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-OFHS.trim.fq.keep
+
+POF-eye.trim.fq.keep: POF-eye.trim.fq
+	$(TIME) -o POF-eye.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R POF-eye.trim.fq.keep.c50.report POF-eye.trim.fq
+
+POF-eye.trim.fq.keep-pbs: POF-eye.trim.fq
+	echo make POF-eye.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-POF-eye.trim.fq.keep
+
+POF-ts.trim.fq.keep: POF-ts.trim.fq
+	$(TIME) -o POF-ts.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R POF-ts.trim.fq.keep.c50.report POF-ts.trim.fq
+
+POF-ts.trim.fq.keep-pbs: POF-ts.trim.fq
+	echo make POF-ts.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-POF-ts.trim.fq.keep
+
+PSMGill.trim.fq.keep: PSMGill.trim.fq
+	$(TIME) -o PSMGill.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R PSMGill.trim.fq.keep.c50.report PSMGill.trim.fq
+
+PSMGill.trim.fq.keep-pbs: PSMGill.trim.fq
+	echo make PSMGill.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-PSMGill.trim.fq.keep
+
+Rope.trim.fq.keep: Rope.trim.fq
+	$(TIME) -o Rope.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Rope.trim.fq.keep.c50.report Rope.trim.fq
+
+Rope.trim.fq.keep-pbs: Rope.trim.fq
+	echo make Rope.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Rope.trim.fq.keep
+
+SMGill.trim.fq.keep: SMGill.trim.fq
+	$(TIME) -o SMGill.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SMGill.trim.fq.keep.c50.report SMGill.trim.fq
+
+SMGill.trim.fq.keep-pbs: SMGill.trim.fq
+	echo make SMGill.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SMGill.trim.fq.keep
+
+SMHS.trim.fq.keep: SMHS.trim.fq
+	$(TIME) -o SMHS.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SMHS.trim.fq.keep.c50.report SMHS.trim.fq
+
+SMHS.trim.fq.keep-pbs: SMHS.trim.fq
+	echo make SMHS.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SMHS.trim.fq.keep
+
+SN.trim.fq.keep: SN.trim.fq
+	$(TIME) -o SN.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SN.trim.fq.keep.c50.report SN.trim.fq
+
+SN.trim.fq.keep-pbs: SN.trim.fq
+	echo make SN.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SN.trim.fq.keep
+
+SPDI.trim.fq.keep: SPDI.trim.fq
+	$(TIME) -o SPDI.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SPDI.trim.fq.keep.c50.report SPDI.trim.fq
+
+SPDI.trim.fq.keep-pbs: SPDI.trim.fq
+	echo make SPDI.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SPDI.trim.fq.keep
+
+spinal_cord_paired.trim.fq.keep: spinal_cord_paired.trim.fq
+	$(TIME) -o spinal_cord_paired.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R spinal_cord_paired.trim.fq.keep.c50.report spinal_cord_paired.trim.fq
+
+spinal_cord_paired.trim.fq.keep-pbs: spinal_cord_paired.trim.fq
+	echo make spinal_cord_paired.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-spinal_cord_paired.trim.fq.keep
+
+SPK.trim.fq.keep: SPK.trim.fq
+	$(TIME) -o SPK.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SPK.trim.fq.keep.c50.report SPK.trim.fq
+
+SPK.trim.fq.keep-pbs: SPK.trim.fq
+	echo make SPK.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SPK.trim.fq.keep
+
+SPPI.trim.fq.keep: SPPI.trim.fq
+	$(TIME) -o SPPI.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SPPI.trim.fq.keep.c50.report SPPI.trim.fq
+
+SPPI.trim.fq.keep-pbs: SPPI.trim.fq
+	echo make SPPI.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SPPI.trim.fq.keep
+
+Stg-1-Intestine.trim.fq.keep: Stg-1-Intestine.trim.fq
+	$(TIME) -o Stg-1-Intestine.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-1-Intestine.trim.fq.keep.c50.report Stg-1-Intestine.trim.fq
+
+Stg-1-Intestine.trim.fq.keep-pbs: Stg-1-Intestine.trim.fq
+	echo make Stg-1-Intestine.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-1-Intestine.trim.fq.keep
+
+Stg-1-Kidney.trim.fq.keep: Stg-1-Kidney.trim.fq
+	$(TIME) -o Stg-1-Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-1-Kidney.trim.fq.keep.c50.report Stg-1-Kidney.trim.fq
+
+Stg-1-Kidney.trim.fq.keep-pbs: Stg-1-Kidney.trim.fq
+	echo make Stg-1-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-1-Kidney.trim.fq.keep
+
+Stg-2-Intestine.trim.fq.keep: Stg-2-Intestine.trim.fq
+	$(TIME) -o Stg-2-Intestine.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-2-Intestine.trim.fq.keep.c50.report Stg-2-Intestine.trim.fq
+
+Stg-2-Intestine.trim.fq.keep-pbs: Stg-2-Intestine.trim.fq
+	echo make Stg-2-Intestine.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-2-Intestine.trim.fq.keep
+
+Stg-2-Kidney.trim.fq.keep: Stg-2-Kidney.trim.fq
+	$(TIME) -o Stg-2-Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-2-Kidney.trim.fq.keep.c50.report Stg-2-Kidney.trim.fq
+
+Stg-2-Kidney.trim.fq.keep-pbs: Stg-2-Kidney.trim.fq
+	echo make Stg-2-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-2-Kidney.trim.fq.keep
+
+Stg-3-Intestine.trim.fq.keep: Stg-3-Intestine.trim.fq
+	$(TIME) -o Stg-3-Intestine.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-3-Intestine.trim.fq.keep.c50.report Stg-3-Intestine.trim.fq
+
+Stg-3-Intestine.trim.fq.keep-pbs: Stg-3-Intestine.trim.fq
+	echo make Stg-3-Intestine.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-3-Intestine.trim.fq.keep
+
+Stg-3-Kidney.trim.fq.keep: Stg-3-Kidney.trim.fq
+	$(TIME) -o Stg-3-Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-3-Kidney.trim.fq.keep.c50.report Stg-3-Kidney.trim.fq
+
+Stg-3-Kidney.trim.fq.keep-pbs: Stg-3-Kidney.trim.fq
+	echo make Stg-3-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-3-Kidney.trim.fq.keep
+
+Stg-4-Intestine.trim.fq.keep: Stg-4-Intestine.trim.fq
+	$(TIME) -o Stg-4-Intestine.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-4-Intestine.trim.fq.keep.c50.report Stg-4-Intestine.trim.fq
+
+Stg-4-Intestine.trim.fq.keep-pbs: Stg-4-Intestine.trim.fq
+	echo make Stg-4-Intestine.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-4-Intestine.trim.fq.keep
+
+Stg-4-Kidney.trim.fq.keep: Stg-4-Kidney.trim.fq
+	$(TIME) -o Stg-4-Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-4-Kidney.trim.fq.keep.c50.report Stg-4-Kidney.trim.fq
+
+Stg-4-Kidney.trim.fq.keep-pbs: Stg-4-Kidney.trim.fq
+	echo make Stg-4-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-4-Kidney.trim.fq.keep
+
+Stg-5-Intestine.trim.fq.keep: Stg-5-Intestine.trim.fq
+	$(TIME) -o Stg-5-Intestine.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-5-Intestine.trim.fq.keep.c50.report Stg-5-Intestine.trim.fq
+
+Stg-5-Intestine.trim.fq.keep-pbs: Stg-5-Intestine.trim.fq
+	echo make Stg-5-Intestine.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-5-Intestine.trim.fq.keep
+
+Stg-5-Kidney.trim.fq.keep: Stg-5-Kidney.trim.fq
+	$(TIME) -o Stg-5-Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-5-Kidney.trim.fq.keep.c50.report Stg-5-Kidney.trim.fq
+
+Stg-5-Kidney.trim.fq.keep-pbs: Stg-5-Kidney.trim.fq
+	echo make Stg-5-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-5-Kidney.trim.fq.keep
+
+Stg-6-Intestine.trim.fq.keep: Stg-6-Intestine.trim.fq
+	$(TIME) -o Stg-6-Intestine.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-6-Intestine.trim.fq.keep.c50.report Stg-6-Intestine.trim.fq
+
+Stg-6-Intestine.trim.fq.keep-pbs: Stg-6-Intestine.trim.fq
+	echo make Stg-6-Intestine.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-6-Intestine.trim.fq.keep
+
+Stg-6-Kidney.trim.fq.keep: Stg-6-Kidney.trim.fq
+	$(TIME) -o Stg-6-Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-6-Kidney.trim.fq.keep.c50.report Stg-6-Kidney.trim.fq
+
+Stg-6-Kidney.trim.fq.keep-pbs: Stg-6-Kidney.trim.fq
+	echo make Stg-6-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-6-Kidney.trim.fq.keep
+
+Stg-7-Intestine.trim.fq.keep: Stg-7-Intestine.trim.fq
+	$(TIME) -o Stg-7-Intestine.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-7-Intestine.trim.fq.keep.c50.report Stg-7-Intestine.trim.fq
+
+Stg-7-Intestine.trim.fq.keep-pbs: Stg-7-Intestine.trim.fq
+	echo make Stg-7-Intestine.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-7-Intestine.trim.fq.keep
+
+Stg-7-Kidney.trim.fq.keep: Stg-7-Kidney.trim.fq
+	$(TIME) -o Stg-7-Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R Stg-7-Kidney.trim.fq.keep.c50.report Stg-7-Kidney.trim.fq
+
+Stg-7-Kidney.trim.fq.keep-pbs: Stg-7-Kidney.trim.fq
+	echo make Stg-7-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-Stg-7-Kidney.trim.fq.keep
+
+SW2-Gill.trim.fq.keep: SW2-Gill.trim.fq
+	$(TIME) -o SW2-Gill.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SW2-Gill.trim.fq.keep.c50.report SW2-Gill.trim.fq
+
+SW2-Gill.trim.fq.keep-pbs: SW2-Gill.trim.fq
+	echo make SW2-Gill.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SW2-Gill.trim.fq.keep
+
+SW2-Intestine-a.trim.fq.keep: SW2-Intestine-a.trim.fq
+	$(TIME) -o SW2-Intestine-a.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SW2-Intestine-a.trim.fq.keep.c50.report SW2-Intestine-a.trim.fq
+
+SW2-Intestine-a.trim.fq.keep-pbs: SW2-Intestine-a.trim.fq
+	echo make SW2-Intestine-a.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SW2-Intestine-a.trim.fq.keep
+
+SW2-Intestine-b.trim.fq.keep: SW2-Intestine-b.trim.fq
+	$(TIME) -o SW2-Intestine-b.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SW2-Intestine-b.trim.fq.keep.c50.report SW2-Intestine-b.trim.fq
+
+SW2-Intestine-b.trim.fq.keep-pbs: SW2-Intestine-b.trim.fq
+	echo make SW2-Intestine-b.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SW2-Intestine-b.trim.fq.keep
+
+SW2-Kidney.trim.fq.keep: SW2-Kidney.trim.fq
+	$(TIME) -o SW2-Kidney.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R SW2-Kidney.trim.fq.keep.c50.report SW2-Kidney.trim.fq
+
+SW2-Kidney.trim.fq.keep-pbs: SW2-Kidney.trim.fq
+	echo make SW2-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SW2-Kidney.trim.fq.keep
 
 TRIMMED=614GMAAXX_1_1_pf.trim.fq \
 			614GMAAXX_2_1_pf.trim.fq \
