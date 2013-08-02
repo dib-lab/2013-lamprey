@@ -2138,9 +2138,95 @@ TRIMMED=614GMAAXX_1_1_pf.trim.fq \
 			SW2-Intestine-b.trim.fq \
 			SW2-Kidney.trim.fq
 
+DG50=614GMAAXX_1_1_pf.trim.fq.keep \
+			614GMAAXX_2_1_pf.trim.fq.keep \
+			614GMAAXX_3_1_pf.trim.fq.keep \
+			614GMAAXX_4_1_pf.trim.fq.keep \
+			614GMAAXX_6_1_pf.trim.fq.keep \
+			614GMAAXX_7_1_pf.trim.fq.keep \
+			614GMAAXX_8_1_pf.trim.fq.keep \
+			AB057JABXX_s_7_pe.trim.fq.keep \
+			AI.trim.fq.keep \
+			AK.trim.fq.keep \
+			BB0582ABXX_s_3_pe.trim.fq.keep \
+			BB0582ABXX_s_4_pe.trim.fq.keep \
+			BB0582ABXX_s_5_pe.trim.fq.keep \
+			BB0582ABXX_s_6_pe.trim.fq.keep \
+			BB0582ABXX_s_7_pe.trim.fq.keep \
+			BB0582ABXX_s_8_pe.trim.fq.keep \
+			brain_paired.trim.fq.keep \
+			FW1-Gill.trim.fq.keep \
+			FW1-Intestine.trim.fq.keep \
+			FW1-Kidney.trim.fq.keep \
+			G81-a.trim.fq.keep \
+			G81-b.trim.fq.keep \
+			G82-a.trim.fq.keep \
+			G82-b.trim.fq.keep \
+			G83-a.trim.fq.keep \
+			G83-b.trim.fq.keep \
+			Gill.trim.fq.keep \
+			JV1_liver.trim.fq.keep \
+			JVa_liver.trim.fq.keep \
+			JVb_liver.trim.fq.keep \
+			JV_intest.trim.fq.keep \
+			Kidney.trim.fq.keep \
+			L81-a.trim.fq.keep \
+			L81-b.trim.fq.keep \
+			L82-a.trim.fq.keep \
+			L82-b.trim.fq.keep \
+			L83-1-a.trim.fq.keep \
+			L83-1-b.trim.fq.keep \
+			L83-a.trim.fq.keep \
+			L83-b.trim.fq.keep \
+			LI.trim.fq.keep \
+			Lips.trim.fq.keep \
+			LK.trim.fq.keep \
+			M0_liver.trim.fq.keep \
+			M2_liver.trim.fq.keep \
+			M5_liver.trim.fq.keep \
+			Monocytes.trim.fq.keep \
+			mssm_single_s1.trim.fq.keep \
+			mssm_single_s2.trim.fq.keep \
+			mssm_single_s3.trim.fq.keep \
+			mssm_single_s5.trim.fq.keep \
+			mssm_single_s6.trim.fq.keep \
+			mssm_single_s7.trim.fq.keep \
+			Muscle.trim.fq.keep \
+			Neutrophils.trim.fq.keep \
+			OFHS.trim.fq.keep \
+			POF-eye.trim.fq.keep \
+			POF-ts.trim.fq.keep \
+			PSMGill.trim.fq.keep \
+			Rope.trim.fq.keep \
+			SMGill.trim.fq.keep \
+			SMHS.trim.fq.keep \
+			SN.trim.fq.keep \
+			SPDI.trim.fq.keep \
+			spinal_cord_paired.trim.fq.keep \
+			SPK.trim.fq.keep \
+			SPPI.trim.fq.keep \
+			Stg-1-Intestine.trim.fq.keep \
+			Stg-1-Kidney.trim.fq.keep \
+			Stg-2-Intestine.trim.fq.keep \
+			Stg-2-Kidney.trim.fq.keep \
+			Stg-3-Intestine.trim.fq.keep \
+			Stg-3-Kidney.trim.fq.keep \
+			Stg-4-Intestine.trim.fq.keep \
+			Stg-4-Kidney.trim.fq.keep \
+			Stg-5-Intestine.trim.fq.keep \
+			Stg-5-Kidney.trim.fq.keep \
+			Stg-6-Intestine.trim.fq.keep \
+			Stg-6-Kidney.trim.fq.keep \
+			Stg-7-Intestine.trim.fq.keep \
+			Stg-7-Kidney.trim.fq.keep \
+			SW2-Gill.trim.fq.keep \
+			SW2-Intestine-a.trim.fq.keep \
+			SW2-Intestine-b.trim.fq.keep \
+			SW2-Kidney.trim.fq.keep
 
-abundfilt.time: diginorm.c50.ht
-	$(TIME) -o abundfilt.time python $(KHMER)/scripts/filter-abund.py -V -Z 20 diginorm.c50.ht \
+
+abundfilt.time: parallel.c50.ht
+	$(TIME) -o abundfilt.time python $(KHMER)/scripts/filter-abund.py -V -Z 20 parallel.c50.ht \
 614GMAAXX_1_1_pf.trim.fq.keep \
 			614GMAAXX_2_1_pf.trim.fq.keep \
 			614GMAAXX_3_1_pf.trim.fq.keep \
