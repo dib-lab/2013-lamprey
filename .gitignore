@@ -1,0 +1,21 @@
+# sequence
+*.fa
+*.fq
+*.fp
+*.fasta
+*.fastp
+
+# blastdb files
+*.{p,n}{hr,in,sd,si,sq}
+
+# data output
+*.csv
+*.pcounts
+*.kcounts
+*.mers
+*.gz
+*.psl
+*.pgc
+
+# py
+*.pyc

@@ -2,7 +2,7 @@ include ../Makefile.inc
 
 OBJS = petMar2.fa.nhr petMar2.fa.masked.nhr est.fa.nhr cdna.all.fa.nhr \
 	mrna.all.fa.nhr mouse.protein.fa.phr zebrafish.protein.fa.phr \
-	myxinidae.protein.fa.phr amphioxus.protein.fa.phr
+	myxinidae.protein.fa.phr amphioxus.protein.fa.phr human.protein.fa.phr
 
 all: $(OBJS)
 
@@ -95,6 +95,13 @@ univec_core.fa:
 
 univec_core.fa.nhr: univec_core.fa
 	makeblastdb -in univec_core.fa -dbtype nucl
+
+human.protein.fa:
+	curl ftp://ftp.ensembl.org/pub/release-74/fasta/homo_sapiens/pep/Homo_sapiens.GRCh37.74.pep.all.fa.gz -o Homo_sapiens.GRCh37.74.pep.all.fa.gz
+	gunzip -c Homo_sapiens.GRCh37.74.pep.all.fa.gz > human.protein.fa
+
+human.protein.fa.phr: human.protein.fa
+	makeblastdb -in human.protein.fa -dbtype prot
 
 force:
 	true
