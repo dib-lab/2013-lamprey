@@ -4,6 +4,7 @@
 *.fp
 *.fasta
 *.fastp
+*.masked
 
 # blastdb files
 *.{p,n}{hr,in,sd,si,sq}
@@ -16,6 +17,8 @@
 *.gz
 *.psl
 *.pgc
-
+*.keep
+*.ht
+*.stats
 # py
 *.pyc

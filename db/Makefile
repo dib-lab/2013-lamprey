@@ -103,5 +103,12 @@ human.protein.fa:
 human.protein.fa.phr: human.protein.fa
 	makeblastdb -in human.protein.fa -dbtype prot
 
+human.cdna.fa:
+	curl ftp://ftp.ensembl.org/pub/release-74/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh37.74.cdna.all.fa.gz -o Homo_sapiens.GRCh37.74.cdna.all.fa.gz
+	gunzip -c Homo_sapiens.GRCh37.74.cdna.all.fa.gz > human.cdna.fa
+
+human.cdna.fa.nhr: human.cdna.fa  
+	makeblastdb -in human.cdna.fa -dbtype prot
+
 force:
 	true

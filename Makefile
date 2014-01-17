@@ -30,7 +30,7 @@ x.est-pbs:
 x.cdna-pbs:
 	echo x.cdna.csv | cat pbs/blast.sub - | qsub -l $(BLASTRES) -N x.cdna.csv
 	
-petMar_mrna.fp: force
+petMar_mrna.fp:
 	cd db; $(MAKE) univec_core.fa.nhr
 	cd data; $(MAKE) all
 
@@ -64,8 +64,16 @@ x.cdna.csv: petMar_mrna.fp
 
 x.lamp0.csv: petMar_mrna.fp
 	cd data; $(MAKE) lamp0.fasta.nhr
-	blastn -query petMar_mrna.fp -db data/lamp0.fasta -out x.lamp0.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
+	blastn -query petMar_mrna.fp -db data/lamp0.fasta -out x.lamp0.csv $(BLAST_OPTS) 
 
+x.human.protein.csv: petMar_mrna.fp
+	cd db; $(MAKE) human.protein.fa.phr
+	blastx -query petMar_mrna.fp -db db/human.protein.fa -out x.human.protein.csv $(BLAST_OPTS)
+
+x.human.cdna.csv: petMar_mrna.fp
+	cd db; $(MAKE) human.cdna.fa.nhr
+	blastn -query petMar_mrna.fp -db db/human.cdna.fa -out x.human.cdna.csv $(BLAST_OPTS)
+ 
 
 force:
 	true
