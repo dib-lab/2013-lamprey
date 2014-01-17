@@ -1,4 +1,4 @@
-KHMER=~/tools/khmer
+KHMER=/w/khmer
 PEASOUP=/w/peasoup/scripts
 SEQCLEAN=seqclean
 CDHITEST=cd-hit-est

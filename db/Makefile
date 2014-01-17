@@ -108,7 +108,7 @@ human.cdna.fa:
 	gunzip -c Homo_sapiens.GRCh37.74.cdna.all.fa.gz > human.cdna.fa
 
 human.cdna.fa.nhr: human.cdna.fa  
-	makeblastdb -in human.cdna.fa -dbtype prot
+	makeblastdb -in human.cdna.fa -dbtype nucl
 
 force:
 	true
