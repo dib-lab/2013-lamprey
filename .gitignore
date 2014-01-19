@@ -4,7 +4,14 @@
 *.fp
 *.fasta
 *.fastp
-*.masked
+*.pmap
+*.merged
+*.stopfilt
+*.stoptags
+*.info
+*.ht
+*.part
+*.tagset
 
 # blastdb files
 *.{p,n}{hr,in,sd,si,sq}
@@ -17,8 +24,6 @@
 *.gz
 *.psl
 *.pgc
-*.keep
-*.ht
-*.stats
+
 # py
 *.pyc
