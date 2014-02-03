@@ -30,7 +30,7 @@ x.est-pbs:
 x.cdna-pbs:
 	echo x.cdna.csv | cat pbs/blast.sub - | qsub -l $(BLASTRES) -N x.cdna.csv
 	
-$(OUTPRF)_mrna.fp:
+$(OUTPRF).fp:
 	cd db; $(MAKE) univec_core.fa.nhr
 	cd data; $(MAKE) all
 
