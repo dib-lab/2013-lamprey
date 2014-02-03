@@ -91,7 +91,7 @@ def main():
         print "Minimum contig length must be an integer."
         return
 
-    print "filename trim_n sum min med mean max n50_len"
+    print "filename, trim_n, sum, min, med, mean, max, n50_len"
 
     for expr in sys.argv[2:len(sys.argv)]:
         for filename in glob.glob(expr):
