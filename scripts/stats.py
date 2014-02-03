@@ -112,11 +112,11 @@ def main():
             statN50, statN50Len = calcNXX(trimmedLens, 50)
             statN90, statN90Len = calcNXX(trimmedLens, 90)
 
-            print str(filename) + " & " + str(statTrimmedN) + " & " + str(statSum) + \
-                " & " + str(statMin) + \
-                " & " + str(statMed) + " & " + str(statMean) + \
-                " & " + str(statMax) + \
-                " & " + str(statN50Len)
+            print str(filename) + ", " + str(statTrimmedN) + ", " + str(statSum) + \
+                ", " + str(statMin) + \
+                ", " + str(statMed) + ", " + str(statMean) + \
+                ", " + str(statMax) + \
+                ", " + str(statN50Len)
 
 main()
 
