@@ -26,9 +26,6 @@ nodeps:
 	touch lumpfilt.fp.stopfilt.part
 	touch $(OUTPRF).fp
 
-lamp0.fasta.nhr:
-	makeblastdb -in lamp0.fasta -dbtype nucl
-
 $(OUTPRF).fa: Trinity.fasta
 	ln -s $< $@
 
