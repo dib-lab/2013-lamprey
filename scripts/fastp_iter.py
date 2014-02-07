@@ -15,3 +15,24 @@ def fastp_iter(filename):
             name = nname[2]
         name = name.split(' ')[0]
         yield name, int(partition_id), record.sequence
+
+class Sequence:
+
+    def __init__(self, name, sequence):
+        self.name = name
+        self.sequence = sequence
+
+def partition_iter(filename):
+    cur_pid = -1
+    part = []
+    for name, pid, seq in fastp_iter(filename):
+        if pid != cur_pid:
+            ret_pid = cur_pid
+            ret_part = part
+            cur_pid = pid
+            part = []
+            yield ret_pid, ret_part
+        else:
+            part.append(Sequence(name, sequence))
+    yield cur_pid, part
+
