@@ -1,0 +1,3 @@
+[submodule "peasoup"]
+	path = peasoup
+	url = git@github.com:camillescott/peasoup.git
