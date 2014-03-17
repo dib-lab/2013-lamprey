@@ -1,7 +1,7 @@
 include Makefile.inc
 
 # make all for non-cluster runs
-# make pbs-blast && make $(OUTPRF)_mrna.fp for cluster rns
+# make pbs-blast && make $(OUTPRF).fp for cluster rns
 all:  db data x.genome.csv x.zebrafish.csv x.amph.csv \
 	x.mouse.csv x.myx.csv x.est.csv x.lamp0.csv x.cdna.csv
 
@@ -30,41 +30,46 @@ x.est-pbs:
 x.cdna-pbs:
 	echo x.cdna.csv | cat pbs/blast.sub - | qsub -l $(BLASTRES) -N x.cdna.csv
 	
-$(OUTPRF)_mrna.fp:
+$(OUTPRF).fp:
 	cd db; $(MAKE) univec_core.fa.nhr
-	cd data; $(MAKE) all
+	cd data; $(MAKE) $(OUTPRF).fp
 
 x.genome.csv: $(OUTPRF).fp
 	cd db; $(MAKE) petMar2.fa.masked.phr
-	blastn -query $(OUTPRF)_mrna.fp -db db/petMar2.fa.masked -out x.genome_hard.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
+	blastn -query $< -db db/petMar2.fa.masked -out x.genome_hard.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.zebrafish.csv: $(OUTPRF).fp
 	cd db; $(MAKE) zebrafish.protein.fa.phr
-	blastx -query $(OUTPRF)_mrna.fp -db db/zebrafish.protein.fa -out x.zebrafish.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
+	blastx -query $< -db db/zebrafish.protein.fa -out x.zebrafish.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.myx.csv: $(OUTPRF).fp
 	cd db; $(MAKE) myxinidae.protein.fa.phr
-	blastx -query $(OUTPRF)_mrna.fp -db db/myxinidae.protein.fa -out x.myx.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
+	blastx -query $< -db db/myxinidae.protein.fa -out x.myx.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.amph.csv: $(OUTPRF).fp
 	cd db; $(MAKE) amphioxus.protein.fa.phr
-	blastx -query $(OUTPRF)_mrna.fp -db db/amphioxus.protein.fa -out x.amph.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
+	blastx -query $< -db db/amphioxus.protein.fa -out x.amph.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 	
 x.mouse.csv: $(OUTPRF).fp
 	cd db; $(MAKE) mouse.protein.fa.phr
-	blastx -query $(OUTPRF)_mrna.fp -db db/mouse.protein.fa -out x.mouse.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
+	blastx -query $< -db db/mouse.protein.fa -out x.mouse.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.est.csv: $(OUTPRF).fp
 	cd db; $(MAKE) est.fa.nhr
-	blastn -query $(OUTPRF)_mrna.fp -db db/est.fa -out x.est.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
+	blastn -query $(OUTPRF).fp -db db/est.fa -out x.est.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
-x.cdna.csv: $(OUTPRF).fp
+$(OUTPRF).x.cdna.csv: $(OUTPRF).fp
 	cd db; $(MAKE) cdna.all.fa.nhr
-	blastn -query $(OUTPRF)_mrna.fp -db db/cdna.all.fa -out x.cdna.csv -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
+	blastn -query $< -db db/cdna.all.fa -out $@ -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
+
+cdna.x.$(OUTPRF).csv: data/$(OUTPRF).fa
+	cd db; $(MAKE) cdna.all.fa.nhr
+	cd data; $(MAKE) $(OUTPRF).fa.nhr
+	blastn -query db/cdna.all.fa -db data/$(OUTPRF).fa -out $@ -num_threads $(BLAST_CPUS) -evalue $(BLAST_EVALUE) -outfmt "10 $(CSV)"
 
 x.lamp0.csv: $(OUTPRF).fp
 	cd data; $(MAKE) lamp0.fasta.nhr
-	blastn -query $(OUTPRF)_mrna.fp -db data/lamp0.fasta -out x.lamp0.csv $(BLAST_OPTS) 
+	blastn -query $< -db data/lamp0.fasta -out x.lamp0.csv $(BLAST_OPTS) 
 
 x.human.protein.csv: $(OUTPRF).fp
 	cd db; $(MAKE) human.protein.fa.phr
