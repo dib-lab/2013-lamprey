@@ -1,5 +1,5 @@
 
-KHMER=/w/khmer
+KHMER=~/bin/khmer
 SEQCLEAN=seqclean
 TRIM=~/bin/Trimmomatic-0.25/trimmomatic-0.25.jar
 TIME=/usr/bin/time -f "\n%E elapsed\n%U user cpu seconds\n%K average total memory\n%W times swapped out of main mem\n%w total waits\n%I filesystem inputs\n%O filesystem outputs\n"
@@ -8,7 +8,7 @@ KMERGENIE=~/bin/kmergenie-1.5397/kmergenie
 KMERRES=nodes=1:ppn=4,walltime=72:00:00,mem=32gb
 TRIMRES=nodes=1:ppn=4,walltime=18:00:00,mem=4gb
 QCRES=nodes=1:ppn=1,walltime=2:00:00,mem=4gb
-DGRES=nodes=1:ppn=1,walltime=72:00:00,mem=42gb
+DGRES=nodes=1:ppn=1,walltime=32:00:00,mem=42gb
 PAR_DGRES=nodes=1:ppn=1,walltime=6:00:00,mem=5gb
 CLEANRES=nodes=1:ppn=8,walltime=12:00:00,mem=8gb
 

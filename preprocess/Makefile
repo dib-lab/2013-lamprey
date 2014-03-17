@@ -793,7 +793,9 @@ diginorm.c50.ht: $(TRIMMED)
 			SW2-Kidney.trim.fq
 
 parallel.c50.ht: $(DG50)
-	$(TIME) -o parallel.c50.ht.time $(KHMER)/scripts/load-into-counting.py -x 1e10 -N 4 -k 20 parallel.c50.ht 614GMAAXX_1_1_pf.trim.fq.keep \
+	$(TIME) -o parallel.c50.ht.time $(KHMER)/scripts/normalize-by-median.py -x 1e10 -N 4 -k 20 -C 50 \
+			-s parallel.c50.ht -f -d 10\
+			614GMAAXX_1_1_pf.trim.fq.keep \
 			614GMAAXX_2_1_pf.trim.fq.keep \
 			614GMAAXX_3_1_pf.trim.fq.keep \
 			614GMAAXX_4_1_pf.trim.fq.keep \
