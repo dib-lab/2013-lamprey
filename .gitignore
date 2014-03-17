@@ -1,0 +1,29 @@
+# sequence
+*.fa
+*.fq
+*.fp
+*.fasta
+*.fastp
+*.pmap
+*.merged
+*.stopfilt
+*.stoptags
+*.info
+*.ht
+*.part
+*.tagset
+
+# blastdb files
+*.{p,n}{hr,in,sd,si,sq}
+
+# data output
+*.csv
+*.pcounts
+*.kcounts
+*.mers
+*.gz
+*.psl
+*.pgc
+
+# py
+*.pyc

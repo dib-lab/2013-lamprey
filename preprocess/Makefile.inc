@@ -10,7 +10,103 @@ TRIMRES=nodes=1:ppn=4,walltime=18:00:00,mem=4gb
 QCRES=nodes=1:ppn=1,walltime=2:00:00,mem=4gb
 DGRES=nodes=1:ppn=1,walltime=32:00:00,mem=42gb
 PAR_DGRES=nodes=1:ppn=1,walltime=6:00:00,mem=5gb
+PAR_FILTERRES=nodes=1:ppn=3,walltime=6:00:00,mem=42gb
 CLEANRES=nodes=1:ppn=8,walltime=12:00:00,mem=8gb
+
+
+# save lots of really gross dep rules later on
+READS=614GMAAXX_1_1_pf.qc.fq.gz \
+	614GMAAXX_2_1_pf.qc.fq.gz \
+	614GMAAXX_3_1_pf.qc.fq.gz \
+	614GMAAXX_4_1_pf.qc.fq.gz \
+	614GMAAXX_6_1_pf.qc.fq.gz \
+	614GMAAXX_7_1_pf.qc.fq.gz \
+	614GMAAXX_8_1_pf.qc.fq.gz \
+	AB057JABXX_s_7_pe.trim.fq.gz \
+	AI.fq.gz \
+	AK.fq.gz \
+	BB0582ABXX_s_3_pe.trim.fq.gz \
+	BB0582ABXX_s_4_pe.trim.fq.gz \
+	BB0582ABXX_s_5_pe.trim.fq.gz \
+	BB0582ABXX_s_6_pe.trim.fq.gz \
+	BB0582ABXX_s_7_pe.trim.fq.gz \
+	BB0582ABXX_s_8_pe.trim.fq.gz \
+	brain_paired.qc.fq.gz \
+	FW1-Gill.fq.gz \
+	FW1-Intestine.fq.gz \
+	FW1-Kidney.fq.gz \
+	G81-a.fq.gz \
+	G81-b.fq.gz \
+	G82-a.fq.gz \
+	G82-b.fq.gz \
+	G83-a.fq.gz \
+	G83-b.fq.gz \
+	Gill.fq.gz \
+	JV1_liver.fq.gz \
+	JVa_liver.fq.gz \
+	JVb_liver.fq.gz \
+	JV_intest.fq.gz \
+	Kidney.fq.gz \
+	L81-a.fq.gz \
+	L81-b.fq.gz \
+	L82-a.fq.gz \
+	L82-b.fq.gz \
+	L83-1-a.fq.gz \
+	L83-1-b.fq.gz \
+	L83-a.fq.gz \
+	L83-b.fq.gz \
+	LI.fq.gz \
+	Lips.fq.gz \
+	LK.fq.gz \
+	M0_liver.fq.gz \
+	M2_liver.fq.gz \
+	M5_liver.fq.gz \
+	Monocytes.fq.gz \
+	mssm_single_s1.trim.fq.gz \
+	mssm_single_s2.trim.fq.gz \
+	mssm_single_s3.trim.fq.gz \
+	mssm_single_s5.trim.fq.gz \
+	mssm_single_s6.trim.fq.gz \
+	mssm_single_s7.trim.fq.gz \
+	Muscle.fq.gz \
+	Neutrophils.fq.gz \
+	OFHS.fq.gz \
+	POF-eye.fq.gz \
+	POF-ts.fq.gz \
+	PSMGill.fq.gz \
+	Rope.fq.gz \
+	SMGill.fq.gz \
+	SMHS.fq.gz \
+	SN.fq.gz \
+	SPDI.fq.gz \
+	spinal_cord_paired.qc.fq.gz \
+	SPK.fq.gz \
+	SPPI.fq.gz \
+	Stg-1-Intestine.fq.gz \
+	Stg-1-Kidney.fq.gz \
+	Stg-2-Intestine.fq.gz \
+	Stg-2-Kidney.fq.gz \
+	Stg-3-Intestine.fq.gz \
+	Stg-3-Kidney.fq.gz \
+	Stg-4-Intestine.fq.gz \
+	Stg-4-Kidney.fq.gz \
+	Stg-5-Intestine.fq.gz \
+	Stg-5-Kidney.fq.gz \
+	Stg-6-Intestine.fq.gz \
+	Stg-6-Kidney.fq.gz \
+	Stg-7-Intestine.fq.gz \
+	Stg-7-Kidney.fq.gz \
+	SW2-Gill.fq.gz \
+	SW2-Intestine-a.fq.gz \
+	SW2-Intestine-b.fq.gz \
+	SW2-Kidney.fq.gz
+READS_FASTQC=$(patsubst %.fq.gz, %.fq_fastqc.zip, READS)
+READS_TRIM=$(patsubst %.fq.gz, %.trim.fq, READS)
+READS_DG50=$(patsubst %.fq.qz, %.trim.fq.keep, READS)
+READS_DG50_2=$(patsubst %.fq.gz, %.trim.keep.keep.fq, READS)
+READS_ABUNDFILT=$(patsubst, %.fq.gz, %.trim.keep.keep.fq.abundfilt, READS)
+READS_ABF=$(patsubst, %.fq.gz, %.trim.abf.fq, READS)
+
 
 614GMAAXX_1_1_pf.fq_fastqc.zip: 614GMAAXX_1_1_pf.qc.fq.gz
 	fastqc --noextract 614GMAAXX_1_1_pf.qc.fq.gz
@@ -1032,516 +1128,6 @@ SW2-Kidney.trim.fq: SW2-Kidney.fq.gz
 SW2-Kidney.trim.fq-pbs:
 	echo make SW2-Kidney.trim.fq | cat trim.inc.sub - | qsub -l $(TRIMRES) -N trim-SW2-Kidney
 
-614GMAAXX_1_1_pf.trim.fq.fq_fastqc.zip: 614GMAAXX_1_1_pf.trim.fq
-	fastqc --noextract 614GMAAXX_1_1_pf.trim.fq
-
-614GMAAXX_1_1_pf.trim.fq.fq_fastqc-pbs:
-	echo make 614GMAAXX_1_1_pf.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-614GMAAXX_1_1_pf
-
-614GMAAXX_2_1_pf.trim.fq.fq_fastqc.zip: 614GMAAXX_2_1_pf.trim.fq
-	fastqc --noextract 614GMAAXX_2_1_pf.trim.fq
-
-614GMAAXX_2_1_pf.trim.fq.fq_fastqc-pbs:
-	echo make 614GMAAXX_2_1_pf.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-614GMAAXX_2_1_pf
-
-614GMAAXX_3_1_pf.trim.fq.fq_fastqc.zip: 614GMAAXX_3_1_pf.trim.fq
-	fastqc --noextract 614GMAAXX_3_1_pf.trim.fq
-
-614GMAAXX_3_1_pf.trim.fq.fq_fastqc-pbs:
-	echo make 614GMAAXX_3_1_pf.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-614GMAAXX_3_1_pf
-
-614GMAAXX_4_1_pf.trim.fq.fq_fastqc.zip: 614GMAAXX_4_1_pf.trim.fq
-	fastqc --noextract 614GMAAXX_4_1_pf.trim.fq
-
-614GMAAXX_4_1_pf.trim.fq.fq_fastqc-pbs:
-	echo make 614GMAAXX_4_1_pf.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-614GMAAXX_4_1_pf
-
-614GMAAXX_6_1_pf.trim.fq.fq_fastqc.zip: 614GMAAXX_6_1_pf.trim.fq
-	fastqc --noextract 614GMAAXX_6_1_pf.trim.fq
-
-614GMAAXX_6_1_pf.trim.fq.fq_fastqc-pbs:
-	echo make 614GMAAXX_6_1_pf.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-614GMAAXX_6_1_pf
-
-614GMAAXX_7_1_pf.trim.fq.fq_fastqc.zip: 614GMAAXX_7_1_pf.trim.fq
-	fastqc --noextract 614GMAAXX_7_1_pf.trim.fq
-
-614GMAAXX_7_1_pf.trim.fq.fq_fastqc-pbs:
-	echo make 614GMAAXX_7_1_pf.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-614GMAAXX_7_1_pf
-
-614GMAAXX_8_1_pf.trim.fq.fq_fastqc.zip: 614GMAAXX_8_1_pf.trim.fq
-	fastqc --noextract 614GMAAXX_8_1_pf.trim.fq
-
-614GMAAXX_8_1_pf.trim.fq.fq_fastqc-pbs:
-	echo make 614GMAAXX_8_1_pf.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-614GMAAXX_8_1_pf
-
-AB057JABXX_s_7_pe.trim.fq.fq_fastqc.zip: AB057JABXX_s_7_pe.trim.fq
-	fastqc --noextract AB057JABXX_s_7_pe.trim.fq
-
-AB057JABXX_s_7_pe.trim.fq.fq_fastqc-pbs:
-	echo make AB057JABXX_s_7_pe.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-AB057JABXX_s_7_pe
-
-AI.trim.fq.fq_fastqc.zip: AI.trim.fq
-	fastqc --noextract AI.trim.fq
-
-AI.trim.fq.fq_fastqc-pbs:
-	echo make AI.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-AI
-
-AK.trim.fq.fq_fastqc.zip: AK.trim.fq
-	fastqc --noextract AK.trim.fq
-
-AK.trim.fq.fq_fastqc-pbs:
-	echo make AK.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-AK
-
-BB0582ABXX_s_3_pe.trim.fq.fq_fastqc.zip: BB0582ABXX_s_3_pe.trim.fq
-	fastqc --noextract BB0582ABXX_s_3_pe.trim.fq
-
-BB0582ABXX_s_3_pe.trim.fq.fq_fastqc-pbs:
-	echo make BB0582ABXX_s_3_pe.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-BB0582ABXX_s_3_pe
-
-BB0582ABXX_s_4_pe.trim.fq.fq_fastqc.zip: BB0582ABXX_s_4_pe.trim.fq
-	fastqc --noextract BB0582ABXX_s_4_pe.trim.fq
-
-BB0582ABXX_s_4_pe.trim.fq.fq_fastqc-pbs:
-	echo make BB0582ABXX_s_4_pe.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-BB0582ABXX_s_4_pe
-
-BB0582ABXX_s_5_pe.trim.fq.fq_fastqc.zip: BB0582ABXX_s_5_pe.trim.fq
-	fastqc --noextract BB0582ABXX_s_5_pe.trim.fq
-
-BB0582ABXX_s_5_pe.trim.fq.fq_fastqc-pbs:
-	echo make BB0582ABXX_s_5_pe.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-BB0582ABXX_s_5_pe
-
-BB0582ABXX_s_6_pe.trim.fq.fq_fastqc.zip: BB0582ABXX_s_6_pe.trim.fq
-	fastqc --noextract BB0582ABXX_s_6_pe.trim.fq
-
-BB0582ABXX_s_6_pe.trim.fq.fq_fastqc-pbs:
-	echo make BB0582ABXX_s_6_pe.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-BB0582ABXX_s_6_pe
-
-BB0582ABXX_s_7_pe.trim.fq.fq_fastqc.zip: BB0582ABXX_s_7_pe.trim.fq
-	fastqc --noextract BB0582ABXX_s_7_pe.trim.fq
-
-BB0582ABXX_s_7_pe.trim.fq.fq_fastqc-pbs:
-	echo make BB0582ABXX_s_7_pe.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-BB0582ABXX_s_7_pe
-
-BB0582ABXX_s_8_pe.trim.fq.fq_fastqc.zip: BB0582ABXX_s_8_pe.trim.fq
-	fastqc --noextract BB0582ABXX_s_8_pe.trim.fq
-
-BB0582ABXX_s_8_pe.trim.fq.fq_fastqc-pbs:
-	echo make BB0582ABXX_s_8_pe.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-BB0582ABXX_s_8_pe
-
-brain_paired.trim.fq.fq_fastqc.zip: brain_paired.trim.fq
-	fastqc --noextract brain_paired.trim.fq
-
-brain_paired.trim.fq.fq_fastqc-pbs:
-	echo make brain_paired.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-brain_paired
-
-FW1-Gill.trim.fq.fq_fastqc.zip: FW1-Gill.trim.fq
-	fastqc --noextract FW1-Gill.trim.fq
-
-FW1-Gill.trim.fq.fq_fastqc-pbs:
-	echo make FW1-Gill.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-FW1-Gill
-
-FW1-Intestine.trim.fq.fq_fastqc.zip: FW1-Intestine.trim.fq
-	fastqc --noextract FW1-Intestine.trim.fq
-
-FW1-Intestine.trim.fq.fq_fastqc-pbs:
-	echo make FW1-Intestine.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-FW1-Intestine
-
-FW1-Kidney.trim.fq.fq_fastqc.zip: FW1-Kidney.trim.fq
-	fastqc --noextract FW1-Kidney.trim.fq
-
-FW1-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make FW1-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-FW1-Kidney
-
-G81-a.trim.fq.fq_fastqc.zip: G81-a.trim.fq
-	fastqc --noextract G81-a.trim.fq
-
-G81-a.trim.fq.fq_fastqc-pbs:
-	echo make G81-a.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-G81-a
-
-G81-b.trim.fq.fq_fastqc.zip: G81-b.trim.fq
-	fastqc --noextract G81-b.trim.fq
-
-G81-b.trim.fq.fq_fastqc-pbs:
-	echo make G81-b.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-G81-b
-
-G82-a.trim.fq.fq_fastqc.zip: G82-a.trim.fq
-	fastqc --noextract G82-a.trim.fq
-
-G82-a.trim.fq.fq_fastqc-pbs:
-	echo make G82-a.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-G82-a
-
-G82-b.trim.fq.fq_fastqc.zip: G82-b.trim.fq
-	fastqc --noextract G82-b.trim.fq
-
-G82-b.trim.fq.fq_fastqc-pbs:
-	echo make G82-b.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-G82-b
-
-G83-a.trim.fq.fq_fastqc.zip: G83-a.trim.fq
-	fastqc --noextract G83-a.trim.fq
-
-G83-a.trim.fq.fq_fastqc-pbs:
-	echo make G83-a.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-G83-a
-
-G83-b.trim.fq.fq_fastqc.zip: G83-b.trim.fq
-	fastqc --noextract G83-b.trim.fq
-
-G83-b.trim.fq.fq_fastqc-pbs:
-	echo make G83-b.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-G83-b
-
-Gill.trim.fq.fq_fastqc.zip: Gill.trim.fq
-	fastqc --noextract Gill.trim.fq
-
-Gill.trim.fq.fq_fastqc-pbs:
-	echo make Gill.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Gill
-
-JV1_liver.trim.fq.fq_fastqc.zip: JV1_liver.trim.fq
-	fastqc --noextract JV1_liver.trim.fq
-
-JV1_liver.trim.fq.fq_fastqc-pbs:
-	echo make JV1_liver.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-JV1_liver
-
-JVa_liver.trim.fq.fq_fastqc.zip: JVa_liver.trim.fq
-	fastqc --noextract JVa_liver.trim.fq
-
-JVa_liver.trim.fq.fq_fastqc-pbs:
-	echo make JVa_liver.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-JVa_liver
-
-JVb_liver.trim.fq.fq_fastqc.zip: JVb_liver.trim.fq
-	fastqc --noextract JVb_liver.trim.fq
-
-JVb_liver.trim.fq.fq_fastqc-pbs:
-	echo make JVb_liver.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-JVb_liver
-
-JV_intest.trim.fq.fq_fastqc.zip: JV_intest.trim.fq
-	fastqc --noextract JV_intest.trim.fq
-
-JV_intest.trim.fq.fq_fastqc-pbs:
-	echo make JV_intest.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-JV_intest
-
-Kidney.trim.fq.fq_fastqc.zip: Kidney.trim.fq
-	fastqc --noextract Kidney.trim.fq
-
-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Kidney
-
-L81-a.trim.fq.fq_fastqc.zip: L81-a.trim.fq
-	fastqc --noextract L81-a.trim.fq
-
-L81-a.trim.fq.fq_fastqc-pbs:
-	echo make L81-a.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-L81-a
-
-L81-b.trim.fq.fq_fastqc.zip: L81-b.trim.fq
-	fastqc --noextract L81-b.trim.fq
-
-L81-b.trim.fq.fq_fastqc-pbs:
-	echo make L81-b.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-L81-b
-
-L82-a.trim.fq.fq_fastqc.zip: L82-a.trim.fq
-	fastqc --noextract L82-a.trim.fq
-
-L82-a.trim.fq.fq_fastqc-pbs:
-	echo make L82-a.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-L82-a
-
-L82-b.trim.fq.fq_fastqc.zip: L82-b.trim.fq
-	fastqc --noextract L82-b.trim.fq
-
-L82-b.trim.fq.fq_fastqc-pbs:
-	echo make L82-b.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-L82-b
-
-L83-1-a.trim.fq.fq_fastqc.zip: L83-1-a.trim.fq
-	fastqc --noextract L83-1-a.trim.fq
-
-L83-1-a.trim.fq.fq_fastqc-pbs:
-	echo make L83-1-a.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-L83-1-a
-
-L83-1-b.trim.fq.fq_fastqc.zip: L83-1-b.trim.fq
-	fastqc --noextract L83-1-b.trim.fq
-
-L83-1-b.trim.fq.fq_fastqc-pbs:
-	echo make L83-1-b.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-L83-1-b
-
-L83-a.trim.fq.fq_fastqc.zip: L83-a.trim.fq
-	fastqc --noextract L83-a.trim.fq
-
-L83-a.trim.fq.fq_fastqc-pbs:
-	echo make L83-a.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-L83-a
-
-L83-b.trim.fq.fq_fastqc.zip: L83-b.trim.fq
-	fastqc --noextract L83-b.trim.fq
-
-L83-b.trim.fq.fq_fastqc-pbs:
-	echo make L83-b.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-L83-b
-
-LI.trim.fq.fq_fastqc.zip: LI.trim.fq
-	fastqc --noextract LI.trim.fq
-
-LI.trim.fq.fq_fastqc-pbs:
-	echo make LI.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-LI
-
-Lips.trim.fq.fq_fastqc.zip: Lips.trim.fq
-	fastqc --noextract Lips.trim.fq
-
-Lips.trim.fq.fq_fastqc-pbs:
-	echo make Lips.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Lips
-
-LK.trim.fq.fq_fastqc.zip: LK.trim.fq
-	fastqc --noextract LK.trim.fq
-
-LK.trim.fq.fq_fastqc-pbs:
-	echo make LK.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-LK
-
-M0_liver.trim.fq.fq_fastqc.zip: M0_liver.trim.fq
-	fastqc --noextract M0_liver.trim.fq
-
-M0_liver.trim.fq.fq_fastqc-pbs:
-	echo make M0_liver.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-M0_liver
-
-M2_liver.trim.fq.fq_fastqc.zip: M2_liver.trim.fq
-	fastqc --noextract M2_liver.trim.fq
-
-M2_liver.trim.fq.fq_fastqc-pbs:
-	echo make M2_liver.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-M2_liver
-
-M5_liver.trim.fq.fq_fastqc.zip: M5_liver.trim.fq
-	fastqc --noextract M5_liver.trim.fq
-
-M5_liver.trim.fq.fq_fastqc-pbs:
-	echo make M5_liver.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-M5_liver
-
-Monocytes.trim.fq.fq_fastqc.zip: Monocytes.trim.fq
-	fastqc --noextract Monocytes.trim.fq
-
-Monocytes.trim.fq.fq_fastqc-pbs:
-	echo make Monocytes.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Monocytes
-
-mssm_single_s1.trim.fq.fq_fastqc.zip: mssm_single_s1.trim.fq
-	fastqc --noextract mssm_single_s1.trim.fq
-
-mssm_single_s1.trim.fq.fq_fastqc-pbs:
-	echo make mssm_single_s1.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-mssm_single_s1
-
-mssm_single_s2.trim.fq.fq_fastqc.zip: mssm_single_s2.trim.fq
-	fastqc --noextract mssm_single_s2.trim.fq
-
-mssm_single_s2.trim.fq.fq_fastqc-pbs:
-	echo make mssm_single_s2.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-mssm_single_s2
-
-mssm_single_s3.trim.fq.fq_fastqc.zip: mssm_single_s3.trim.fq
-	fastqc --noextract mssm_single_s3.trim.fq
-
-mssm_single_s3.trim.fq.fq_fastqc-pbs:
-	echo make mssm_single_s3.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-mssm_single_s3
-
-mssm_single_s5.trim.fq.fq_fastqc.zip: mssm_single_s5.trim.fq
-	fastqc --noextract mssm_single_s5.trim.fq
-
-mssm_single_s5.trim.fq.fq_fastqc-pbs:
-	echo make mssm_single_s5.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-mssm_single_s5
-
-mssm_single_s6.trim.fq.fq_fastqc.zip: mssm_single_s6.trim.fq
-	fastqc --noextract mssm_single_s6.trim.fq
-
-mssm_single_s6.trim.fq.fq_fastqc-pbs:
-	echo make mssm_single_s6.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-mssm_single_s6
-
-mssm_single_s7.trim.fq.fq_fastqc.zip: mssm_single_s7.trim.fq
-	fastqc --noextract mssm_single_s7.trim.fq
-
-mssm_single_s7.trim.fq.fq_fastqc-pbs:
-	echo make mssm_single_s7.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-mssm_single_s7
-
-Muscle.trim.fq.fq_fastqc.zip: Muscle.trim.fq
-	fastqc --noextract Muscle.trim.fq
-
-Muscle.trim.fq.fq_fastqc-pbs:
-	echo make Muscle.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Muscle
-
-Neutrophils.trim.fq.fq_fastqc.zip: Neutrophils.trim.fq
-	fastqc --noextract Neutrophils.trim.fq
-
-Neutrophils.trim.fq.fq_fastqc-pbs:
-	echo make Neutrophils.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Neutrophils
-
-OFHS.trim.fq.fq_fastqc.zip: OFHS.trim.fq
-	fastqc --noextract OFHS.trim.fq
-
-OFHS.trim.fq.fq_fastqc-pbs:
-	echo make OFHS.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-OFHS
-
-POF-eye.trim.fq.fq_fastqc.zip: POF-eye.trim.fq
-	fastqc --noextract POF-eye.trim.fq
-
-POF-eye.trim.fq.fq_fastqc-pbs:
-	echo make POF-eye.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-POF-eye
-
-POF-ts.trim.fq.fq_fastqc.zip: POF-ts.trim.fq
-	fastqc --noextract POF-ts.trim.fq
-
-POF-ts.trim.fq.fq_fastqc-pbs:
-	echo make POF-ts.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-POF-ts
-
-PSMGill.trim.fq.fq_fastqc.zip: PSMGill.trim.fq
-	fastqc --noextract PSMGill.trim.fq
-
-PSMGill.trim.fq.fq_fastqc-pbs:
-	echo make PSMGill.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-PSMGill
-
-Rope.trim.fq.fq_fastqc.zip: Rope.trim.fq
-	fastqc --noextract Rope.trim.fq
-
-Rope.trim.fq.fq_fastqc-pbs:
-	echo make Rope.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Rope
-
-SMGill.trim.fq.fq_fastqc.zip: SMGill.trim.fq
-	fastqc --noextract SMGill.trim.fq
-
-SMGill.trim.fq.fq_fastqc-pbs:
-	echo make SMGill.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SMGill
-
-SMHS.trim.fq.fq_fastqc.zip: SMHS.trim.fq
-	fastqc --noextract SMHS.trim.fq
-
-SMHS.trim.fq.fq_fastqc-pbs:
-	echo make SMHS.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SMHS
-
-SN.trim.fq.fq_fastqc.zip: SN.trim.fq
-	fastqc --noextract SN.trim.fq
-
-SN.trim.fq.fq_fastqc-pbs:
-	echo make SN.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SN
-
-SPDI.trim.fq.fq_fastqc.zip: SPDI.trim.fq
-	fastqc --noextract SPDI.trim.fq
-
-SPDI.trim.fq.fq_fastqc-pbs:
-	echo make SPDI.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SPDI
-
-spinal_cord_paired.trim.fq.fq_fastqc.zip: spinal_cord_paired.trim.fq
-	fastqc --noextract spinal_cord_paired.trim.fq
-
-spinal_cord_paired.trim.fq.fq_fastqc-pbs:
-	echo make spinal_cord_paired.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-spinal_cord_paired
-
-SPK.trim.fq.fq_fastqc.zip: SPK.trim.fq
-	fastqc --noextract SPK.trim.fq
-
-SPK.trim.fq.fq_fastqc-pbs:
-	echo make SPK.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SPK
-
-SPPI.trim.fq.fq_fastqc.zip: SPPI.trim.fq
-	fastqc --noextract SPPI.trim.fq
-
-SPPI.trim.fq.fq_fastqc-pbs:
-	echo make SPPI.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SPPI
-
-Stg-1-Intestine.trim.fq.fq_fastqc.zip: Stg-1-Intestine.trim.fq
-	fastqc --noextract Stg-1-Intestine.trim.fq
-
-Stg-1-Intestine.trim.fq.fq_fastqc-pbs:
-	echo make Stg-1-Intestine.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-1-Intestine
-
-Stg-1-Kidney.trim.fq.fq_fastqc.zip: Stg-1-Kidney.trim.fq
-	fastqc --noextract Stg-1-Kidney.trim.fq
-
-Stg-1-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make Stg-1-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-1-Kidney
-
-Stg-2-Intestine.trim.fq.fq_fastqc.zip: Stg-2-Intestine.trim.fq
-	fastqc --noextract Stg-2-Intestine.trim.fq
-
-Stg-2-Intestine.trim.fq.fq_fastqc-pbs:
-	echo make Stg-2-Intestine.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-2-Intestine
-
-Stg-2-Kidney.trim.fq.fq_fastqc.zip: Stg-2-Kidney.trim.fq
-	fastqc --noextract Stg-2-Kidney.trim.fq
-
-Stg-2-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make Stg-2-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-2-Kidney
-
-Stg-3-Intestine.trim.fq.fq_fastqc.zip: Stg-3-Intestine.trim.fq
-	fastqc --noextract Stg-3-Intestine.trim.fq
-
-Stg-3-Intestine.trim.fq.fq_fastqc-pbs:
-	echo make Stg-3-Intestine.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-3-Intestine
-
-Stg-3-Kidney.trim.fq.fq_fastqc.zip: Stg-3-Kidney.trim.fq
-	fastqc --noextract Stg-3-Kidney.trim.fq
-
-Stg-3-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make Stg-3-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-3-Kidney
-
-Stg-4-Intestine.trim.fq.fq_fastqc.zip: Stg-4-Intestine.trim.fq
-	fastqc --noextract Stg-4-Intestine.trim.fq
-
-Stg-4-Intestine.trim.fq.fq_fastqc-pbs:
-	echo make Stg-4-Intestine.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-4-Intestine
-
-Stg-4-Kidney.trim.fq.fq_fastqc.zip: Stg-4-Kidney.trim.fq
-	fastqc --noextract Stg-4-Kidney.trim.fq
-
-Stg-4-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make Stg-4-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-4-Kidney
-
-Stg-5-Intestine.trim.fq.fq_fastqc.zip: Stg-5-Intestine.trim.fq
-	fastqc --noextract Stg-5-Intestine.trim.fq
-
-Stg-5-Intestine.trim.fq.fq_fastqc-pbs:
-	echo make Stg-5-Intestine.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-5-Intestine
-
-Stg-5-Kidney.trim.fq.fq_fastqc.zip: Stg-5-Kidney.trim.fq
-	fastqc --noextract Stg-5-Kidney.trim.fq
-
-Stg-5-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make Stg-5-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-5-Kidney
-
-Stg-6-Intestine.trim.fq.fq_fastqc.zip: Stg-6-Intestine.trim.fq
-	fastqc --noextract Stg-6-Intestine.trim.fq
-
-Stg-6-Intestine.trim.fq.fq_fastqc-pbs:
-	echo make Stg-6-Intestine.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-6-Intestine
-
-Stg-6-Kidney.trim.fq.fq_fastqc.zip: Stg-6-Kidney.trim.fq
-	fastqc --noextract Stg-6-Kidney.trim.fq
-
-Stg-6-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make Stg-6-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-6-Kidney
-
-Stg-7-Intestine.trim.fq.fq_fastqc.zip: Stg-7-Intestine.trim.fq
-	fastqc --noextract Stg-7-Intestine.trim.fq
-
-Stg-7-Intestine.trim.fq.fq_fastqc-pbs:
-	echo make Stg-7-Intestine.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-7-Intestine
-
-Stg-7-Kidney.trim.fq.fq_fastqc.zip: Stg-7-Kidney.trim.fq
-	fastqc --noextract Stg-7-Kidney.trim.fq
-
-Stg-7-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make Stg-7-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-Stg-7-Kidney
-
-SW2-Gill.trim.fq.fq_fastqc.zip: SW2-Gill.trim.fq
-	fastqc --noextract SW2-Gill.trim.fq
-
-SW2-Gill.trim.fq.fq_fastqc-pbs:
-	echo make SW2-Gill.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SW2-Gill
-
-SW2-Intestine-a.trim.fq.fq_fastqc.zip: SW2-Intestine-a.trim.fq
-	fastqc --noextract SW2-Intestine-a.trim.fq
-
-SW2-Intestine-a.trim.fq.fq_fastqc-pbs:
-	echo make SW2-Intestine-a.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SW2-Intestine-a
-
-SW2-Intestine-b.trim.fq.fq_fastqc.zip: SW2-Intestine-b.trim.fq
-	fastqc --noextract SW2-Intestine-b.trim.fq
-
-SW2-Intestine-b.trim.fq.fq_fastqc-pbs:
-	echo make SW2-Intestine-b.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SW2-Intestine-b
-
-SW2-Kidney.trim.fq.fq_fastqc.zip: SW2-Kidney.trim.fq
-	fastqc --noextract SW2-Kidney.trim.fq
-
-SW2-Kidney.trim.fq.fq_fastqc-pbs:
-	echo make SW2-Kidney.trim.fq.fq_fastqc.zip | cat fastqc.inc.sub - | qsub -l $(QCRES) -N fqc2-SW2-Kidney
-
 614GMAAXX_1_1_pf.trim.fq.keep: 614GMAAXX_1_1_pf.trim.fq
 	$(TIME) -o 614GMAAXX_1_1_pf.trim.fq.keep.c50.time $(KHMER)/scripts/normalize-by-median.py -x 1e9 -N 4 -k 20 -C 50 -R 614GMAAXX_1_1_pf.trim.fq.keep.c50.report 614GMAAXX_1_1_pf.trim.fq
 
@@ -2052,263 +1638,9 @@ SW2-Kidney.trim.fq.keep: SW2-Kidney.trim.fq
 SW2-Kidney.trim.fq.keep-pbs: SW2-Kidney.trim.fq
 	echo make SW2-Kidney.trim.fq.keep | cat diginorm.inc.sub - | qsub -l $(PAR_DGRES) -N dg50-SW2-Kidney.trim.fq.keep
 
-TRIMMED=614GMAAXX_1_1_pf.trim.fq \
-			614GMAAXX_2_1_pf.trim.fq \
-			614GMAAXX_3_1_pf.trim.fq \
-			614GMAAXX_4_1_pf.trim.fq \
-			614GMAAXX_6_1_pf.trim.fq \
-			614GMAAXX_7_1_pf.trim.fq \
-			614GMAAXX_8_1_pf.trim.fq \
-			AB057JABXX_s_7_pe.trim.fq \
-			AI.trim.fq \
-			AK.trim.fq \
-			BB0582ABXX_s_3_pe.trim.fq \
-			BB0582ABXX_s_4_pe.trim.fq \
-			BB0582ABXX_s_5_pe.trim.fq \
-			BB0582ABXX_s_6_pe.trim.fq \
-			BB0582ABXX_s_7_pe.trim.fq \
-			BB0582ABXX_s_8_pe.trim.fq \
-			brain_paired.trim.fq \
-			FW1-Gill.trim.fq \
-			FW1-Intestine.trim.fq \
-			FW1-Kidney.trim.fq \
-			G81-a.trim.fq \
-			G81-b.trim.fq \
-			G82-a.trim.fq \
-			G82-b.trim.fq \
-			G83-a.trim.fq \
-			G83-b.trim.fq \
-			Gill.trim.fq \
-			JV1_liver.trim.fq \
-			JVa_liver.trim.fq \
-			JVb_liver.trim.fq \
-			JV_intest.trim.fq \
-			Kidney.trim.fq \
-			L81-a.trim.fq \
-			L81-b.trim.fq \
-			L82-a.trim.fq \
-			L82-b.trim.fq \
-			L83-1-a.trim.fq \
-			L83-1-b.trim.fq \
-			L83-a.trim.fq \
-			L83-b.trim.fq \
-			LI.trim.fq \
-			Lips.trim.fq \
-			LK.trim.fq \
-			M0_liver.trim.fq \
-			M2_liver.trim.fq \
-			M5_liver.trim.fq \
-			Monocytes.trim.fq \
-			mssm_single_s1.trim.fq \
-			mssm_single_s2.trim.fq \
-			mssm_single_s3.trim.fq \
-			mssm_single_s5.trim.fq \
-			mssm_single_s6.trim.fq \
-			mssm_single_s7.trim.fq \
-			Muscle.trim.fq \
-			Neutrophils.trim.fq \
-			OFHS.trim.fq \
-			POF-eye.trim.fq \
-			POF-ts.trim.fq \
-			PSMGill.trim.fq \
-			Rope.trim.fq \
-			SMGill.trim.fq \
-			SMHS.trim.fq \
-			SN.trim.fq \
-			SPDI.trim.fq \
-			spinal_cord_paired.trim.fq \
-			SPK.trim.fq \
-			SPPI.trim.fq \
-			Stg-1-Intestine.trim.fq \
-			Stg-1-Kidney.trim.fq \
-			Stg-2-Intestine.trim.fq \
-			Stg-2-Kidney.trim.fq \
-			Stg-3-Intestine.trim.fq \
-			Stg-3-Kidney.trim.fq \
-			Stg-4-Intestine.trim.fq \
-			Stg-4-Kidney.trim.fq \
-			Stg-5-Intestine.trim.fq \
-			Stg-5-Kidney.trim.fq \
-			Stg-6-Intestine.trim.fq \
-			Stg-6-Kidney.trim.fq \
-			Stg-7-Intestine.trim.fq \
-			Stg-7-Kidney.trim.fq \
-			SW2-Gill.trim.fq \
-			SW2-Intestine-a.trim.fq \
-			SW2-Intestine-b.trim.fq \
-			SW2-Kidney.trim.fq
 
-DG50=614GMAAXX_1_1_pf.trim.fq.keep \
-			614GMAAXX_2_1_pf.trim.fq.keep \
-			614GMAAXX_3_1_pf.trim.fq.keep \
-			614GMAAXX_4_1_pf.trim.fq.keep \
-			614GMAAXX_6_1_pf.trim.fq.keep \
-			614GMAAXX_7_1_pf.trim.fq.keep \
-			614GMAAXX_8_1_pf.trim.fq.keep \
-			AB057JABXX_s_7_pe.trim.fq.keep \
-			AI.trim.fq.keep \
-			AK.trim.fq.keep \
-			BB0582ABXX_s_3_pe.trim.fq.keep \
-			BB0582ABXX_s_4_pe.trim.fq.keep \
-			BB0582ABXX_s_5_pe.trim.fq.keep \
-			BB0582ABXX_s_6_pe.trim.fq.keep \
-			BB0582ABXX_s_7_pe.trim.fq.keep \
-			BB0582ABXX_s_8_pe.trim.fq.keep \
-			brain_paired.trim.fq.keep \
-			FW1-Gill.trim.fq.keep \
-			FW1-Intestine.trim.fq.keep \
-			FW1-Kidney.trim.fq.keep \
-			G81-a.trim.fq.keep \
-			G81-b.trim.fq.keep \
-			G82-a.trim.fq.keep \
-			G82-b.trim.fq.keep \
-			G83-a.trim.fq.keep \
-			G83-b.trim.fq.keep \
-			Gill.trim.fq.keep \
-			JV1_liver.trim.fq.keep \
-			JVa_liver.trim.fq.keep \
-			JVb_liver.trim.fq.keep \
-			JV_intest.trim.fq.keep \
-			Kidney.trim.fq.keep \
-			L81-a.trim.fq.keep \
-			L81-b.trim.fq.keep \
-			L82-a.trim.fq.keep \
-			L82-b.trim.fq.keep \
-			L83-1-a.trim.fq.keep \
-			L83-1-b.trim.fq.keep \
-			L83-a.trim.fq.keep \
-			L83-b.trim.fq.keep \
-			LI.trim.fq.keep \
-			Lips.trim.fq.keep \
-			LK.trim.fq.keep \
-			M0_liver.trim.fq.keep \
-			M2_liver.trim.fq.keep \
-			M5_liver.trim.fq.keep \
-			Monocytes.trim.fq.keep \
-			mssm_single_s1.trim.fq.keep \
-			mssm_single_s2.trim.fq.keep \
-			mssm_single_s3.trim.fq.keep \
-			mssm_single_s5.trim.fq.keep \
-			mssm_single_s6.trim.fq.keep \
-			mssm_single_s7.trim.fq.keep \
-			Muscle.trim.fq.keep \
-			Neutrophils.trim.fq.keep \
-			OFHS.trim.fq.keep \
-			POF-eye.trim.fq.keep \
-			POF-ts.trim.fq.keep \
-			PSMGill.trim.fq.keep \
-			Rope.trim.fq.keep \
-			SMGill.trim.fq.keep \
-			SMHS.trim.fq.keep \
-			SN.trim.fq.keep \
-			SPDI.trim.fq.keep \
-			spinal_cord_paired.trim.fq.keep \
-			SPK.trim.fq.keep \
-			SPPI.trim.fq.keep \
-			Stg-1-Intestine.trim.fq.keep \
-			Stg-1-Kidney.trim.fq.keep \
-			Stg-2-Intestine.trim.fq.keep \
-			Stg-2-Kidney.trim.fq.keep \
-			Stg-3-Intestine.trim.fq.keep \
-			Stg-3-Kidney.trim.fq.keep \
-			Stg-4-Intestine.trim.fq.keep \
-			Stg-4-Kidney.trim.fq.keep \
-			Stg-5-Intestine.trim.fq.keep \
-			Stg-5-Kidney.trim.fq.keep \
-			Stg-6-Intestine.trim.fq.keep \
-			Stg-6-Kidney.trim.fq.keep \
-			Stg-7-Intestine.trim.fq.keep \
-			Stg-7-Kidney.trim.fq.keep \
-			SW2-Gill.trim.fq.keep \
-			SW2-Intestine-a.trim.fq.keep \
-			SW2-Intestine-b.trim.fq.keep \
-			SW2-Kidney.trim.fq.keep
-
-
-abundfilt.time: parallel.c50.ht
-	$(TIME) -o abundfilt.time python $(KHMER)/scripts/filter-abund.py -V -Z 20 parallel.c50.ht \
-614GMAAXX_1_1_pf.trim.fq.keep \
-			614GMAAXX_2_1_pf.trim.fq.keep \
-			614GMAAXX_3_1_pf.trim.fq.keep \
-			614GMAAXX_4_1_pf.trim.fq.keep \
-			614GMAAXX_6_1_pf.trim.fq.keep \
-			614GMAAXX_7_1_pf.trim.fq.keep \
-			614GMAAXX_8_1_pf.trim.fq.keep \
-			AB057JABXX_s_7_pe.trim.fq.keep \
-			AI.trim.fq.keep \
-			AK.trim.fq.keep \
-			BB0582ABXX_s_3_pe.trim.fq.keep \
-			BB0582ABXX_s_4_pe.trim.fq.keep \
-			BB0582ABXX_s_5_pe.trim.fq.keep \
-			BB0582ABXX_s_6_pe.trim.fq.keep \
-			BB0582ABXX_s_7_pe.trim.fq.keep \
-			BB0582ABXX_s_8_pe.trim.fq.keep \
-			brain_paired.trim.fq.keep \
-			FW1-Gill.trim.fq.keep \
-			FW1-Intestine.trim.fq.keep \
-			FW1-Kidney.trim.fq.keep \
-			G81-a.trim.fq.keep \
-			G81-b.trim.fq.keep \
-			G82-a.trim.fq.keep \
-			G82-b.trim.fq.keep \
-			G83-a.trim.fq.keep \
-			G83-b.trim.fq.keep \
-			Gill.trim.fq.keep \
-			JV1_liver.trim.fq.keep \
-			JVa_liver.trim.fq.keep \
-			JVb_liver.trim.fq.keep \
-			JV_intest.trim.fq.keep \
-			Kidney.trim.fq.keep \
-			L81-a.trim.fq.keep \
-			L81-b.trim.fq.keep \
-			L82-a.trim.fq.keep \
-			L82-b.trim.fq.keep \
-			L83-1-a.trim.fq.keep \
-			L83-1-b.trim.fq.keep \
-			L83-a.trim.fq.keep \
-			L83-b.trim.fq.keep \
-			LI.trim.fq.keep \
-			Lips.trim.fq.keep \
-			LK.trim.fq.keep \
-			M0_liver.trim.fq.keep \
-			M2_liver.trim.fq.keep \
-			M5_liver.trim.fq.keep \
-			Monocytes.trim.fq.keep \
-			mssm_single_s1.trim.fq.keep \
-			mssm_single_s2.trim.fq.keep \
-			mssm_single_s3.trim.fq.keep \
-			mssm_single_s5.trim.fq.keep \
-			mssm_single_s6.trim.fq.keep \
-			mssm_single_s7.trim.fq.keep \
-			Muscle.trim.fq.keep \
-			Neutrophils.trim.fq.keep \
-			OFHS.trim.fq.keep \
-			POF-eye.trim.fq.keep \
-			POF-ts.trim.fq.keep \
-			PSMGill.trim.fq.keep \
-			Rope.trim.fq.keep \
-			SMGill.trim.fq.keep \
-			SMHS.trim.fq.keep \
-			SN.trim.fq.keep \
-			SPDI.trim.fq.keep \
-			spinal_cord_paired.trim.fq.keep \
-			SPK.trim.fq.keep \
-			SPPI.trim.fq.keep \
-			Stg-1-Intestine.trim.fq.keep \
-			Stg-1-Kidney.trim.fq.keep \
-			Stg-2-Intestine.trim.fq.keep \
-			Stg-2-Kidney.trim.fq.keep \
-			Stg-3-Intestine.trim.fq.keep \
-			Stg-3-Kidney.trim.fq.keep \
-			Stg-4-Intestine.trim.fq.keep \
-			Stg-4-Kidney.trim.fq.keep \
-			Stg-5-Intestine.trim.fq.keep \
-			Stg-5-Kidney.trim.fq.keep \
-			Stg-6-Intestine.trim.fq.keep \
-			Stg-6-Kidney.trim.fq.keep \
-			Stg-7-Intestine.trim.fq.keep \
-			Stg-7-Kidney.trim.fq.keep \
-			SW2-Gill.trim.fq.keep \
-			SW2-Intestine-a.trim.fq.keep \
-			SW2-Intestine-b.trim.fq.keep \
-			SW2-Kidney.trim.fq.keep
+abundfilt.time: diginorm.c50.ht
+	$(TIME) -o abundfilt.time python $(KHMER)/scripts/filter-abund.py -V -Z 20 diginorm.c50.ht $(READS_DG50_2)
+	for F in $(READS_ABUNDFILT); do \
+	mv $F $(patsubst %.trim.keep.keep.fq.abundfilt, %.trim.abf.fq, $(F)); \
+	done
