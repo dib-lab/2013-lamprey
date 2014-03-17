@@ -26,29 +26,20 @@ nodeps:
 	touch lumpfilt.fp.stopfilt.part
 	touch petMar_mrna.fp
 
-lamp0.fasta.nhr:
-	makeblastdb -in lamp0.fasta -dbtype nucl
+READS=*.fq.gz
 
-lamp3.fasta: 
-#	get <url to raw assembly, or include it>
 
-lamp3.fasta.dedupe.fa: lamp3.fasta
-	$(CDHITEST) -i lamp3.fasta -o lamp3.dedupe.fa -c .98 -n 9 -g 1 -T 4
-
-petMar_mrna.fa: lamp3.fasta.dedupe.fa
-	$(SEQCLEAN) lamp3.fasta.dedupe.fa -c 6 -v ../db/univec_core.fa -o petMar_mrna.fa
-
-petMar_part.ht: petMar_mrna.fa
-	$(KHMER)/scripts/load-graph.py -k 25 -N 4 -x 16e9 petMar_part petMar_mrna.fa
+petMar_reads_part.ht: $(READS)
+	$(KHMER)/scripts/load-graph.py -k 25 -N 4 -x 16e9 petMar_reads_part $(READS)
 	
-petMar_part.info: petMar_part.ht
-	$(KHMER)/scripts/partition-graph.py -T 7 -s 1e6 petMar_part
+petMar_reads_part.info: petMar_reads_part.ht
+	$(KHMER)/scripts/partition-graph.py -T 7 -s 1e6 petMar_reads_part
 
-petMar_part.pmap.merged: petMar_part.info
-	$(KHMER)/scripts/merge-partitions.py -k 25 petMar_part
+petMar_reads_part.pmap.merged: petMar_reads_part.info
+	$(KHMER)/scripts/merge-partitions.py -k 25 petMar_reads_part
 
-petMar_mrna.fa.part: petMar_part.pmap.merged
-	$(KHMER)/scripts/annotate-partitions.py -k 25 petMar_part petMar_mrna.fa
+petMar_mrna.fa.part: petMar_reads_part.pmap.merged
+	$(KHMER)/scripts/annotate-partitions.py -k 25 petMar_reads_part petMar_mrna.fa
 	
 petMar_mrna_lump.fp: petMar_mrna.fa.part
 	python ../scripts/dump-lump.py petMar_mrna.fa.part petMar_mrna
