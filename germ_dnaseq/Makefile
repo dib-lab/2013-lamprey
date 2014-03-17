@@ -11,7 +11,7 @@ QCRES=nodes=1:ppn=1,walltime=2:00:00,mem=4gb
 DGRES=nodes=1:ppn=1,walltime=72:00:00,mem=42gb
 
 ABYSSRES=nodes=1:ppn=24,walltime=3:00:00:00,mem=384gb
-MIRARES=nodes=1:ppn=16,walltime=7:00:00:00,mem744gb
+MIRARES=nodes=1:ppn=32,walltime=7:00:00:00,mem=1009gb
 
 2_ACAGTG_L001_R1_001.fastqc1:
 	fastqc --noextract 2_ACAGTG_L001_R1_001.fastq.gz
