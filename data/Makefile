@@ -41,10 +41,18 @@ $(OUTPRF)_part.pmap.merged: $(OUTPRF)_part.info
 $(OUTPRF).fp: $(OUTPRF)_part.pmap.merged
 	$(KHMER)/scripts/annotate-partitions.py -k 25 $(OUTPRF)_part $(OUTPRF).fa
 	mv $(OUTPRF).fa.part $@
+
+$(OUTPRF).renamed.fp.gz: $(OUTPRF).fp
+	python ../eel-pond/rename-with-partitions.py $(OUTPRF) $<
+	mv $<.renamed.fasta.gz $(OUTPRF).renamed.fp.gz
+
+#
+# Begin delumping process
+#
 	
 $(OUTPRF)_lump.fp: $(OUTPRF).fp
 	python ../scripts/dump-lump.py $< $(OUTPRF)
-	
+
 $(OUTPRF)_lump.ht: $(OUTPRF)_lump.fp
 	$(KHMER)/scripts/load-graph.py -x $(HT) -k 25 $(OUTPRF)_lump $(OUTPRF)_lump.fp
 
@@ -75,4 +83,7 @@ $(OUTPRF)_delumped.fp: lumpfilt.fp.stopfilt.part
 	mv $(OUTPRF)_lump.fp.stopfilt.part $(OUTPRF)_delumped.fp; cat $(OUTPRF)_nonlump.fp $(OUTPRF)_delumped.fp > $(OUTPRF).fp
 
 $(OUTPRF).fp.nhr: $(OUTPRF)_delumped.fp
-	makeblastdb -in $(OUTPRF).fp -dbtype nucl
+	makeblastdb -in $(OUTPRF)_delumped.fp -dbtype nucl
+
+$(OUTPRF).fa.nhr: $(OUTPRF).fa
+	makeblastdb -in $< -dbtype nucl

@@ -1,0 +1,6 @@
+[submodule "eel-pond"]
+	path = eel-pond
+	url = https://github.com/ctb/eel-pond.git
+[submodule "peasoup"]
+	path = peasoup
+	url = git@github.com:camillescott/peasoup.git

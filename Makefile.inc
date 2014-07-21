@@ -8,7 +8,10 @@ BLAST_EVALUE=0.00001
 BLAST_CPUS=8
 BLASTRES=nodes=1:ppn=9,walltime=48:00:00,mem=8gb
 
-OUTPRF=petMar_mrna4
+blast_cols:
+	@echo $(CSV)
+
+OUTPRF=petMar_mrna3
 HT=16e9
 define newline
 
