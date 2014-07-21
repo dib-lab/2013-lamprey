@@ -1,5 +1,0 @@
-
-#!/bin/bash -login
-cd $PBS_O_WORKDIR
-module load FastQC
-make 6_GTGAAA_L002_R1_001.trim.fq.fastqc2

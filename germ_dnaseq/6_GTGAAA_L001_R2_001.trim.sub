@@ -1,4 +1,0 @@
-
-#!/bin/bash -login
-cd $PBS_O_WORKDIR
-make 6_GTGAAA_L001_R2_001.trim.fq

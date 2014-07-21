@@ -1,4 +1,0 @@
-#!/bin/bash -login
-module load BLAST+
-cd $PBS_O_WORKDIR
-
