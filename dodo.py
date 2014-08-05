@@ -1,11 +1,13 @@
 from peasoup.tasks import BlastTask, BlastFormatTask, CurlTask, GunzipTask
 
 blast_params = '-best_hit_score_edge 0.05 -best_hit_overhang 0.25 -max_target_seqs 1'
-assem = 'lamp3.fa'
 blast_threads = 8
 
+assem_url = ('athyra.ged.msu.edu/~cswelcher/lamp10.fasta.gz', 'lamp10.fasta.gz')
+assem = assem_url[1].rstrip('.gz')
+
 db_urls = [
-#('http://hgdownload.soe.ucsc.edu/goldenPath/petMar2/bigZips/petMar2.fa.gz ','petMar2.fa.gz'),
+('http://hgdownload.soe.ucsc.edu/goldenPath/petMar2/bigZips/petMar2.fa.gz ','petMar2.fa.gz'),
 #('http://hgdownload.soe.ucsc.edu/goldenPath/petMar2/bigZips/petMar2.fa.masked.gz', 'petMar2.fa.masked.gz'),
 ('http://hgdownload.soe.ucsc.edu/goldenPath/petMar2/bigZips/est.fa.gz', 'petMar2.est.fa.gz'),
 ('http://hgdownload.soe.ucsc.edu/goldenPath/petMar2/bigZips/mrna.fa.gz', 'petMar2.mrna.fa.gz'),
@@ -21,7 +23,7 @@ db_urls = [
 # Get the reference databases
 #
 
-get_dbs = CurlTask(db_urls)
+get_dbs = CurlTask(db_urls.append(assem_url))
 
 #
 # Gunzip the downloaded databases
