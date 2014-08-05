@@ -1,5 +1,5 @@
 from peasoup.tasks import BlastTask, BlastFormatTask, CurlTask, GunzipTask, \
-                            UniProtQueryTask
+                            UniProtQueryTask, TruncateFastaNameTask
 
 blast_params = '-best_hit_score_edge 0.05 -best_hit_overhang 0.25 -max_target_seqs 1'
 blast_threads = 8
@@ -16,7 +16,7 @@ db_urls = [
 ('ftp://ftp.ensembl.org/pub/release-75/fasta/petromyzon_marinus/cdna/Petromyzon_marinus.Pmarinus_7.0.75.cdna.all.fa.gz', 'petMar2.cdna.fa.gz'),
 ('ftp://ftp.ensembl.org/pub/release-75/fasta/mus_musculus/pep/Mus_musculus.GRCm38.75.pep.all.fa.gz','musMus.pep.fa.gz'),
 ('ftp://ftp.ensembl.org/pub/release-75/fasta/danio_rerio/pep/Danio_rerio.Zv9.75.pep.all.fa.gz' ,'danRer.pep.fa.gz'),
-('ftp://ftp.ncbi.nih.gov/pub/UniVec/UniVec_Core','uniVec.fa'),
+#('ftp://ftp.ncbi.nih.gov/pub/UniVec/UniVec_Core','uniVec.fa'),
 #('ftp://ftp.ensembl.org/pub/release-74/fasta/homo_sapiens/pep/Homo_sapiens.GRCh37.74.pep.all.fa.gz','homSap.pep.fa.gz'),
 #('ftp://ftp.ensembl.org/pub/release-74/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh37.74.cdna.all.fa.gz','homSap.cdna.fa.gz'),
 ]
@@ -34,21 +34,29 @@ uniprot_tasks = [UniProtQueryTask(org_id, fn) for org_id, fn in uniprot_terms]
 #
 # Gunzip the downloaded databases
 #
+
 uniprot_dbs = [gz.outputs().next() for gz in uniprot_tasks]
-print uniprot_dbs
-gunzip_dbs = GunzipTask([(src,src.rstrip('.gz')) for src in get_dbs.outputs() \
+gunzip_dbs = GunzipTask([(src,src+'.tmp') for src in get_dbs.outputs() \
                     if src.endswith('.gz')] + \
-                [(src,src.rstrip('.gz')) for src in uniprot_dbs])
+                [(src,src+'.tmp') for src in uniprot_dbs])
+
+print gunzip_dbs.links
+print list(gunzip_dbs.outputs())
+
+#
+# Fix the names for BLAST+
+#
+
+fix_names = TruncateFastaNameTask([(fn,fn.rstrip('.gz.tmp')) for fn in gunzip_dbs.outputs()])
 
 #
 # run makeblastdb on downloaded databases
 #
 
 mkdb_tasks = []
-for src in gunzip_dbs.outputs():
+for src in fix_names.outputs():
     db_type='prot' if 'pep' in src else 'nucl'
     mkdb_tasks.append(BlastFormatTask(src, '{}.db'.format(src), db_type))
-#mkdb_tasks.append(BlastFormatTask(assem, '{}.db'.format(assem), 'nucl'))
 
 def task_prep_databases():
     global databases
@@ -59,6 +67,8 @@ def task_prep_databases():
         yield task.tasks()
 
     yield gunzip_dbs.tasks()
+
+    yield fix_names.tasks()
 
     for task in mkdb_tasks:
         yield task.tasks()
