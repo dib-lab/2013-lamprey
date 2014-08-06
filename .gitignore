@@ -36,6 +36,7 @@
 *.gz
 *.psl
 *.pgc
+*.html
 
 # py
 *.pyc
@@ -46,3 +47,5 @@
 *.log
 *.out
 *.blg
+
+.doit.db
