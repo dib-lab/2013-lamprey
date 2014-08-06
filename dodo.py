@@ -38,9 +38,6 @@ gunzip_dbs = GunzipTask([(src,src+'.tmp') for src in get_dbs.outputs() \
                     if src.endswith('.gz')] + \
                 [(src,src+'.tmp') for src in uniprot_dbs])
 
-print gunzip_dbs.links
-print list(gunzip_dbs.outputs())
-
 #
 # Fix the names for BLAST+
 #
