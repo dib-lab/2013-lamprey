@@ -49,3 +49,4 @@
 *.blg
 
 .doit.db
+*.ipynb_checkpoints
