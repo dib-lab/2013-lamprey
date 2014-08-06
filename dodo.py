@@ -1,35 +1,33 @@
+#!/usr/bin/env python
+
+import os
+import sys
+
+from doit import get_var
+
 from peasoup.tasks import BlastTask, BlastFormatTask, CurlTask, GunzipTask, \
                             UniProtQueryTask, TruncateFastaNameTask
+from peasoup.configtools import get_cfg
 
-blast_params = '-best_hit_score_edge 0.05 -best_hit_overhang 0.25 -max_target_seqs 1'
-blast_threads = 8
+cfg_fn = get_var('metadata')
+if not cfg_fn:
+    print >>sys.stderr, 'No argument to metadata=<file> specified, using metadata.ini'
+    metadata = get_cfg('metadata.ini', 'metadata.spec.ini')
+else:
+    metadata = get_cfg(cfg_fn, 'metadata.spec.ini')
 
-assem_url = ('http://athyra.ged.msu.edu/~cswelcher/lamprey/lamp10.fasta', 'lamp10.fasta.gz')
-assem = assem_url[1].rstrip('.gz')
+name = metadata['urls']['assembly']['name']
+assem = metadata['urls']['assembly']['dest'].rstrip('.gz')
+print >>sys.stderr, 'Running', name, 'pipeline\n', '*' * 40
 
-db_urls = [
-('ftp://ftp.ensembl.org/pub/release-75/fasta/petromyzon_marinus/dna/Petromyzon_marinus.Pmarinus_7.0.75.dna_sm.toplevel.fa.gz','petMar2.fa.gz'),
-('http://hgdownload.soe.ucsc.edu/goldenPath/petMar2/bigZips/est.fa.gz', 'petMar2.est.fa.gz'),
-('ftp://ftp.ensembl.org/pub/release-75/fasta/petromyzon_marinus/pep/Petromyzon_marinus.Pmarinus_7.0.75.pep.all.fa.gz', 'petMar2.pep.fa.gz'),
-('ftp://ftp.ensembl.org/pub/release-75/fasta/petromyzon_marinus/cds/Petromyzon_marinus.Pmarinus_7.0.75.cds.all.fa.gz', 'petMar2.cds.fa.gz'),
-('ftp://ftp.ensembl.org/pub/release-75/fasta/petromyzon_marinus/ncrna/Petromyzon_marinus.Pmarinus_7.0.75.ncrna.fa.gz', 'petMar2.ncrna.fa.gz'),
-('ftp://ftp.ensembl.org/pub/release-75/fasta/petromyzon_marinus/cdna/Petromyzon_marinus.Pmarinus_7.0.75.cdna.all.fa.gz', 'petMar2.cdna.fa.gz'),
-('ftp://ftp.ensembl.org/pub/release-75/fasta/mus_musculus/pep/Mus_musculus.GRCm38.75.pep.all.fa.gz','musMus.pep.fa.gz'),
-('ftp://ftp.ensembl.org/pub/release-75/fasta/danio_rerio/pep/Danio_rerio.Zv9.75.pep.all.fa.gz' ,'danRer.pep.fa.gz'),
-#('ftp://ftp.ncbi.nih.gov/pub/UniVec/UniVec_Core','uniVec.fa'),
-#('ftp://ftp.ensembl.org/pub/release-74/fasta/homo_sapiens/pep/Homo_sapiens.GRCh37.74.pep.all.fa.gz','homSap.pep.fa.gz'),
-#('ftp://ftp.ensembl.org/pub/release-74/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh37.74.cdna.all.fa.gz','homSap.cdna.fa.gz'),
-]
-
-uniprot_terms = [('organism:7739+AND+keyword:1185', 'braFlo.pep.all.fa.gz'),
-                 ('taxonomy:7762', 'Myx.pep.all.fa.gz')]
 
 #
 # Get the reference databases
 #
 
-get_dbs = CurlTask(db_urls + [assem_url])
-uniprot_tasks = [UniProtQueryTask(org_id, fn) for org_id, fn in uniprot_terms]
+get_dbs = CurlTask([(e['url'], e['dest']) for e in metadata['urls'].values()])
+uniprot_tasks = [UniProtQueryTask(e['terms'], e['dest']) for e in metadata['queries'].values() \
+                    if e['q_type'] == 'uniprot']
 
 #
 # Gunzip the downloaded databases
@@ -74,10 +72,12 @@ def task_prep_databases():
         yield task.tasks()
 
 def task_blast():
+    blast_threads = metadata['blast']['threads']
+    blast_params = metadata['blast']['params']
     for task in mkdb_tasks:
         db_name, db_fn = task.outputs().next()
         db_type = 'prot' if 'pep' in db_name else 'nucl'
-        if db_name != '{}.db'.format(assem):
+        if not db_name.startswith(assem):
             if db_type == 'prot':
                 yield BlastTask('blastx', assem, db_name, 
                                 '{0}.x.{1}.tsv'.format(assem, db_name),
