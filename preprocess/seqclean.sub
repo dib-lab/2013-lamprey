@@ -1,5 +1,0 @@
-
-#!/bin/bash -login
-cd $PBS_O_WORKDIR
-export PYTHONPATH=$PYTHONPATH:~/bin/khmer/python
-make all.c20.fa.clean
