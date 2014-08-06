@@ -1,10 +1,15 @@
 all: databases blast
 
-databases:
-	doit -n 4 prep_databases
+wdir:
+	mkdir -p work
+	ln -fs ../metadata.ini work/
+	ln -fs ../metadata.spec.ini work/
 
-blast:
-	doit -n 4 blast
+databases: wdir
+	doit --dir work -n 4 prep_databases
 
-clean:
-	doit clean
+blast: wdir
+	doit --dir work -n 4 blast
+
+clean: wdir
+	doit clean --dir work
