@@ -4,7 +4,7 @@ from peasoup.tasks import BlastTask, BlastFormatTask, CurlTask, GunzipTask, \
 blast_params = '-best_hit_score_edge 0.05 -best_hit_overhang 0.25 -max_target_seqs 1'
 blast_threads = 8
 
-assem_url = ('http://athyra.ged.msu.edu/~cswelcher/lamprey/lamp10.fasta', 'lamp10.fasta.gz')
+assem_url = ('http://athyra.ged.msu.edu/~cswelcher/lamprey/lamp10.fasta', 'lamp03.fasta.gz')
 assem = assem_url[1].rstrip('.gz')
 
 db_urls = [
