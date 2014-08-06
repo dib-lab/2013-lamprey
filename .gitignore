@@ -12,9 +12,21 @@
 *.ht
 *.part
 *.tagset
+*.keep
 
 # blastdb files
-*.{p,n}{hr,in,sd,si,sq}
+*.phr
+*.pin
+*.psd
+*.psi
+*.psq
+*.nhr
+*.nin
+*.nsd
+*.nsi
+*.nsq
+*.blastx
+*.blastp
 
 # data output
 *.csv
@@ -27,3 +39,10 @@
 
 # py
 *.pyc
+
+#tex
+*.aux
+*.bbl
+*.log
+*.out
+*.blg
