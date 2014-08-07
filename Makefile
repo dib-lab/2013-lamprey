@@ -1,3 +1,5 @@
+CPUS=4
+
 all: databases blast
 
 wdir:
@@ -6,10 +8,10 @@ wdir:
 	ln -fs ../metadata.spec.ini work/
 
 databases: wdir
-	doit --dir work -n 4 prep_databases
+	doit --dir work -n $(CPUS) prep_databases
 
 blast: wdir
-	doit --dir work -n 4 blast
+	doit --dir work -n $(CPUS) blast
 
 clean: wdir
 	doit clean --dir work
