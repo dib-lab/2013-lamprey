@@ -30,6 +30,7 @@
 
 # data output
 *.csv
+*.tsv
 *.pcounts
 *.kcounts
 *.mers
