@@ -72,6 +72,7 @@ def task_blast():
     blast_targets = []
     blast_threads = metadata['blast']['threads']
     blast_params = metadata['blast']['params']
+    blast_evalue = metadata['blast']['evalue']
     for task in mkdb_tasks:
         db_name, db_fn = task.outputs().next()
         db_type = 'prot' if 'pep' in db_name else 'nucl'
@@ -82,16 +83,16 @@ def task_blast():
             blast_targets.append(t2)
             if db_type == 'prot':
                 yield BlastTask('blastx', assem, db_name, t1,
-                                num_threads=blast_threads,
+                                num_threads=blast_threads, evalue=blast_evalue,
                                 params=blast_params).tasks()
                 yield BlastTask('tblastn', db_name.rstrip('.db'), '{}.db'.format(assem),
-                                t2, num_threads=blast_threads,
+                                t2, num_threads=blast_threads, evalue=blast_evalue,
                                 params=blast_params).tasks()
             else:
                 yield BlastTask('blastn', assem, db_name, t1,
-                                num_threads=blast_threads,
+                                num_threads=blast_threads, evalue=blast_evalue,
                                 params=blast_params).tasks()
                 yield BlastTask('blastn', db_name.rstrip('.db'), '{}.db'.format(assem),
-                                t2, num_threads=blast_threads,
+                                t2, num_threads=blast_threads, evalue=blast_evalue,
                                 params=blast_params).tasks()
     print '\nBlast Targets:\n', '( {} )\n'.format(' '.join(blast_targets))
