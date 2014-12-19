@@ -71,28 +71,29 @@ def task_make_blastdbs():
         yield task.tasks()
 
 def task_blast():
+    blast_targets = []
     blast_threads = metadata['blast']['threads']
     blast_params = metadata['blast']['params']
     for task in mkdb_tasks:
         db_name, db_fn = task.outputs().next()
         db_type = 'prot' if 'pep' in db_name else 'nucl'
         if not db_name.startswith(assem):
+            t1 = '{0}.x.{1}.tsv'.format(assem, db_name)
+            t2 = '{0}.x.{1}.tsv'.format(db_name, assem)
+            blast_targets.append(t1)
+            blast_targets.append(t2)
             if db_type == 'prot':
-                yield BlastTask('blastx', assem, db_name, 
-                                '{0}.x.{1}.tsv'.format(assem, db_name),
+                yield BlastTask('blastx', assem, db_name, t1,
                                 num_threads=blast_threads,
                                 params=blast_params).tasks()
                 yield BlastTask('tblastn', db_name.rstrip('.db'), '{}.db'.format(assem),
-                                '{0}.x.{1}.tsv'.format(db_name, assem),
-                                num_threads=blast_threads,
+                                t2, num_threads=blast_threads,
                                 params=blast_params).tasks()
             else:
-                yield BlastTask('blastn', assem, db_name, 
-                                '{0}.x.{1}.tsv'.format(assem, db_name),
+                yield BlastTask('blastn', assem, db_name, t1,
                                 num_threads=blast_threads,
                                 params=blast_params).tasks()
                 yield BlastTask('blastn', db_name.rstrip('.db'), '{}.db'.format(assem),
-                                '{0}.x.{1}.tsv'.format(db_name, assem),
-                                num_threads=blast_threads,
+                                t2, num_threads=blast_threads,
                                 params=blast_params).tasks()
-
+    print '\nBlast Targets:\n', '( {} )\n'.format(' '.join(blast_targets))
