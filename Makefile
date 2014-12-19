@@ -7,8 +7,19 @@ wdir:
 	ln -fs ../metadata.ini work/
 	ln -fs ../metadata.spec.ini work/
 
-databases: wdir
-	doit --dir work -n $(CPUS) prep_databases
+get_databases: wdir
+	doit --dir work -n $(CPUS) get_databases
+
+
+gunzip_databases: wdir
+	doit --dir work -n $(CPUS) gunzip_databases
+
+fix_database_names: wdir
+	doit --dir work -n $(CPUS) fix_database_names
+
+make_blastdbs: wdir
+	doit --dir work -n $(CPUS) make_blastdbs
+
 
 blast: wdir
 	doit --dir work -n $(CPUS) blast
