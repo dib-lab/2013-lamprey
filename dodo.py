@@ -53,18 +53,20 @@ for src in fix_names.outputs():
     db_type='prot' if 'pep' in src else 'nucl'
     mkdb_tasks.append(BlastFormatTask(src, '{}.db'.format(src), db_type))
 
-def task_prep_databases():
+def task_get_databases():
     global databases
-
 
     yield get_dbs.tasks()
     for task in uniprot_tasks:
         yield task.tasks()
 
+def task_gunzip_databases():
     yield gunzip_dbs.tasks()
 
+def task_fix_database_names():
     yield fix_names.tasks()
 
+def task_make_blastdbs():
     for task in mkdb_tasks:
         yield task.tasks()
 
