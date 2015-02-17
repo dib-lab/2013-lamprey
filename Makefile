@@ -1,6 +1,6 @@
 CPUS=4
 
-all: databases blast
+all: wdir get_databases gunip_databases fix_database_names make_blastdbs blast
 
 wdir:
 	mkdir -p work
@@ -23,6 +23,9 @@ make_blastdbs: wdir
 
 blast: wdir
 	doit --dir work -n $(CPUS) blast
+
+align-express:
+	./eXpress_pipeline --threads $(CPUS)
 
 clean: wdir
 	doit clean --dir work
