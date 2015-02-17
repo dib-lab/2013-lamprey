@@ -98,3 +98,5 @@ def task_blast():
                                 t2, num_threads=blast_threads, evalue=blast_evalue,
                                 params=blast_params).tasks()
     print '\nBlast Targets:\n', '( {} )\n'.format(' '.join(blast_targets))
+
+
