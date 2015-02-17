@@ -38,6 +38,7 @@ def main():
     parser.add_argument('--print-tasks', dest='print_tasks', action='store_true', default=False)
     parser.add_argument('-D', '--dry-run', dest='dry_run', action='store_true', default=False)
     parser.add_argument('--align-only', dest='align_only', action='store_true', default=False)
+    parser.add_argument('-C', '--clean', action='store_true', default=False)
     args = parser.parse_args()
 
     metadata = configtools.get_cfg(args.metadata, args.metadata_spec)
@@ -73,7 +74,7 @@ def main():
                 print '-----\n', task, task.actions
 
         if not args.dry_run:
-            run_tasks(tasks, n_cpus=args.threads)
+            run_tasks(tasks, n_cpus=args.threads, clean=args.clean)
         else:
             print 'Dry run; exiting...'
     finally:
