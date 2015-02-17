@@ -37,6 +37,8 @@ def main():
     parser.add_argument('--wdir', default='work')
     parser.add_argument('--print-tasks', dest='print_tasks', action='store_true', default=False)
     parser.add_argument('-D', '--dry-run', dest='dry_run', action='store_true', default=False)
+    parser.add_argument('--align-only', dest='align_only', action='store_true', default=False)
+    parser.add_argument('-C', '--clean', action='store_true', default=False)
     args = parser.parse_args()
 
     metadata = configtools.get_cfg(args.metadata, args.metadata_spec)
@@ -62,16 +64,17 @@ def main():
         align_tasks = sample_df.apply(bowtie2_align_task, args=(index_basename_fn,), axis=1, reduce=False)
         tasks.extend(list(align_tasks))
 
-        hits_files = align_tasks.apply(lambda t: t.targets[0])
-        express_tasks = hits_files.apply(express_task, args=(db_df.ix['assembly'].fn,))
-        tasks.extend(express_tasks)
+        if not args.align_only:
+            hits_files = align_tasks.apply(lambda t: t.targets[0])
+            express_tasks = hits_files.apply(express_task, args=(db_df.ix['assembly'].fn,))
+            tasks.extend(express_tasks)
 
         if args.print_tasks:
             for task in tasks:
                 print '-----\n', task, task.actions
 
         if not args.dry_run:
-            run_tasks(tasks, n_cpus=args.threads)
+            run_tasks(tasks, n_cpus=args.threads, clean=args.clean)
         else:
             print 'Dry run; exiting...'
     finally:
