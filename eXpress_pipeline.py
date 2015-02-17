@@ -9,7 +9,7 @@ import argparse
 
 @task_funcs.create_task_object
 def bowtie2_build_task(row):
-    return task_funcs.bowtie2_build_task(row.fn, row.fn.strip('.fasta'))
+    return task_funcs.bowtie2_build_task(row.fn, row.fn.split('.fasta')[0])
 
 @task_funcs.create_task_object
 def split_pairs_task(row):
@@ -24,11 +24,16 @@ def bowtie2_align_task(row, idx_fn):
         return task_funcs.bowtie2_align_task(idx_fn, target, left_fn=row.filename+'.1',
                                                 right_fn=row.filename + '.2')
 
+@task_funcs.create_task_object
+def express_task(hits_fn, transcripts_fn):
+    folder = hits_fn.split('.bam')[0]
+    return task_funcs.eXpress_task(transcripts_fn, hits_fn, folder)
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--metadata', default='metadata.ini')
     parser.add_argument('--metadata-spec', dest='metadata_spec',  default='metadata.spec.ini')
-    parser.add_argument('-T', '--threads', default=4)
+    parser.add_argument('-T', '--threads', default=4, type=int)
     parser.add_argument('--wdir', default='work')
     parser.add_argument('--print-tasks', dest='print_tasks', action='store_true', default=False)
     parser.add_argument('-D', '--dry-run', dest='dry_run', action='store_true', default=False)
@@ -46,7 +51,7 @@ def main():
         os.chdir(args.wdir)
 
         tasks = []
-
+    
         build_task = bowtie2_build_task(db_df.ix['assembly'])
         index_basename_fn = build_task.targets[-1]
         tasks.extend([build_task])
@@ -56,6 +61,10 @@ def main():
 
         align_tasks = sample_df.apply(bowtie2_align_task, args=(index_basename_fn,), axis=1, reduce=False)
         tasks.extend(list(align_tasks))
+
+        hits_files = align_tasks.apply(lambda t: t.targets[0])
+        express_tasks = hits_files.apply(express_task, args=(db_df.ix['assembly'].fn,))
+        tasks.extend(express_tasks)
 
         if args.print_tasks:
             for task in tasks:
