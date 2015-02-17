@@ -27,6 +27,8 @@
 *.nsq
 *.blastx
 *.blastp
+*.blast
+*.blast6
 
 # data output
 *.csv
