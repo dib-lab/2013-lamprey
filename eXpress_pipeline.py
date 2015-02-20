@@ -71,7 +71,7 @@ def main():
 
         if args.print_tasks:
             for task in tasks:
-                print '-----\n', task, task.actions
+                print '-----\n', task, task.actions, task.targets, task.file_dep
 
         if not args.dry_run:
             run_tasks(tasks, n_cpus=args.threads, clean=args.clean)
