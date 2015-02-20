@@ -29,6 +29,10 @@ def express_task(hits_fn, transcripts_fn):
     folder = hits_fn.split('.bam')[0]
     return task_funcs.eXpress_task(transcripts_fn, hits_fn, folder)
 
+@task_funcs.create_task_object
+def samtools_sort_task(hits_fn):
+    return task_funcs.samtools_sort_task(hits_fn)
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--metadata', default='metadata.ini')
@@ -64,8 +68,16 @@ def main():
         align_tasks = sample_df.apply(bowtie2_align_task, args=(index_basename_fn,), axis=1, reduce=False)
         tasks.extend(list(align_tasks))
 
+        align_files_df = task_funcs.get_task_files_df(align_tasks)
+        bam_files_to_sort = align_files_df[align_files_df.apply(lambda row: row.dep.endswith('.1'), axis=1)].target
+        bam_files_single = align_files_df[align_files_df.apply(lambda row: row.dep.endswith('.fq.gz'), axis=1)].target
+        
+        sort_tasks = bam_files_to_sort.apply(samtools_sort_task)
+        tasks.extend(sort_tasks)
+
         if not args.align_only:
-            hits_files = align_tasks.apply(lambda t: t.targets[0])
+            hits_files = bam_files_single.append(sort_tasks.apply(lambda t: t.targets[0]))
+            print hits_files
             express_tasks = hits_files.apply(express_task, args=(db_df.ix['assembly'].fn,))
             tasks.extend(express_tasks)
 
