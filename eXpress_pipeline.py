@@ -22,7 +22,7 @@ def bowtie2_align_task(row, idx_fn):
         return task_funcs.bowtie2_align_task(idx_fn, target, singleton_fn=row.filename)
     else:
         return task_funcs.bowtie2_align_task(idx_fn, target, left_fn=row.filename+'.1',
-                                                right_fn=row.filename + '.2')
+                                                right_fn=row.filename + '.2', encoding='--phred64')
 
 @task_funcs.create_task_object
 def express_task(hits_fn, transcripts_fn):
@@ -77,13 +77,12 @@ def main():
 
         if not args.align_only:
             hits_files = bam_files_single.append(sort_tasks.apply(lambda t: t.targets[0]))
-            print hits_files
             express_tasks = hits_files.apply(express_task, args=(db_df.ix['assembly'].fn,))
             tasks.extend(express_tasks)
 
         if args.print_tasks:
             for task in tasks:
-                print '-----\n', task, task.actions, task.targets, task.file_dep
+                print '-----\n', task, task.actions, task.targets, task.file_dep, task.dep_changed
 
         if not args.dry_run:
             run_tasks(tasks, n_cpus=args.threads, clean=args.clean)
