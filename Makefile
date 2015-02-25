@@ -1,6 +1,6 @@
 CPUS=4
 
-all: databases blast
+all: wdir get_databases gunip_databases fix_database_names make_blastdbs blast
 
 wdir:
 	mkdir -p work
@@ -23,6 +23,12 @@ make_blastdbs: wdir
 
 blast: wdir
 	doit --dir work -n $(CPUS) blast
+
+express:
+	./eXpress_pipeline --wdir work -n $(CPUS)
+
+express-tab:
+	./eXpress_pipeline tabcompletion --hardcode-tasks > express.tab; source express.tab
 
 clean: wdir
 	doit clean --dir work
