@@ -1,0 +1,110 @@
+# bash completion for eXpress_pipeline
+# auto-generate by `eXpress_pipeline tabcompletion`
+
+# to activate it you need to 'source' the generate script
+# $ source <generated-script>
+
+# reference => http://www.debian-administration.org/articles/317
+# patch => http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=711879
+
+_eXpress_pipeline()
+{
+    local cur prev words cword basetask sub_cmds tasks i dodof
+    COMPREPLY=() # contains list of words with suitable completion
+    # remove colon from word separator list because doit uses colon on task names
+    _get_comp_words_by_ref -n : cur prev words cword
+    # list of sub-commands
+    sub_cmds="info dumpdb run help strace auto list ignore clean tabcompletion forget"
+
+
+    # options that take file/dir as values should complete file-system
+    if [[ "$prev" == "-f" || "$prev" == "-d" || "$prev" == "-o" ]]; then
+        _filedir
+        return 0
+    fi
+    if [[ "$cur" == *=* ]]; then
+        prev=${cur/=*/}
+        cur=${cur/*=/}
+        if [[ "$prev" == "--file=" || "$prev" == "--dir=" || "$prev" == "--output-file=" ]]; then
+            _filedir -o nospace
+            return 0
+        fi
+    fi
+
+
+    # get task list
+    # if it there is colon it is getting a subtask, complete only subtask names
+    if [[ "$cur" == *:* ]]; then
+        # extract base task name (remove everything after colon)
+        basetask=${cur%:*}
+        # sub-tasks
+        tasks=$(eXpress_pipeline list  --quiet --all ${basetask} 2>/dev/null)
+        COMPREPLY=( $(compgen -W "${tasks}" -- ${cur}) )
+        __ltrim_colon_completions "$cur"
+        return 0
+    # without colons get only top tasks
+    else
+        tasks="bowtie2_build_lamp03 split_paired_and_extract_AB057JABXX_s_7_pe.trim.fq.gz split_paired_and_extract_BB0582ABXX_s_3_pe.trim.fq.gz split_paired_and_extract_BB0582ABXX_s_4_pe.trim.fq.gz split_paired_and_extract_BB0582ABXX_s_5_pe.trim.fq.gz split_paired_and_extract_BB0582ABXX_s_6_pe.trim.fq.gz split_paired_and_extract_BB0582ABXX_s_7_pe.trim.fq.gz split_paired_and_extract_BB0582ABXX_s_8_pe.trim.fq.gz split_paired_and_extract_brain_paired.qc.fq.gz bowtie2_align+614GMAAXX_1_1_pf.qc.fq.gz+lamp03 bowtie2_align+614GMAAXX_2_1_pf.qc.fq.gz+lamp03 bowtie2_align+614GMAAXX_3_1_pf.qc.fq.gz+lamp03 bowtie2_align+614GMAAXX_4_1_pf.qc.fq.gz+lamp03 bowtie2_align+614GMAAXX_6_1_pf.qc.fq.gz+lamp03 bowtie2_align+614GMAAXX_7_1_pf.qc.fq.gz+lamp03 bowtie2_align+614GMAAXX_8_1_pf.qc.fq.gz+lamp03 bowtie2_align+AB057JABXX_s_7_pe.trim.fq.gz.1+AB057JABXX_s_7_pe.trim.fq.gz.2+lamp03 bowtie2_align+AI.fq.gz+lamp03 bowtie2_align+AK.fq.gz+lamp03 bowtie2_align+BB0582ABXX_s_3_pe.trim.fq.gz.1+BB0582ABXX_s_3_pe.trim.fq.gz.2+lamp03 bowtie2_align+BB0582ABXX_s_4_pe.trim.fq.gz.1+BB0582ABXX_s_4_pe.trim.fq.gz.2+lamp03 bowtie2_align+BB0582ABXX_s_5_pe.trim.fq.gz.1+BB0582ABXX_s_5_pe.trim.fq.gz.2+lamp03 bowtie2_align+BB0582ABXX_s_6_pe.trim.fq.gz.1+BB0582ABXX_s_6_pe.trim.fq.gz.2+lamp03 bowtie2_align+BB0582ABXX_s_7_pe.trim.fq.gz.1+BB0582ABXX_s_7_pe.trim.fq.gz.2+lamp03 bowtie2_align+BB0582ABXX_s_8_pe.trim.fq.gz.1+BB0582ABXX_s_8_pe.trim.fq.gz.2+lamp03 bowtie2_align+FW1-Gill.fq.gz+lamp03 bowtie2_align+FW1-Intestine.fq.gz+lamp03 bowtie2_align+FW1-Kidney.fq.gz+lamp03 bowtie2_align+G81-a.fq.gz+lamp03 bowtie2_align+G81-b.fq.gz+lamp03 bowtie2_align+G82-a.fq.gz+lamp03 bowtie2_align+G82-b.fq.gz+lamp03 bowtie2_align+G83-a.fq.gz+lamp03 bowtie2_align+G83-b.fq.gz+lamp03 bowtie2_align+Gill.fq.gz+lamp03 bowtie2_align+JV1_liver.fq.gz+lamp03 bowtie2_align+JV_intest.fq.gz+lamp03 bowtie2_align+JVa_liver.fq.gz+lamp03 bowtie2_align+JVb_liver.fq.gz+lamp03 bowtie2_align+Kidney.fq.gz+lamp03 bowtie2_align+L81-a.fq.gz+lamp03 bowtie2_align+L81-b.fq.gz+lamp03 bowtie2_align+L82-a.fq.gz+lamp03 bowtie2_align+L82-b.fq.gz+lamp03 bowtie2_align+L83-1-a.fq.gz+lamp03 bowtie2_align+L83-1-b.fq.gz+lamp03 bowtie2_align+L83-a.fq.gz+lamp03 bowtie2_align+L83-b.fq.gz+lamp03 bowtie2_align+LI.fq.gz+lamp03 bowtie2_align+LK.fq.gz+lamp03 bowtie2_align+Lips.fq.gz+lamp03 bowtie2_align+M0_liver.fq.gz+lamp03 bowtie2_align+M2_liver.fq.gz+lamp03 bowtie2_align+M5_liver.fq.gz+lamp03 bowtie2_align+Monocytes.fq.gz+lamp03 bowtie2_align+Muscle.fq.gz+lamp03 bowtie2_align+Neutrophils.fq.gz+lamp03 bowtie2_align+OFHS.fq.gz+lamp03 bowtie2_align+POF-eye.fq.gz+lamp03 bowtie2_align+POF-ts.fq.gz+lamp03 bowtie2_align+PSMGill.fq.gz+lamp03 bowtie2_align+Rope.fq.gz+lamp03 bowtie2_align+SMGill.fq.gz+lamp03 bowtie2_align+SMHS.fq.gz+lamp03 bowtie2_align+SPDI.fq.gz+lamp03 bowtie2_align+SPK.fq.gz+lamp03 bowtie2_align+SPPI.fq.gz+lamp03 bowtie2_align+SW2-Gill.fq.gz+lamp03 bowtie2_align+SW2-Intestine-a.fq.gz+lamp03 bowtie2_align+SW2-Intestine-b.fq.gz+lamp03 bowtie2_align+SW2-Kidney.fq.gz+lamp03 bowtie2_align+Stg-1-Intestine.fq.gz+lamp03 bowtie2_align+Stg-1-Kidney.fq.gz+lamp03 bowtie2_align+Stg-2-Intestine.fq.gz+lamp03 bowtie2_align+Stg-2-Kidney.fq.gz+lamp03 bowtie2_align+Stg-3-Intestine.fq.gz+lamp03 bowtie2_align+Stg-3-Kidney.fq.gz+lamp03 bowtie2_align+Stg-4-Intestine.fq.gz+lamp03 bowtie2_align+Stg-4-Kidney.fq.gz+lamp03 bowtie2_align+Stg-5-Intestine.fq.gz+lamp03 bowtie2_align+Stg-5-Kidney.fq.gz+lamp03 bowtie2_align+Stg-6-Intestine.fq.gz+lamp03 bowtie2_align+Stg-6-Kidney.fq.gz+lamp03 bowtie2_align+Stg-7-Intestine.fq.gz+lamp03 bowtie2_align+Stg-7-Kidney.fq.gz+lamp03 bowtie2_align+brain_paired.qc.fq.gz.1+brain_paired.qc.fq.gz.2+lamp03 bowtie2_align+mssm_single_s1.trim.fq.gz+lamp03 bowtie2_align+mssm_single_s2.trim.fq.gz+lamp03 bowtie2_align+mssm_single_s3.trim.fq.gz+lamp03 bowtie2_align+mssm_single_s5.trim.fq.gz+lamp03 bowtie2_align+mssm_single_s6.trim.fq.gz+lamp03 bowtie2_align+mssm_single_s7.trim.fq.gz+lamp03 samtools_sort_AB057JABXX_s_7_pe.trim.fq.gz.x.lamp03.bam samtools_sort_BB0582ABXX_s_3_pe.trim.fq.gz.x.lamp03.bam samtools_sort_BB0582ABXX_s_4_pe.trim.fq.gz.x.lamp03.bam samtools_sort_BB0582ABXX_s_5_pe.trim.fq.gz.x.lamp03.bam samtools_sort_BB0582ABXX_s_6_pe.trim.fq.gz.x.lamp03.bam samtools_sort_BB0582ABXX_s_7_pe.trim.fq.gz.x.lamp03.bam samtools_sort_BB0582ABXX_s_8_pe.trim.fq.gz.x.lamp03.bam samtools_sort_brain_paired.qc.fq.gz.x.lamp03.bam eXpress_lamp03.fasta_614GMAAXX_1_1_pf.qc.fq.gz.x.lamp03 eXpress_lamp03.fasta_614GMAAXX_2_1_pf.qc.fq.gz.x.lamp03 eXpress_lamp03.fasta_614GMAAXX_3_1_pf.qc.fq.gz.x.lamp03 eXpress_lamp03.fasta_614GMAAXX_4_1_pf.qc.fq.gz.x.lamp03 eXpress_lamp03.fasta_614GMAAXX_6_1_pf.qc.fq.gz.x.lamp03 eXpress_lamp03.fasta_614GMAAXX_7_1_pf.qc.fq.gz.x.lamp03 eXpress_lamp03.fasta_614GMAAXX_8_1_pf.qc.fq.gz.x.lamp03 eXpress_lamp03.fasta_AI.fq.gz.x.lamp03 eXpress_lamp03.fasta_AK.fq.gz.x.lamp03 eXpress_lamp03.fasta_FW1-Gill.fq.gz.x.lamp03 eXpress_lamp03.fasta_FW1-Intestine.fq.gz.x.lamp03 eXpress_lamp03.fasta_FW1-Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_G81-a.fq.gz.x.lamp03 eXpress_lamp03.fasta_G81-b.fq.gz.x.lamp03 eXpress_lamp03.fasta_G82-a.fq.gz.x.lamp03 eXpress_lamp03.fasta_G82-b.fq.gz.x.lamp03 eXpress_lamp03.fasta_G83-a.fq.gz.x.lamp03 eXpress_lamp03.fasta_G83-b.fq.gz.x.lamp03 eXpress_lamp03.fasta_Gill.fq.gz.x.lamp03 eXpress_lamp03.fasta_JV1_liver.fq.gz.x.lamp03 eXpress_lamp03.fasta_JV_intest.fq.gz.x.lamp03 eXpress_lamp03.fasta_JVa_liver.fq.gz.x.lamp03 eXpress_lamp03.fasta_JVb_liver.fq.gz.x.lamp03 eXpress_lamp03.fasta_Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_L81-a.fq.gz.x.lamp03 eXpress_lamp03.fasta_L81-b.fq.gz.x.lamp03 eXpress_lamp03.fasta_L82-a.fq.gz.x.lamp03 eXpress_lamp03.fasta_L82-b.fq.gz.x.lamp03 eXpress_lamp03.fasta_L83-1-a.fq.gz.x.lamp03 eXpress_lamp03.fasta_L83-1-b.fq.gz.x.lamp03 eXpress_lamp03.fasta_L83-a.fq.gz.x.lamp03 eXpress_lamp03.fasta_L83-b.fq.gz.x.lamp03 eXpress_lamp03.fasta_LI.fq.gz.x.lamp03 eXpress_lamp03.fasta_LK.fq.gz.x.lamp03 eXpress_lamp03.fasta_Lips.fq.gz.x.lamp03 eXpress_lamp03.fasta_M0_liver.fq.gz.x.lamp03 eXpress_lamp03.fasta_M2_liver.fq.gz.x.lamp03 eXpress_lamp03.fasta_M5_liver.fq.gz.x.lamp03 eXpress_lamp03.fasta_Monocytes.fq.gz.x.lamp03 eXpress_lamp03.fasta_Muscle.fq.gz.x.lamp03 eXpress_lamp03.fasta_Neutrophils.fq.gz.x.lamp03 eXpress_lamp03.fasta_OFHS.fq.gz.x.lamp03 eXpress_lamp03.fasta_POF-eye.fq.gz.x.lamp03 eXpress_lamp03.fasta_POF-ts.fq.gz.x.lamp03 eXpress_lamp03.fasta_PSMGill.fq.gz.x.lamp03 eXpress_lamp03.fasta_Rope.fq.gz.x.lamp03 eXpress_lamp03.fasta_SMGill.fq.gz.x.lamp03 eXpress_lamp03.fasta_SMHS.fq.gz.x.lamp03 eXpress_lamp03.fasta_SPDI.fq.gz.x.lamp03 eXpress_lamp03.fasta_SPK.fq.gz.x.lamp03 eXpress_lamp03.fasta_SPPI.fq.gz.x.lamp03 eXpress_lamp03.fasta_SW2-Gill.fq.gz.x.lamp03 eXpress_lamp03.fasta_SW2-Intestine-a.fq.gz.x.lamp03 eXpress_lamp03.fasta_SW2-Intestine-b.fq.gz.x.lamp03 eXpress_lamp03.fasta_SW2-Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-1-Intestine.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-1-Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-2-Intestine.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-2-Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-3-Intestine.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-3-Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-4-Intestine.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-4-Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-5-Intestine.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-5-Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-6-Intestine.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-6-Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-7-Intestine.fq.gz.x.lamp03 eXpress_lamp03.fasta_Stg-7-Kidney.fq.gz.x.lamp03 eXpress_lamp03.fasta_mssm_single_s1.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_mssm_single_s2.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_mssm_single_s3.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_mssm_single_s5.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_mssm_single_s6.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_mssm_single_s7.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_AB057JABXX_s_7_pe.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_BB0582ABXX_s_3_pe.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_BB0582ABXX_s_4_pe.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_BB0582ABXX_s_5_pe.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_BB0582ABXX_s_6_pe.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_BB0582ABXX_s_7_pe.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_BB0582ABXX_s_8_pe.trim.fq.gz.x.lamp03 eXpress_lamp03.fasta_brain_paired.qc.fq.gz.x.lamp03"
+    fi
+
+
+    # match for first parameter must be sub-command or task
+    # FIXME doit accepts options "-" in the first parameter but we ignore this case
+    if [[ ${cword} == 1 ]] ; then
+        COMPREPLY=( $(compgen -W "${sub_cmds} ${tasks}" -- ${cur}) )
+        return 0
+    fi
+
+    case ${words[1]} in
+
+        info)
+            COMPREPLY=( $(compgen -W "${tasks}" -- $cur) )
+            return 0
+            ;;
+        dumpdb)
+            COMPREPLY=( $(compgen -f -- $cur) )
+            return 0
+            ;;
+        run)
+            COMPREPLY=( $(compgen -W "${tasks}" -- $cur) )
+            return 0
+            ;;
+        help)
+            COMPREPLY=( $(compgen -W "${tasks} ${sub_cmds}" -- $cur) )
+            return 0
+            ;;
+        strace)
+            COMPREPLY=( $(compgen -W "${tasks}" -- $cur) )
+            return 0
+            ;;
+        auto)
+            COMPREPLY=( $(compgen -W "${tasks}" -- $cur) )
+            return 0
+            ;;
+        list)
+            COMPREPLY=( $(compgen -W "${tasks}" -- $cur) )
+            return 0
+            ;;
+        ignore)
+            COMPREPLY=( $(compgen -W "${tasks}" -- $cur) )
+            return 0
+            ;;
+        clean)
+            COMPREPLY=( $(compgen -W "${tasks}" -- $cur) )
+            return 0
+            ;;
+        tabcompletion)
+            COMPREPLY=( $(compgen -f -- $cur) )
+            return 0
+            ;;
+        forget)
+            COMPREPLY=( $(compgen -W "${tasks}" -- $cur) )
+            return 0
+            ;;
+    esac
+
+    # if there is already one parameter match only tasks (no commands)
+    COMPREPLY=( $(compgen -W "${tasks}" -- ${cur}) )
+
+}
+complete -o filenames -F _eXpress_pipeline eXpress_pipeline
