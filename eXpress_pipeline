@@ -7,6 +7,8 @@ import pandas as pd
 import os
 import argparse
 
+BOWTIE_THREADS = 1
+
 @task_funcs.create_task_object
 def bowtie2_build_task(row):
     return task_funcs.bowtie2_build_task(row.fn, row.fn.split('.fasta')[0])
@@ -19,10 +21,10 @@ def split_pairs_task(row):
 def bowtie2_align_task(row, idx_fn):
     target = '{sample}.x.{idx}'.format(sample=row.filename, idx=idx_fn)
     if row.paired == False:
-        return task_funcs.bowtie2_align_task(idx_fn, target, singleton_fn=row.filename)
+        return task_funcs.bowtie2_align_task(idx_fn, target, singleton_fn=row.filename, num_threads=BOWTIE_THREADS)
     else:
         return task_funcs.bowtie2_align_task(idx_fn, target, left_fn=row.filename+'.1',
-                                                right_fn=row.filename + '.2')
+                                                right_fn=row.filename + '.2', num_threads=BOWTIE_THREADS)
 
 @task_funcs.create_task_object
 def express_task(hits_fn, transcripts_fn):
@@ -37,13 +39,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--metadata', default='metadata.ini')
     parser.add_argument('--metadata-spec', dest='metadata_spec',  default='metadata.spec.ini')
-    parser.add_argument('-T', '--threads', default=4, type=int)
     parser.add_argument('--wdir', default='work')
     parser.add_argument('--print-tasks', dest='print_tasks', action='store_true', default=False)
-    parser.add_argument('-D', '--dry-run', dest='dry_run', action='store_true', default=False)
-    parser.add_argument('--align-only', dest='align_only', action='store_true', default=False)
-    parser.add_argument('-C', '--clean', action='store_true', default=False)
-    args = parser.parse_args()
+    args, doit_args = parser.parse_known_args()
 
     metadata = configtools.get_cfg(args.metadata, args.metadata_spec)
     db_df = configtools.cfg_to_dataframe(metadata['urls'])
@@ -75,23 +73,17 @@ def main():
         sort_tasks = bam_files_to_sort.apply(samtools_sort_task)
         tasks.extend(sort_tasks)
 
-        if not args.align_only:
-            hits_files = bam_files_single.append(sort_tasks.apply(lambda t: t.targets[0]))
-            print hits_files
-            express_tasks = hits_files.apply(express_task, args=(db_df.ix['assembly'].fn,))
-            tasks.extend(express_tasks)
+        hits_files = bam_files_single.append(sort_tasks.apply(lambda t: t.targets[0]))
+        express_tasks = hits_files.apply(express_task, args=(db_df.ix['assembly'].fn,))
+        tasks.extend(express_tasks)
 
         if args.print_tasks:
             for task in tasks:
                 print '-----\n', task, task.actions
 
-        if not args.dry_run:
-            run_tasks(tasks, n_cpus=args.threads, clean=args.clean)
-        else:
-            print 'Dry run; exiting...'
+        run_tasks(tasks, doit_args)
+    
     finally:
         os.chdir(old_dir)
 
-
-if __name__ == '__main__':
-    main()
+main()

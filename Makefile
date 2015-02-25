@@ -24,8 +24,11 @@ make_blastdbs: wdir
 blast: wdir
 	doit --dir work -n $(CPUS) blast
 
-align-express:
-	./eXpress_pipeline --threads $(CPUS)
+express:
+	./eXpress_pipeline --wdir work -n $(CPUS)
+
+express-tab:
+	./eXpress_pipeline tabcompletion --hardcode-tasks > express.tab; source express.tab
 
 clean: wdir
 	doit clean --dir work
