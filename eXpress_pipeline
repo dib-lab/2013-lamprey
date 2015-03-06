@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 
-from peasoup import configtools
+import json
 from peasoup import task_funcs
 from peasoup.task_funcs import run_tasks, apply_run_task
 import pandas as pd
 import os
 import argparse
+import sys
 
 BOWTIE_THREADS = 1
 
 @task_funcs.create_task_object
 def bowtie2_build_task(row):
-    return task_funcs.bowtie2_build_task(row.fn, row.fn.split('.fasta')[0])
+    return task_funcs.bowtie2_build_task(row.filename, row.filename.split('.fasta')[0])
 
 @task_funcs.create_task_object
 def split_pairs_task(row):
@@ -37,16 +38,15 @@ def samtools_sort_task(hits_fn):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--metadata', default='metadata.ini')
-    parser.add_argument('--metadata-spec', dest='metadata_spec',  default='metadata.spec.ini')
+    parser.add_argument('--resources-metadata', default='resources.json')
     parser.add_argument('--wdir', default='work')
     parser.add_argument('--print-tasks', dest='print_tasks', action='store_true', default=False)
     args, doit_args = parser.parse_known_args()
 
-    metadata = configtools.get_cfg(args.metadata, args.metadata_spec)
-    db_df = configtools.cfg_to_dataframe(metadata['urls'])
-    db_df['fn'] = db_df.dest.apply(lambda s: s.rstrip('.gz'))
-    sample_df = configtools.cfg_to_dataframe(metadata['samples'])
+    with open(args.resources_metadata, 'r') as fp:
+        resources = json.load(fp)
+    resources_df = pd.DataFrame(resources).transpose()
+    sample_df = resources_df[resources_df.meta_type == 'sample']
 
     old_dir = os.getcwd()
     try:
@@ -56,7 +56,7 @@ def main():
 
         tasks = []
     
-        build_task = bowtie2_build_task(db_df.ix['assembly'])
+        build_task = bowtie2_build_task(resources_df.ix['assembly'])
         index_basename_fn = build_task.targets[-1]
         tasks.extend([build_task])
 
@@ -74,14 +74,14 @@ def main():
         tasks.extend(sort_tasks)
 
         hits_files = bam_files_single.append(sort_tasks.apply(lambda t: t.targets[0]))
-        express_tasks = hits_files.apply(express_task, args=(db_df.ix['assembly'].fn,))
+        express_tasks = hits_files.apply(express_task, args=(resources_df.ix['assembly'].filename,))
         tasks.extend(express_tasks)
 
         if args.print_tasks:
             for task in tasks:
                 print '-----\n', task, task.actions
 
-        run_tasks(tasks, doit_args)
+        #run_tasks(tasks, doit_args)
     
     finally:
         os.chdir(old_dir)
